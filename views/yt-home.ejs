@@ -1,0 +1,309 @@
+<%- include('partials/header') %>
+<div class="jumbotron bg-dark text-light sm">
+    <div class="container text-center">
+        <h1 class="display-4">YouTube channels ranked. By you.</h1>
+        <p class="lead">
+            Your ultimate guide to the best YouTube channels.
+        </p>
+        <form method="post" action="/search" class="mx-auto">
+            <input name="query" class="form-control mr-sm-2" type="search" placeholder="Search channels..."
+                aria-label="Search" />
+            <button class="btn btn-outline-primary mt-2" type="submit">
+                Search
+            </button>
+        </form>
+    </div>
+</div>
+<!-- ---------------------------FEATURED CHANNEL OF THE DAY --------------------------- -->
+
+<div class="container">
+    <div class="card bg-white text-center">
+        <div class="card-header text-dark bg-light">
+            Channel of the Day
+        </div>
+        <div class="card-body">
+            <% let channel = cotds[0] %>
+            <p class="m-3 text-right"><em> #<%= channel.tags[0] %></em></p>
+
+            <div class="row pt-3 mx-auto">
+
+                <h3 class="card-title"> <a href=<%= channel.link %> target="_blank"
+                        class="text-dark"><%= channel.name %></a>
+                </h3>
+                <img src="<%= channel.image %>" class="mx-auto img-fluid img-thumbnail" alt="channel thumbnail">
+                <div class="p-3 p-md-4 mx-auto ml-md-4 text-center align-self-center">
+                    <% let thisChannel %>
+                    <% let pastDirection %>
+                    <% if(user){ %>
+                    <% if (!votedChannelsArray.length){  %>
+                    <%  thisChannel = -1 %>
+                    <%  pastDirection = "none" %>
+                    <% } else if (votedChannelsArray.indexOf(String(channel._id)) != -1){ %>
+                    <%  thisChannel = votedChannelsArray.indexOf(String(channel._id)) %>
+                    <%  pastDirection = user.votedChannels[thisChannel].direction %>
+                    <%}%>
+          
+                  <button id="up<%= channel._id %>" name="upvote" class="btn row"
+                    <%= thisChannel != -1 && pastDirection === "up" ? "disabled" : null %>>
+                    <i class="fas fa-chevron-up fa-3x"></i>
+                    </button>
+
+                    <h1 id=<%= channel._id %> class="row p-0 m-0 justify-content-center">
+                        <%= channel.votes %>
+                    </h1>
+
+                    <button id="down<%= channel._id %>" name="downvote" class="btn row"
+                        <%= thisChannel != -1 && pastDirection==="down" ? "disabled" : null %>>
+                        <i class="fas fa-chevron-down fa-3x"></i>
+                    </button>
+                    <% } else { %>
+                    <button id=" up<%= channel._id %>" name="upvote" class="btn row">
+                        <i class="fas fa-chevron-up fa-3x"></i>
+                    </button>
+
+                    <h1 id=<%= channel._id %> class="row p-0 m-0 justify-content-center">
+                        <%= channel.votes %>
+                    </h1>
+
+                    <button id="down<%= channel._id %>" name="downvote" class="btn row">
+                        <i class="fas fa-chevron-down fa-3x"></i>
+                    </button>
+                    <% } %>
+                </div>
+            </div>
+            <div class="card-body">
+                <p class="description card-text"><%= channel.description %></p>
+
+                <a href=<%= channel.link %> target="_blank" class="btn btn-primary">Visit channel</a>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+    <br>
+
+    <!-- --------------------------------CHANNEL ON THE RISE OF THE DAY --------------------------------- -->
+
+    <div class="row">
+        <div class="col-sm-6 mb-3">
+            <div class="card bg-white text-center">
+                <div class="card-header text-dark bg-light">
+                    Channel on the Rise of the Day
+                </div>
+                <div class="card-body">
+                    <% const rcotd = cotds[1] %>
+                    <p class="m-3 text-right"><em> #<%= channel.tags[0] %></em></p>
+
+                    <h3 class="card-title"> <a href=<%= rcotd.link %> target="_blank"
+                            class="text-dark"><%= rcotd.name %></a>
+                    </h3> <img src="<%= rcotd.image %>" class="mx-auto img-fluid img-thumbnail" alt="channel thumbnail">
+                    <div class="p-3 p-md-4 mx-auto ml-md-4 text-center align-self-center">
+                        <% let thisChannel1 %>
+                        <% let pastDirection1 %>
+                        <% if(user){ %>
+                        <% if (!votedChannelsArray.length){  %>
+                        <%  thisChannel1 = -1 %>
+                        <%  pastDirection1 = "none" %>
+                        <% } else if (votedChannelsArray.indexOf(String(rcotd._id)) != -1){ %>
+                        <%  thisChannel1 = votedChannelsArray.indexOf(String(rcotd._id)) %>
+                        <%  pastDirection1 = user.votedChannels[thisChannel1].direction %>
+                        <%}%>
+              
+                      <button id="up<%= rcotd._id %>" name="upvote" class="btn row"
+                        <%= thisChannel1 != -1 && pastDirection1 === "up" ? "disabled" : null %>>
+                        <i class="fas fa-chevron-up fa-3x"></i>
+                        </button>
+
+                        <h1 id=<%= rcotd._id %> class="row p-0 m-0 justify-content-center">
+                            <%= rcotd.votes %>
+                        </h1>
+
+                        <button id="down<%= rcotd._id %>" name="downvote" class="btn row"
+                            <%= thisChannel1 != -1 && pastDirection1==="down" ? "disabled" : null %>>
+                            <i class="fas fa-chevron-down fa-3x"></i>
+                        </button>
+                        <% } else { %>
+                        <button id=" up<%= rcotd._id %>" name="upvote" class="btn row">
+                            <i class="fas fa-chevron-up fa-3x"></i>
+                        </button>
+
+                        <h1 id=<%= rcotd._id %> class="row p-0 m-0 justify-content-center">
+                            <%= rcotd.votes %>
+                        </h1>
+
+                        <button id="down<%= rcotd._id %>" name="downvote" class="btn row">
+                            <i class="fas fa-chevron-down fa-3x"></i>
+                        </button>
+                        <% } %>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="description card-text"><%= rcotd.description %></p>
+
+                    <a href=<%= rcotd.link %> target="_blank" class="btn btn-primary">Visit channel</a>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ------------------------------------ UNDERDOG CHANNEL OF THE DAY ------------------------------- -->
+
+        <div class="col-sm-6 mb-3">
+            <div class="card text-center bg-white">
+                <div class="card-header text-dark bg-light">
+                    Underdog Channel of the Day
+                </div>
+                <div class="card-body">
+                    <% channel = cotds[2] %>
+                    <p class="m-3 text-right"><em> #<%= channel.tags[0] %></em></p>
+
+                    <h3 class="card-title"> <a href=<%= channel.link %> target="_blank"
+                            class="text-dark"><%= channel.name %></a>
+                    </h3>
+                    <img src="<%= channel.image %>" class=" mx-auto img-fluid img-thumbnail" alt="channel thumbnail">
+                    <div class="p-3 p-md-4 mx-auto ml-md-4 text-center align-self-center">
+                        <% let thisChannel2 %>
+                        <% let pastDirection2 %>
+                        <% if(user){ %>
+                        <% if (!votedChannelsArray.length){  %>
+                        <%  thisChannel2 = -1 %>
+                        <%  pastDirection2 = "none" %>
+                        <% } else if (votedChannelsArray.indexOf(String(channel._id)) != -1){ %>
+                        <%  thisChannel2 = votedChannelsArray.indexOf(String(channel._id)) %>
+                        <%  pastDirection2 = user.votedChannels[thisChannel2].direction %>
+                        <%}%>
+          
+                  <button id="up<%= channel._id %>" name="upvote" class="btn row"
+                        <%= thisChannel2 != -1 && pastDirection2 === "up" ? "disabled" : null %>>
+                        <i class="fas fa-chevron-up fa-3x"></i>
+                        </button>
+
+                        <h1 id=<%= channel._id %> class="row p-0 m-0 justify-content-center">
+                            <%= channel.votes %>
+                        </h1>
+
+                        <button id="down<%= channel._id %>" name="downvote" class="btn row"
+                            <%= thisChannel2 != -1 && pastDirection2==="down" ? "disabled" : null %>>
+                            <i class="fas fa-chevron-down fa-3x"></i>
+                        </button>
+                        <% } else { %>
+                        <button id=" up<%= channel._id %>" name="upvote" class="btn row">
+                            <i class="fas fa-chevron-up fa-3x"></i>
+                        </button>
+
+                        <h1 id=<%= channel._id %> class="row p-0 m-0 justify-content-center">
+                            <%= channel.votes %>
+                        </h1>
+
+                        <button id="down<%= channel._id %>" name="downvote" class="btn row">
+                            <i class="fas fa-chevron-down fa-3x"></i>
+                        </button>
+                        <% } %>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="description card-text"><%= channel.description %></p>
+
+                    <a href=<%= channel.link %> target="_blank" class="btn btn-primary">Visit channel</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- --------------------------------------- CAROUSEL ---------------------------------------- -->
+
+<div class="container">
+    <div class="card-header text-center text-dark bg-light"> Featured </div>
+    <div id="carousel-featured" class="carousel slide" data-ride="carousel">
+
+        <div class="carousel-inner">
+
+            <% results.forEach((channel) => { %>
+
+            <div class="carousel-item <%= channel.name == results[0].name ? "active":null %>">
+                <div class="card text-dark bg-white">
+                    <div class="card-body">
+                        <p class="m-3 text-right"><em> #<%= channel.tags[0] %></em></p>
+
+                        <div class="row pt-3">
+                            <h3 class="card-title align-self-center mx-auto col-12 col-md"> <a href=<%= channel.link %>
+                                    target="_blank" class="text-dark"><%= channel.name %></a>
+                            </h3>
+
+                            <div class="p-3 p-md-4 mx-auto ml-md-4 text-center align-self-center col-12 col-md">
+                                <% let thisChannel3 %>
+                                <% let pastDirection3 %>
+                                <% if(user){ %>
+                                <% if (!votedChannelsArray.length){  %>
+                                <%  thisChannel3 = -1 %>
+                                <%  pastDirection3 = "none" %>
+                                <% } else if (votedChannelsArray.indexOf(String(channel._id)) != -1){ %>
+                                <%  thisChannel3 = votedChannelsArray.indexOf(String(channel._id)) %>
+                                <%  pastDirection3 = user.votedChannels[thisChannel3].direction %>
+                                <%}%>
+      
+                                <button id="up<%= channel._id %>" name="upvote" class="btn row"
+                                <%= thisChannel3 != -1 && pastDirection3 === "up" ? "disabled" : null %>>
+                                <i class="fas fa-chevron-up fa-3x"></i>
+                                </button>
+
+                                <h1 id=<%= channel._id %> class="row p-0 m-0 justify-content-center">
+                                    <%= channel.votes %>
+                                </h1>
+
+                                <button id="down<%= channel._id %>" name="downvote" class="btn row"
+                                    <%= thisChannel3 != -1 && pastDirection3==="down" ? "disabled" : null %>>
+                                    <i class="fas fa-chevron-down fa-3x"></i>
+                                </button>
+                                <% } else { %>
+                                <button id=" up<%= channel._id %>" name="upvote" class="btn row">
+                                    <i class="fas fa-chevron-up fa-3x"></i>
+                                </button>
+
+                                <h1 id=<%= channel._id %> class="row p-0 m-0 justify-content-center">
+                                    <%= channel.votes %>
+                                </h1>
+
+                                <button id="down<%= channel._id %>" name="downvote" class="btn row">
+                                    <i class="fas fa-chevron-down fa-3x"></i>
+                                </button>
+                                <% } %>
+                            </div>
+
+                            <img src="<%= channel.image %>" class="img-fluid img-thumbnail mx-auto col-12 col-md"
+                                alt="channel thumbnail">
+                        </div>
+                        <div class="card-body text-center">
+                            <p class="description card-text"><%= channel.description %></p>
+                            <a href=<%= channel.link %> target="_blank" class="btn btn-primary">Visit
+                                channel</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <%  }) %>
+
+            <a class="carousel-control-prev" href="#carousel-featured" role="button" data-slide="prev">
+                <!-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> -->
+                <span class="sr-only">Previous</span>
+
+            </a>
+            <a class="carousel-control-next" href="#carousel-featured" role="button" data-slide="next">
+                <!-- <span class="carousel-control-next-icon" aria-hidden="true"></span> -->
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+
+</div>
+
+<%- include('partials/footer') %>

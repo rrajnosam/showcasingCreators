@@ -1,0 +1,49 @@
+<%- include('../partials/header') %>
+
+<br>
+<br>
+<br>
+
+<h1 class="text-center">admin submit video page</h1>
+<hr>
+<br>
+<br>
+<br>
+
+<div class="container">
+    <form action="/suggest-channel/admin" method="post">
+        <div class="form-group">
+            <input id="channelUrl" class="form-control" name="channelUrl" type="url"
+                placeholder="insert channel page URL here">
+
+        </div>
+        <div class="form-group">
+            <input id="channelName" class="form-control" name="channelName" type="text" placeholder="channel name">
+        </div>
+
+        <div class="form-group">
+            <input id="channelImg" class="form-control" name="channelImg" type="url" placeholder="channel image">
+        </div>
+
+        <div class="form-group">
+
+            <input id="channelDescription" class="form-control" name="channelDescription" type="text"
+                placeholder="channel description">
+        </div>
+
+        <div class="form-group">
+            <input id="channelTags" class="form-control" name="tags" placeholder="tags (separated by commas)"
+                type="text">
+        </div>
+
+        <div class="form-group">
+            <button id="saveChannel" class="btn btn-danger" type="submit">submit</button>
+        </div>
+
+    </form>
+</div>
+
+
+
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,101 @@
+<%- include('../partials/header') %>
+
+<br>
+<br>
+<br>
+
+<div class="container">
+    <h1 class="text-center mb-4">admin show suggestions page</h1>
+    <div class="text-center">
+        <button onclick="deleteAll()" class="btn btn-danger">delete all</button>
+    </div>
+</div>
+
+<hr>
+
+<br>
+<br>
+<br>
+<div id="suggestionsList" class="container">
+    <% suggestions.forEach((each) => { %>
+    <div id="<%= each._id%>" class="card w-75">
+        <div class="card-body">
+
+            <p> <strong>ID: </strong><%= each._id%></p>
+            <p class="card-title"> <strong>URL: </strong> <a class="url" href="<%= each.suggestionUrl%>"
+                    target="_blank"><%= each.suggestionUrl%></a> </p>
+
+            <div class="row">
+                <strong>tags:&nbsp</strong>
+                <p class="tags "> <%= each.suggestionTags %> </p>
+            </div>
+            <div class="row justify-content-between">
+                <div class="col-5">
+                    <div class="row card-text ml-0"> <strong>category:&nbsp</strong>
+                        <p class="category "> <%= each.suggestionCategory %> </p>
+                    </div>
+
+                </div>
+                <div class="col-2">
+                    <button id="<%= each._id%>" onclick="deleteOne()" class="btn btn-outline-danger">delete</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <% }) %>
+</div>
+
+<script>
+
+
+    function deleteOne() {
+        const id = event.target.id
+
+        let xhr = new XMLHttpRequest()
+
+        xhr.open('POST', '/suggest-channel/admin/show/delete', true)
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+        //xhr.setRequestHeader('Content-Type', 'application/json')
+        xhr.onload = function () {
+            if (this.status == 200) {
+                document.getElementById(id).remove()
+
+            } else {
+                console.log("error")
+            }
+        }
+        xhr.send(JSON.stringify({
+            id: id
+        }))
+
+    }
+
+
+    function deleteAll() {
+        console.log(event.target)
+        let xhr = new XMLHttpRequest()
+
+        xhr.open('POST', '/suggest-channel/admin/show/deleteall', true)
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+        //xhr.setRequestHeader('Content-Type', 'application/json')
+        xhr.onload = function () {
+            if (this.status == 200) {
+                document.getElementById("suggestionsList").remove()
+
+            } else {
+                console.log("error")
+            }
+        }
+        xhr.send(JSON.stringify({
+            delete: "all"
+        }))
+
+    }
+</script>
+
+
+
+<%- include('../partials/footer') %>

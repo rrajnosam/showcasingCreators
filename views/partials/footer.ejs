@@ -1,0 +1,102 @@
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+  integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+  integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+  integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+<!-- <script src="https://rocky-hamlet-89686.herokuapp.com/scripts/main.js" crossorigin="anonymous"></script> -->
+<!-- <script src="/scripts/main.js" crossorigin="anonymous"></script> -->
+<script>
+
+  function upvote() {
+    // console.log("upvote")
+    const votes = event.target.parentElement.nextElementSibling.innerText
+    const id = event.target.parentElement.nextElementSibling.attributes.id.value
+
+    let xhr = new XMLHttpRequest()
+
+    xhr.open('POST', '/vote', true)
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+    //xhr.setRequestHeader('Content-Type', 'application/json')
+    xhr.onload = function () {
+      //console.log(this)
+      if (this.status == 200 && !this.responseText.includes("<!DOCTYPE html>")) {
+        const data = JSON.parse(this.responseText)
+        document.getElementById(id).innerHTML = `${data.votes}`
+        document.getElementById(`up${id}`).disabled = data.disabled.up
+        document.getElementById(`down${id}`).disabled = data.disabled.down
+      } else {
+        document.getElementById(id).innerHTML = "sign in to vote"
+      }
+    }
+    xhr.send(JSON.stringify({
+      id: id,
+      votes: votes,
+      direction: "up"
+    }))
+
+  }
+
+  function downvote() {
+    // console.log("downvote")
+    const votes = event.target.parentElement.previousElementSibling.innerText
+    const id = event.target.parentElement.previousElementSibling.attributes.id.value
+    let xhr = new XMLHttpRequest()
+
+    console.log(votes, id)
+
+    xhr.open('POST', '/vote', true)
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+    //xhr.setRequestHeader('Content-Type', 'application/json')
+    xhr.onload = function () {
+
+      if (this.status == 200 && !this.responseText.includes("<!DOCTYPE html>")) {
+        const data = JSON.parse(this.responseText)
+        document.getElementById(id).innerHTML = `${data.votes}`
+        document.getElementById(`up${id}`).disabled = data.disabled.up
+        document.getElementById(`down${id}`).disabled = data.disabled.down
+      } else {
+        document.getElementById(id).innerHTML = "sign in to vote"
+      }
+    }
+    xhr.send(JSON.stringify({
+      id: id,
+      votes: votes,
+      direction: "down"
+    }))
+
+  }
+
+  const ups = document.getElementsByName("upvote")
+  ups.forEach((element) => { element.addEventListener("click", upvote) })
+
+  const downs = document.getElementsByName("downvote")
+  downs.forEach((element) => { element.addEventListener("click", downvote) })
+
+
+</script>
+
+<script type="text/javascript">
+  $(function () {
+    $(".description").each(function (i) {
+      len = $(this).text().length;
+      if (len > 300) {
+        $(this).text($(this).text().substr(0, 300) + '...');
+      }
+    });
+  });
+</script>
+
+
+
+<footer class="footer mt-auto py-3">
+  <div class="container-fluid text-center">
+    <!-- <span class="text-muted">© Copyright 2020 Collective Development - All Rights Reserved </span> -->
+  </div>
+</footer>
+
+
+</body>
+
+</html>

@@ -1,0 +1,167 @@
+<%- include('partials/header') %>
+
+
+<div class="jumbotron bg-dark text-light">
+    <div class="container text-center">
+        <h1 id="userName" class="display-4">Welcome, <%= user.username %>!</h1>
+        <p class="lead">
+            Upvote channels you like. Downvote channels you dislike. Suggest channels you love or hate.
+        </p>
+
+        <% if(!user){ %>
+        <a href="/auth/login" class="btn btn-lg btn-outline-primary">Login</a>
+
+        <% } %>
+        <% if(user){ %>
+        <a href="/suggest-channel" class="btn btn-lg btn-outline-primary mr-2">Suggest a channel</a>
+        <a href="/auth/logout" class="btn btn-lg btn-outline-primary">Logout</a>
+
+        <% } %>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="card-header mb-3 mx-auto bg-white text-black">
+        <div class="row">
+            <div class="col-sm text-black text-left">
+                <h5 class="mb-0">Your voted channels</h5>
+            </div>
+
+            <div class="col-sm text-black text-right">
+                <h5 class=" mb-0">
+                    sort by:
+                    <span>
+                        <a href="<%=paginate.baseUrl%>?page=<%= paginate.page %>&sort=upvotes">
+                            upvotes
+                        </a>
+                        /
+                        <a href="<%=paginate.baseUrl%>?page=<%= paginate.page %>&sort=recent">
+                            recent
+                        </a>
+                    </span>
+                </h5>
+            </div>
+        </div>
+    </div>
+
+
+    <% results.forEach((channel) => { %>
+    <div class="card mb-3 mx-auto">
+        <h3 class="card-header"> <a href=<%= channel.link %> target="_blank" class="text-dark"><%= channel.name %></a>
+        </h3>
+        <p class="m-3 text-right">
+            <em><%= channel.tags[0] %></em>
+        </p>
+        <div class="row pt-3 mx-auto">
+            <img src=<%= channel.image %> class=" mx-auto img-fluid img-thumbnail" alt="...">
+            <div class="p-3 p-md-4 mx-auto ml-md-4 text-center align-self-center">
+                <% if(user){ %>
+                <% const thisChannel = votedChannelsArray.indexOf(String(channel._id)) %>
+                <% const pastDirection = user.votedChannels[thisChannel].direction %>
+
+                <button id="up<%= channel._id %>" name="upvote" class="btn row"
+                    <%= thisChannel != -1 && pastDirection === "up" ? "disabled" : null %>>
+                    <i class="fas fa-chevron-up fa-3x"></i>
+                </button>
+
+                <h1 id=<%= channel._id %> class="row p-0 m-0 justify-content-center">
+                    <%= channel.votes %></h1>
+
+                <button id="down<%= channel._id %>" name="downvote" class="btn row"
+                    <%= thisChannel != -1 && pastDirection==="down" ? "disabled" : null %>>
+                    <i class="fas fa-chevron-down fa-3x"></i>
+                </button>
+                <% } else { %>
+                <button id="up<%= channel._id %>" name="upvote" class="btn row">
+                    <i class="fas fa-chevron-up fa-3x"></i>
+                </button>
+
+                <h1 id=<%= channel._id %> class="row p-0 m-0 justify-content-center">
+                    <%= channel.votes %></h1>
+
+                <button id="down<%= channel._id %>" name="downvote" class="btn row">
+                    <i class="fas fa-chevron-down fa-3x"></i>
+                </button>
+                <% } %>
+
+
+            </div>
+        </div>
+        <div class="card-body">
+            <p class="description card-text"><%= channel.description %></p>
+
+            <a href=<%= channel.link %> target="_blank" class="btn btn-primary">Visit channel</a>
+        </div>
+
+    </div>
+    <% }) %>
+</div>
+
+<nav aria-label="results pages" class="d-flex justify-content-center">
+    <ul class="pagination">
+        <li class="page-item <%= paginate.previousPage === 0 ? "disabled" : null %>">
+            <a class="page-link"
+                href="<%=paginate.baseUrl%>?page=<%= paginate.page -1%><%= sortOption ? "&sort="+sortOption : null%>"
+                tabindex="-1">Previous</a>
+        </li>
+        <% if(paginate.numberOfPages <= 6){ %>
+        <% for(let i = 1; i <= paginate.numberOfPages; i++) {%>
+        <li class="page-item <%= paginate.page === i ? "active" : null %>">
+            <a class=" page-link"
+                href="<%=paginate.baseUrl%>?page=<%= i %><%= sortOption ? "&sort="+sortOption : null%>"><%= i %></a>
+        </li>
+        <% } %>
+        <% } else if(!paginate.page || (paginate.page <= 3)) { %>
+        <% for(let i = 1; i <= 3; i++) {%>
+        <li class="page-item <%= paginate.page === i ? "active" : null %>">
+            <a class=" page-link"
+                href="<%=paginate.baseUrl%>?page=<%= i %><%= sortOption ? "&sort="+sortOption : null%>">
+                <%= i %></a>
+        </li>
+        <% } %>
+        <li class="page-item">
+            <a class="page-link"
+                href="<%=paginate.baseUrl%>?page=<%= (paginate.page +3) %><%= sortOption ? "&sort="+sortOption : null%>">...</a>
+        </li>
+        <% for(let j =  (paginate.numberOfPages -2) ; j <= paginate.numberOfPages; j++) {%>
+        <li class="page-item <%= paginate.page === j ? "active" : null %>">
+            <a class=" page-link"
+                href="<%=paginate.baseUrl%>?page=<%= j %><%= sortOption ? "&sort="+sortOption : null%>"><%= j %></a>
+        </li>
+        <% } %>
+        <% } else { %>
+        <% if((paginate.page-3) > 1){ %>
+        <li class="page-item">
+            <a class="page-link"
+                href="<%=paginate.baseUrl%>?page=<%= (paginate.page -3) %><%= sortOption ? "&sort="+sortOption : null%>">...</a>
+        </li>
+        <% } %>
+
+        <% for(let k = (paginate.page -3); k <= paginate.page +3; k++) {%>
+        <% if (k <= paginate.numberOfPages){%>
+        <li class="page-item <%= paginate.page === k ? "active" : null %>">
+            <a class=" page-link"
+                href="<%=paginate.baseUrl%>?page=<%= k %><%= sortOption ? "&sort="+sortOption : null%>"><%= k %></a>
+        </li>
+        <% } %>
+        <% } %>
+        <% if((paginate.page+3) < paginate.numberOfPages){ %>
+        <li class="page-item">
+            <a class="page-link"
+                href="<%=paginate.baseUrl%>?page=<%= (paginate.page +3) %><%= sortOption ? "&sort="+sortOption : null%>">...</a>
+        </li>
+        <% } %>
+        <% } %>
+
+
+
+        <li class="page-item <%= paginate.nextPage === 0 ? "disabled" : null %>">
+            <a class="page-link"
+                href="<%=paginate.baseUrl%>?page=<%= paginate.page +1 %><%= sortOption ? "&sort="+sortOption : null%>">Next</a>
+        </li>
+    </ul>
+</nav>
+
+
+<%- include('partials/footer') %>

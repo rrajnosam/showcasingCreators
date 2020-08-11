@@ -1,0 +1,20 @@
+<%- include('header') %>
+
+<div class="jumbotron">
+    <div class="container text-center">
+        <h1 class="display-4 mb-4">Thank you for submitting your suggestion!</h1>
+
+
+        <% if(!user){ %>
+        <a href="/auth/login" class="btn btn-lg btn-primary">Login</a>
+
+        <% } %>
+        <% if(user){ %>
+        <a href="/suggest-channel" class="btn btn-lg btn-primary">Suggest another channel</a>
+        <a href="/auth/logout" class="btn btn-lg btn-primary">Logout</a>
+
+        <% } %>
+    </div>
+</div>
+
+<%- include('footer') %>

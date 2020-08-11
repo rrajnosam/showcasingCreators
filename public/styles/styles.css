@@ -1,0 +1,44 @@
+/* ::-webkit-input-placeholder {
+  text-align: center;
+}
+
+:-moz-placeholder { 
+  text-align: center;  
+}
+
+::-moz-placeholder {  
+  text-align: center;  
+}
+
+:-ms-input-placeholder {  
+  text-align: center; 
+} */
+
+a:hover{
+text-decoration: none;
+}
+
+
+
+@media (max-width: 992px) {
+  .dropdown-menu{
+        height:10rem;
+        overflow-y:auto;
+     }
+     /* a.navbar-brand {
+      float: none;
+      display: table;
+      margin: auto;
+    } */
+    a img.img-logo {
+      
+      height:40px;
+      width: 160px;
+ 
+    }
+    /* a.navbar-brand {
+      
+      } */
+  
+  }
+
