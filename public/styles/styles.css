@@ -19,6 +19,10 @@ text-decoration: none;
 }
 
 
+.dropdown-menu{
+  height:25rem;
+  overflow-y:auto;
+}
 
 @media (max-width: 992px) {
   .dropdown-menu{
