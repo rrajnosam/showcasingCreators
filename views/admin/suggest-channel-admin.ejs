@@ -1,5 +1,3 @@
-<%- include('../partials/header') %>
-
 <br>
 <br>
 <br>
@@ -14,26 +12,28 @@
     <form action="/suggest-channel/admin" method="post">
         <div class="form-group">
             <input id="channelUrl" class="form-control" name="channelUrl" type="url"
-                placeholder="insert channel page URL here">
+                placeholder="insert channel page URL here" required>
 
         </div>
         <div class="form-group">
-            <input id="channelName" class="form-control" name="channelName" type="text" placeholder="channel name">
+            <input id="channelName" class="form-control" name="channelName" type="text" placeholder="channel name"
+                required>
         </div>
 
         <div class="form-group">
-            <input id="channelImg" class="form-control" name="channelImg" type="url" placeholder="channel image">
+            <input id="channelImg" class="form-control" name="channelImg" type="url" placeholder="channel image"
+                required>
         </div>
 
         <div class="form-group">
 
             <input id="channelDescription" class="form-control" name="channelDescription" type="text"
-                placeholder="channel description">
+                placeholder="channel description" required>
         </div>
 
         <div class="form-group">
             <input id="channelTags" class="form-control" name="tags" placeholder="tags (separated by commas)"
-                type="text">
+                type="text" required>
         </div>
 
         <div class="form-group">
@@ -42,8 +42,3 @@
 
     </form>
 </div>
-
-
-
-
-<%- include('../partials/footer') %>

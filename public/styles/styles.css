@@ -19,7 +19,7 @@ text-decoration: none;
 }
 
 
-.dropdown-menu{
+.category-dropdown.dropdown-menu{
   height:25rem;
   overflow-y:auto;
 }

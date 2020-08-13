@@ -1,6 +1,7 @@
-const passport = require("passport");
-const GoogleStrategy = require("passport-google-oauth20");
-const User = require("../models/user-model.js");
+const passport = require("passport")
+const GoogleStrategy = require("passport-google-oauth20")
+const LocalStrategy = require('passport-local').Strategy
+const User = require("../models/user-model.js")
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
@@ -40,4 +41,25 @@ passport.use(
       })
     }
   )
-);
+)
+
+
+passport.use(new LocalStrategy(
+  function (password, done) {
+
+    const hash = "$2a$10$psuI0aziLqdeVN6iyyQyA.CspX8QlHq3DHQ87l093fiV1MByfkWLe"
+
+    bcrypt.compare(password, hash, (err, isMatch) => {
+      if (err) {
+        throw err
+      } else if (!isMatch) {
+        console.log("doesn't match")
+        return done(null, false, { message: 'Incorrect password.' });
+      } else {
+        console.log("password matches")
+        return done(null, user);
+      }
+    })
+
+  }
+));

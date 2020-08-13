@@ -25,6 +25,22 @@ const Channel = require("./models/channel-model.js")
 //INITIALIZE PACKAGES
 const app = express();
 
+env = process.env.NODE_ENV || 'development';
+
+let forceSsl = function (req, res, next) {
+  if (req.headers['x-forwarded-proto'] !== 'https') {
+    return res.redirect(['https://', req.get('Host'), req.url].join(''));
+  }
+  return next();
+};
+
+
+
+if (env === 'production') {
+  app.use(forceSsl);
+}
+
+
 app.set("view engine", "ejs")
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -41,6 +57,7 @@ app.use(
     cookie: {
       secure: true,
       httpOnly: true,
+      secireProxy: true,
       //domain: "localhost",
       //path: "foo/bar",
       //expires: expiryDate,
