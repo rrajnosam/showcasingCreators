@@ -10,7 +10,7 @@ global.cotd = 0
 global.udcotd = 1
 global.rcotd = 2
 
-cron.schedule(" * */24 * * *", async () => {
+cron.schedule(" 0 0 * * *", async () => {
     // console.log("run this every  MINUTE")
     try {
         const totalDocs = await Channel.countDocuments()

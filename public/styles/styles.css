@@ -28,6 +28,7 @@ text-decoration: none;
   .dropdown-menu{
         height:10rem;
         overflow-y:auto;
+
      }
      /* a.navbar-brand {
       float: none;
@@ -39,6 +40,10 @@ text-decoration: none;
       height:40px;
       width: 160px;
  
+    }
+
+    .signup-btn{
+      font-size: .6rem;
     }
     /* a.navbar-brand {
       

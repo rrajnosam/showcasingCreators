@@ -11,8 +11,8 @@
     integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous" />
   <link rel="stylesheet" href="/styles/styles.css" type="text/css" />
 
-  <!-- <link rel="shortcut icon" href="/images/favicon.ico"> -->
-  <link rel="icon" href="/images/fav.png" type="image/gif" sizes="200x200">
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <!-- <link rel="icon" href="/images/fav.png" type="image/gif" sizes="200x200"> -->
 
 </head>
 
@@ -27,6 +27,8 @@
       <a class="navbar-brand" href="/youtube">
         <img class="img-logo" src="/images/logo-nb.png" height="75rem" width="300rem" alt="logo">
       </a>
+
+
 
     </div>
 
@@ -69,28 +71,35 @@
 
     </div>
 
-    <ul class="nav navbar-nav navbar-right ml-auto">
+    <div class="navbar-header">
       <% if(!user){ %>
-      <div>
-        <a href="/auth/login" class="btn btn-link text-dark font-weight-bold my-3 my-sm-0">Sign up | Sign in</a>
-      </div>
+      <li class="list-unstyled nav-item dropdown">
+        <div>
+          <a href="/auth/login" class="signup-btn btn btn-link text-dark font-weight-bold my-3 my-sm-0">Sign up | Sign
+            in</a>
+        </div>
+      </li>
+
 
       <% } %>
       <% if(user){ %>
-      <div class="dropdown">
-        <a class="text-dark font-weight-bold dropdown-header p-2" href="#" role="button" id="dropdownMenuLink"
-          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <%= user.username%>
-        </a>
+      <li class="list-unstyled nav-item dropdown">
+        <div class="dropdown">
+          <a class="text-dark font-weight-bold dropdown-header p-2" href="#" role="button" id="dropdownMenuLink"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= user.username%>
+          </a>
 
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-          <a class="dropdown-item" href="/profile">Profile</a>
-          <a href="/suggest-channel" class="dropdown-item">Suggest a channel</a>
-          <div class="dropdown-divider"></div>
-          <a href="/auth/logout" class="dropdown-item">Logout</a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="/profile">Profile</a>
+            <a href="/suggest-channel" class="dropdown-item">Suggest a channel</a>
+            <div class="dropdown-divider"></div>
+            <a href="/auth/logout" class="dropdown-item">Logout</a>
+          </div>
         </div>
-      </div>
-      <% } %>
+      </li>
 
-    </ul>
+      <% } %>
+    </div>
+
   </nav>

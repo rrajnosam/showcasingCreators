@@ -27,7 +27,7 @@ const app = express();
 
 env = process.env.NODE_ENV || 'development';
 
-let forceSsl = function (req, res, next) {
+let directSsl = function (req, res, next) {
   if (req.headers['x-forwarded-proto'] !== 'https') {
     return res.redirect(['https://', req.get('Host'), req.url].join(''));
   }
@@ -35,9 +35,8 @@ let forceSsl = function (req, res, next) {
 };
 
 
-
 if (env === 'production') {
-  app.use(forceSsl);
+  app.use(directSsl);
 }
 
 
