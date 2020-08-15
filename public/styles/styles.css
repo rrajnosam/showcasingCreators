@@ -24,17 +24,40 @@ text-decoration: none;
   overflow-y:auto;
 }
 
+.thumb{
+  height: 13rem;
+  width: 13rem;
+}
+
+
+
 @media (max-width: 992px) {
-  .dropdown-menu{
-        height:10rem;
+  .category-dropdown.dropdown-menu{
+        height:11rem;
         overflow-y:auto;
 
      }
+  .profile-dropdown{
+    height: auto;
+    overflow-y: auto;
+  }
      /* a.navbar-brand {
       float: none;
       display: table;
       margin: auto;
     } */
+   
+    .thumb{
+      height: 10rem;
+      width: 10rem;
+    }
+    .slogan{
+      font-size: 2.5rem;
+    }
+    .sub-slogan{
+      font-size: .75rem;
+    }
+
     a img.img-logo {
       
       height:40px;
@@ -42,9 +65,9 @@ text-decoration: none;
  
     }
 
-    .signup-btn{
+    /* .signup-btn{
       font-size: .6rem;
-    }
+    } */
     /* a.navbar-brand {
       
       } */

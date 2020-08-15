@@ -3,9 +3,9 @@
 
 <div class="jumbotron bg-dark text-light">
     <div class="container text-center">
-        <h1 id="userName" class="display-4">Welcome, <%= user.username %>!</h1>
-        <p class="lead">
-            Upvote channels you like. Downvote channels you dislike. Suggest channels you love or hate.
+        <h1 id="userName" class="slogan display-4">Welcome, <%= user.username %>!</h1>
+        <p class="sub-slogan lead">
+            Upvote channels you like. Downvote channels you dislike. Showcase your favorite content creators.
         </p>
 
         <% if(!user){ %>
@@ -13,8 +13,8 @@
 
         <% } %>
         <% if(user){ %>
-        <a href="/suggest-channel" class="btn btn-lg btn-outline-primary mr-2">Suggest a channel</a>
-        <a href="/auth/logout" class="btn btn-lg btn-outline-primary">Logout</a>
+        <a href="/suggest-channel" class="btn btn-outline-primary mb-2 mr-2">Suggest a channel</a>
+        <a href="/auth/logout" class="btn btn-outline-primary mb-2">Logout</a>
 
         <% } %>
     </div>
@@ -51,10 +51,10 @@
         <h3 class="card-header"> <a href=<%= channel.link %> target="_blank" class="text-dark"><%= channel.name %></a>
         </h3>
         <p class="m-3 text-right">
-            <em>#<%= channel.tags[0] %></em>
+            <a href="/search/tags?page=1&tag=<%= channel.tags[0] %>"> <em>#<%= channel.tags[0] %></em></a>
         </p>
         <div class="row pt-3 mx-auto">
-            <img src=<%= channel.image %> class=" mx-auto img-fluid img-thumbnail" alt="...">
+            <img src=<%= channel.image %> class="thumb mx-auto img-fluid img-thumbnail align-self-center" alt="...">
             <div class="p-3 p-md-4 mx-auto ml-md-4 text-center align-self-center">
                 <% if(user){ %>
                 <% const thisChannel = votedChannelsArray.indexOf(String(channel._id)) %>

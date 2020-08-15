@@ -8,6 +8,20 @@
 <!-- <script src="https://rocky-hamlet-89686.herokuapp.com/scripts/main.js" crossorigin="anonymous"></script> -->
 <!-- <script src="/scripts/main.js" crossorigin="anonymous"></script> -->
 <script>
+  function dropdownRight(x) {
+    if (x.matches) { // If media query matches
+      document.querySelector(".profile-dropdown").classList.add("dropdown-menu-right")
+    } else {
+      document.querySelector(".profile-dropdown").classList.remove("dropdown-menu-right")
+    }
+
+  }
+
+
+  let x = window.matchMedia("(min-width: 992px)")
+  dropdownRight(x) // Call listener function at run time
+  x.addListener(dropdownRight) // Attach listener function on state changes 
+
 
   function upvote() {
     // console.log("upvote")

@@ -112,10 +112,22 @@ router.get("/", paginate, async (req, res) => {
 router.get("/tags", paginate, async (req, res) => {
     // console.log(req.query.search)
     // console.log(req.query.sort)
-    const capTag = _.capitalize(req.query.tag)
+    let capTagArray = req.query.tag.split("/")
+    let capTag
+    if (capTagArray.length > 1) {
+        capTagArray[0] = _.capitalize(capTagArray[0])
+        capTagArray[1] = _.capitalize(capTagArray[1])
+
+        capTag = capTagArray.join("/")
+
+    } else {
+        capTag = _.capitalize(req.query.tag)
+    }
+    // console.log(capTag)
+
     try {
         let results
-        // console.log(req.query.tag.toLowerCase().replace(/ /g, ''))
+        // console.log(capTag.replace(/ /g, ''))
         if (req.query.sort === "recent") {
             results = await Channel.find({ tags: capTag.replace(/ /g, '') }, null, { sort: { createdAt: -1 } }).limit(res.paginate.limit).skip(res.paginate.startIndex)
                 .catch((err) => console.log(err))

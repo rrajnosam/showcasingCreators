@@ -6,23 +6,23 @@ const User = require("../models/user-model.js")
 const Channel = require("../models/channel-model.js")
 
 //------------------------------- GENERATE CHANNEL OF THE DAYS -------------------------------
-global.cotd = 0
-global.udcotd = 1
-global.rcotd = 2
+let cotd = 0
+let udcotd = 1
+let rcotd = 2
 
-cron.schedule(" 0 0 * * *", async () => {
-    // console.log("run this every  MINUTE")
+cron.schedule(" */15 * * * *", async () => {
+    console.log("run this every  MINUTE")
     try {
         const totalDocs = await Channel.countDocuments()
-        global.cotd = Math.floor(Math.random() * (totalDocs - 3))
-        global.udcotd = Math.floor(Math.random() * (totalDocs - 3))
-        global.rcotd = Math.floor(Math.random() * (totalDocs))
+        cotd = Math.floor(Math.random() * (totalDocs))
+        udcotd = Math.floor(Math.random() * (totalDocs))
+        rcotd = Math.floor(Math.random() * (totalDocs))
 
-        while ((global.udcotd == global.cotd) || (global.udcotd == global.rcotd)) {
-            global.udcotd = Math.floor(Math.random() * (totalDocs))
+        while ((udcotd == cotd) || (udcotd == rcotd)) {
+            udcotd = Math.floor(Math.random() * (totalDocs))
         }
-        while ((global.rcotd == global.cotd) || (global.rcotd == global.udcotd)) {
-            global.rcotd = Math.floor(Math.random() * (totalDocs))
+        while ((rcotd == cotd) || (rcotd == udcotd)) {
+            rcotd = Math.floor(Math.random() * (totalDocs))
         }
 
     } catch (err) {
@@ -40,8 +40,8 @@ router.get("/", paginate, async (req, res) => {
         const totalDocs = await Channel.countDocuments()
             .catch((err) => console.log(err))
         let random = Math.floor(Math.random() * (totalDocs - 3))
-        let cotds = [global.cotd, global.rcotd, global.udcotd]
-        // console.log(cotds)
+        let cotds = [cotd, rcotd, udcotd]
+        console.log(cotds)
 
         while ((cotds.indexOf(random) != -1) || (cotds.indexOf(random + 1) != -1) || (cotds.indexOf(random + 2) != -1)) {
             random = Math.floor(Math.random() * (totalDocs - 3))

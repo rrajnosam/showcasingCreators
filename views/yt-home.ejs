@@ -1,8 +1,8 @@
 <%- include('partials/header') %>
 <div class="jumbotron bg-dark text-light sm">
     <div class="container text-center">
-        <h1 class="display-4">YouTube channels ranked. By you.</h1>
-        <p class="lead">
+        <h1 class="slogan display-4">YouTube channels ranked. By you.</h1>
+        <p class="sub-slogan lead">
             Your ultimate guide to the best YouTube channels.
         </p>
         <form method="post" action="/search" class="mx-auto">
@@ -23,14 +23,17 @@
         </div>
         <div class="card-body">
             <% let channel = cotds[0] %>
-            <p class="m-3 text-right"><em> #<%= channel.tags[0] %></em></p>
+            <p class="m-3 text-right"><a href="/search/tags?page=1&tag=<%= channel.tags[0] %>"><em>
+                        #<%= channel.tags[0] %></em></a>
+            </p>
 
             <div class="row pt-3 mx-auto">
 
                 <h3 class="card-title"> <a href=<%= channel.link %> target="_blank"
                         class="text-dark"><%= channel.name %></a>
                 </h3>
-                <img src="<%= channel.image %>" class="mx-auto img-fluid img-thumbnail" alt="channel thumbnail">
+                <img src="<%= channel.image %>" class="thumb mx-auto img-fluid img-thumbnail align-self-center"
+                    alt="channel thumbnail">
                 <div class="p-3 p-md-4 mx-auto ml-md-4 text-center align-self-center">
                     <% let thisChannel %>
                     <% let pastDirection %>
@@ -96,11 +99,13 @@
                 </div>
                 <div class="card-body">
                     <% const rcotd = cotds[1] %>
-                    <p class="m-3 text-right"><em> #<%= rcotd.tags[0] %></em></p>
+                    <p class="m-3 text-right"><a href="/search/tags?page=1&tag=<%= rcotd.tags[0] %>"><em>
+                                #<%= rcotd.tags[0] %></em></a></p>
 
                     <h3 class="card-title"> <a href=<%= rcotd.link %> target="_blank"
                             class="text-dark"><%= rcotd.name %></a>
-                    </h3> <img src="<%= rcotd.image %>" class="mx-auto img-fluid img-thumbnail" alt="channel thumbnail">
+                    </h3> <img src="<%= rcotd.image %>" class="thumb mx-auto img-fluid img-thumbnail align-self-center"
+                        alt="channel thumbnail">
                     <div class="p-3 p-md-4 mx-auto ml-md-4 text-center align-self-center">
                         <% let thisChannel1 %>
                         <% let pastDirection1 %>
@@ -159,12 +164,16 @@
                 </div>
                 <div class="card-body">
                     <% channel = cotds[2] %>
-                    <p class="m-3 text-right"><em> #<%= channel.tags[0] %></em></p>
+                    <p class="m-3 text-right">
+                        <a href="/search/tags?page=1&tag=<%= channel.tags[0] %>"><em>
+                                #<%= channel.tags[0] %></em></a>
+                    </p>
 
                     <h3 class="card-title"> <a href=<%= channel.link %> target="_blank"
                             class="text-dark"><%= channel.name %></a>
                     </h3>
-                    <img src="<%= channel.image %>" class=" mx-auto img-fluid img-thumbnail" alt="channel thumbnail">
+                    <img src="<%= channel.image %>" class="thumb mx-auto img-fluid img-thumbnail align-self-center"
+                        alt="channel thumbnail">
                     <div class="p-3 p-md-4 mx-auto ml-md-4 text-center align-self-center">
                         <% let thisChannel2 %>
                         <% let pastDirection2 %>
@@ -230,14 +239,16 @@
             <div class="carousel-item <%= channel.name == results[0].name ? "active":null %>">
                 <div class="card text-dark bg-white">
                     <div class="card-body">
-                        <p class="m-3 text-right"><em> #<%= channel.tags[0] %></em></p>
+                        <p class="m-3 text-center">
+                            <a href="/search/tags?page=1&tag=<%= channel.tags[0] %>"><em>
+                                    #<%= channel.tags[0] %></em></a></p>
 
                         <div class="row pt-3">
-                            <h3 class="card-title align-self-center mx-auto col-12 col-md"> <a href=<%= channel.link %>
+                            <h3 class="card-title align-self-center mx-auto col-md"> <a href=<%= channel.link %>
                                     target="_blank" class="text-dark"><%= channel.name %></a>
                             </h3>
 
-                            <div class="p-3 p-md-4 mx-auto ml-md-4 text-center align-self-center col-12 col-md">
+                            <div class="p-3 p-md-4 mx-auto ml-md-4 text-center align-self-center col-md">
                                 <% let thisChannel3 %>
                                 <% let pastDirection3 %>
                                 <% if(user){ %>
@@ -276,9 +287,11 @@
                                 </button>
                                 <% } %>
                             </div>
+                            <div class="align-self-center col-md">
+                                <img src="<%= channel.image %>" class="thumb img-fluid img-thumbnail mx-auto "
+                                    alt="channel thumbnail">
+                            </div>
 
-                            <img src="<%= channel.image %>" class="img-fluid img-thumbnail mx-auto col-12 col-md"
-                                alt="channel thumbnail">
                         </div>
                         <div class="card-body text-center">
                             <p class="description card-text"><%= channel.description %></p>

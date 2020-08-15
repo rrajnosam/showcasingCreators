@@ -25,6 +25,7 @@ const Channel = require("./models/channel-model.js")
 //INITIALIZE PACKAGES
 const app = express();
 
+//FORCE SSL
 env = process.env.NODE_ENV || 'development';
 
 let directSsl = function (req, res, next) {
@@ -39,11 +40,12 @@ if (env === 'production') {
   app.use(directSsl);
 }
 
-
+//SET CONFIG
 app.set("view engine", "ejs")
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.urlencoded({ extended: true }))
 
+//COOKIES
 app.use(
   cookieSession({
     maxAge: 24 * 60 * 60 * 1000,
@@ -129,6 +131,8 @@ cron.schedule("* * * * 0", async () => {
     console.log(err)
   }
 })
+
+
 
 
 
