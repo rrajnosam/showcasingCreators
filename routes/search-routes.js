@@ -115,8 +115,8 @@ router.get("/tags", paginate, async (req, res) => {
     let capTagArray = req.query.tag.split("/")
     let capTag
     if (capTagArray.length > 1) {
-        capTagArray[0] = _.capitalize(capTagArray[0])
-        capTagArray[1] = _.capitalize(capTagArray[1])
+        capTagArray[0] = _.capitalize(capTagArray[0].trim())
+        capTagArray[1] = _.capitalize(capTagArray[1].trim())
 
         capTag = capTagArray.join("/")
 
