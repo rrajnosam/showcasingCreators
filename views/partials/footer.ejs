@@ -8,6 +8,15 @@
 <!-- <script src="https://rocky-hamlet-89686.herokuapp.com/scripts/main.js" crossorigin="anonymous"></script> -->
 <!-- <script src="/scripts/main.js" crossorigin="anonymous"></script> -->
 <script>
+  $(function () {
+    $(".description").each(function (i) {
+      len = $(this).text().length;
+      if (len > 300) {
+        $(this).text($(this).text().substr(0, 300) + '...');
+      }
+    })
+  })
+
   function dropdownRight(x) {
     if (x.matches) { // If media query matches
       document.querySelector(".profile-dropdown").classList.add("dropdown-menu-right")
@@ -17,10 +26,6 @@
 
   }
 
-
-  let x = window.matchMedia("(min-width: 992px)")
-  dropdownRight(x) // Call listener function at run time
-  x.addListener(dropdownRight) // Attach listener function on state changes 
 
 
   function upvote() {
@@ -88,18 +93,13 @@
   const downs = document.getElementsByName("downvote")
   downs.forEach((element) => { element.addEventListener("click", downvote) })
 
+  let x = window.matchMedia("(min-width: 992px)")
+  dropdownRight(x) // Call listener function at run time
+  x.addListener(dropdownRight) // Attach listener function on state changes 
 
-</script>
 
-<script type="text/javascript">
-  $(function () {
-    $(".description").each(function (i) {
-      len = $(this).text().length;
-      if (len > 300) {
-        $(this).text($(this).text().substr(0, 300) + '...');
-      }
-    });
-  });
+
+
 </script>
 
 
