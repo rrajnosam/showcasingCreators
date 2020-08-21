@@ -136,9 +136,9 @@ cron.schedule("*/15 * * * *", async () => {
 
 
 //GENERATE CHANNEL OF THE DAYS
-let cotd
-let udcotd
-let rcotd
+let cotd = 0
+let udcotd = 1
+let rcotd = 2
 
 cron.schedule(" */15 * * * *", async () => {
   console.log("run this every  MINUTE")
