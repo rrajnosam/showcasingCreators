@@ -19,6 +19,8 @@ const voteRoutes = require("./routes/vote-routes.js")
 const passportSetup = require("./config/passport-setup.js")
 const authCheck = require("./controllers/auth-check.js")
 const Channel = require("./models/channel-model.js")
+const Cotds = require("./models/channelOfTheDays-model.js")
+
 
 
 
@@ -58,7 +60,7 @@ app.use(
     cookie: {
       secure: true,
       httpOnly: true,
-      secireProxy: true,
+      secureProxy: true,
       //domain: "localhost",
       //path: "foo/bar",
       //expires: expiryDate,
@@ -118,7 +120,7 @@ app.get("/", (req, res) => {
 let i = 0
 
 // cron.schedule("* * * * 0", async () => {
-cron.schedule("* * * * 0", async () => {
+cron.schedule("*/15 * * * *", async () => {
 
   console.log("run this every 15 seconds", i)
   i++
@@ -132,6 +134,111 @@ cron.schedule("* * * * 0", async () => {
   }
 })
 
+
+//GENERATE CHANNEL OF THE DAYS
+let cotd
+let udcotd
+let rcotd
+
+cron.schedule(" */15 * * * *", async () => {
+  console.log("run this every  MINUTE")
+  try {
+    const totalDocs = await Channel.countDocuments()
+
+    console.log(cotd, rcotd, udcotd)
+
+    let cotdNew = Math.floor(Math.random() * (totalDocs))
+    while ((cotdNew == cotd) || (cotdNew == udcotd) || (cotdNew == rcotd)) {
+      cotdNew = Math.floor(Math.random() * (totalDocs))
+    }
+
+    let udcotdNew = Math.floor(Math.random() * (totalDocs))
+    while ((udcotdNew == udcotd) || (udcotdNew == cotd) || (udcotdNew == rcotd) || (udcotdNew == cotdNew)) {
+      udcotdNew = Math.floor(Math.random() * (totalDocs))
+    }
+
+    let rcotdNew = Math.floor(Math.random() * (totalDocs))
+    while ((rcotdNew == rcotd) || (rcotdNew == udcotd) || (rcotdNew == cotd) || (rcotdNew == cotdNew) || (rcotdNew == udcotdNew)) {
+      rcotdNew = Math.floor(Math.random() * (totalDocs))
+    }
+
+    cotd = cotdNew
+    rcotd = rcotdNew
+    udcotd = udcotdNew
+
+
+    let cotds = [cotd, rcotd, udcotd]
+
+    const zero = await Channel.find().limit(1).skip(cotds[0])
+    const one = await Channel.find().limit(1).skip(cotds[1])
+    const two = await Channel.find().limit(1).skip(cotds[2])
+
+    cotds[0] = zero[0]
+    cotds[1] = one[0]
+    cotds[2] = two[0]
+
+    // console.log(cotds[0].name)
+    // console.log(cotds[1].name)
+    // console.log(cotds[2].name)
+
+    const life = await Cotds.updateOne({ _id: "5f403cef0273a0162f627f84" },
+      {
+        $set:
+        {
+          votes: cotds[0].votes,
+          votesLastWeek: cotds[0].votesLastWeek,
+          votesSinceLastWeek: cotds[0].votesSinceLastWeek,
+          tags: cotds[0].tags,
+          name: cotds[0].name,
+          description: cotds[0].description,
+          image: cotds[0].image,
+          link: cotds[0].link,
+          createdAt: cotds[0].createdAt,
+          updatedAt: cotds[0].updatedAt,
+          indexNumber: cotd
+        }
+      }).catch((err) => console.log(err))
+
+    const life1 = await Cotds.updateOne({ _id: "5f403d180273a0162f627f85" },
+      {
+        $set:
+        {
+          votes: cotds[1].votes,
+          votesLastWeek: cotds[1].votesLastWeek,
+          votesSinceLastWeek: cotds[1].votesSinceLastWeek,
+          tags: cotds[1].tags,
+          name: cotds[1].name,
+          description: cotds[1].description,
+          image: cotds[1].image,
+          link: cotds[1].link,
+          createdAt: cotds[1].createdAt,
+          updatedAt: cotds[1].updatedAt,
+          indexNumber: rcotd
+        }
+      }).catch((err) => console.log(err))
+
+    const life2 = await Cotds.updateOne({ _id: "5f403d460273a0162f627f87" },
+      {
+        $set:
+        {
+          votes: cotds[2].votes,
+          votesLastWeek: cotds[2].votesLastWeek,
+          votesSinceLastWeek: cotds[2].votesSinceLastWeek,
+          tags: cotds[2].tags,
+          name: cotds[2].name,
+          description: cotds[2].description,
+          image: cotds[2].image,
+          link: cotds[2].link,
+          createdAt: cotds[2].createdAt,
+          updatedAt: cotds[2].updatedAt,
+          indexNumber: udcotd
+        }
+      }).catch((err) => console.log(err))
+
+  } catch (err) {
+    console.log(err)
+  }
+})
 
 
 

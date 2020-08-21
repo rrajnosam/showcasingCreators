@@ -4,31 +4,9 @@ const authCheck = require("../controllers/auth-check.js")
 const paginate = require("../controllers/paginate.js")
 const User = require("../models/user-model.js")
 const Channel = require("../models/channel-model.js")
+const Cotds = require("../models/channelOfTheDays-model.js")
 
-//------------------------------- GENERATE CHANNEL OF THE DAYS -------------------------------
-let cotd = 0
-let udcotd = 1
-let rcotd = 2
 
-cron.schedule(" */15 * * * *", async () => {
-    console.log("run this every  MINUTE")
-    try {
-        const totalDocs = await Channel.countDocuments()
-        cotd = Math.floor(Math.random() * (totalDocs))
-        udcotd = Math.floor(Math.random() * (totalDocs))
-        rcotd = Math.floor(Math.random() * (totalDocs))
-
-        while ((udcotd == cotd) || (udcotd == rcotd)) {
-            udcotd = Math.floor(Math.random() * (totalDocs))
-        }
-        while ((rcotd == cotd) || (rcotd == udcotd)) {
-            rcotd = Math.floor(Math.random() * (totalDocs))
-        }
-
-    } catch (err) {
-        console.log(err)
-    }
-})
 
 //------------------------------------ GET YOUTUBE HOMEPAGE -------------------------------------
 
@@ -40,10 +18,13 @@ router.get("/", paginate, async (req, res) => {
         const totalDocs = await Channel.countDocuments()
             .catch((err) => console.log(err))
         let random = Math.floor(Math.random() * (totalDocs - 3))
-        let cotds = [cotd, rcotd, udcotd]
-        console.log(cotds)
 
-        while ((cotds.indexOf(random) != -1) || (cotds.indexOf(random + 1) != -1) || (cotds.indexOf(random + 2) != -1)) {
+        const cotds = await Cotds.find({})
+            .catch((err) => console.log(err))
+
+        const listCotdsIndex = cotds.map((each) => each.indexNumber)
+
+        while ((listCotdsIndex.indexOf(random) != -1) || (listCotdsIndex.indexOf(random + 1) != -1) || (listCotdsIndex.indexOf(random + 2) != -1)) {
             random = Math.floor(Math.random() * (totalDocs - 3))
         }
 
@@ -58,15 +39,6 @@ router.get("/", paginate, async (req, res) => {
             try {
 
                 results = await Channel.find().limit(3).skip(random)
-
-                const zero = await Channel.find().limit(1).skip(cotds[0])
-                const one = await Channel.find().limit(1).skip(cotds[1])
-                const two = await Channel.find().limit(1).skip(cotds[2])
-
-                cotds[0] = zero[0]
-                cotds[1] = one[0]
-                cotds[2] = two[0]
-
 
             } catch (err) {
                 console.log(err)
