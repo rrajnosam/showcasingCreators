@@ -50,7 +50,7 @@ router.post("/", authCheck, paginate, async (req, res) => {
 })
 
 
-router.get("/admin", adminCheck, (req, res) => {
+router.get("/admin", (req, res) => {
     // const password = "JLpRewlmEm7t!&suSp4p7AdR$WrABiwR3n2M@T3eQ7z7T650*SWARASwo4ruj+Wo"
     // const saltRounds = 10
 
@@ -69,20 +69,20 @@ router.get("/admin", adminCheck, (req, res) => {
     // })
     console.log("entered")
 
-    const adminPassword = "JLpRewlmEm7t!&suSp4p7AdR$WrABiwR3n2M@T3eQ7z7T650*SWARASwo4ruj+Wo"
-    const hash = "$2a$10$psuI0aziLqdeVN6iyyQyA.CspX8QlHq3DHQ87l093fiV1MByfkWLe"
+    // const adminPassword = "JLpRewlmEm7t!&suSp4p7AdR$WrABiwR3n2M@T3eQ7z7T650*SWARASwo4ruj+Wo"
+    // const hash = "$2a$10$psuI0aziLqdeVN6iyyQyA.CspX8QlHq3DHQ87l093fiV1MByfkWLe"
 
-    bcrypt.compare(adminPassword, hash, (err, isMatch) => {
-        if (err) {
-            throw err
-        } else if (!isMatch) {
-            console.log("doesn't match")
-        } else {
-            console.log("password matches")
-        }
-    })
-    // if ((req.user._id == process.env.ADMIN_ID) || (req.user._id == process.env.ADMIN_ID1)) {
-    res.render("admin/suggest-channel-admin.ejs")
+    // bcrypt.compare(adminPassword, hash, (err, isMatch) => {
+    //     if (err) {
+    //         throw err
+    //     } else if (!isMatch) {
+    //         console.log("doesn't match")
+    //     } else {
+    //         console.log("password matches")
+    //     }
+    // })
+    // // if ((req.user._id == process.env.ADMIN_ID) || (req.user._id == process.env.ADMIN_ID1)) {
+    // res.render("admin/suggest-channel-admin.ejs")
     // } else {
     //     res.status(401).send("unauthorized")
     // }

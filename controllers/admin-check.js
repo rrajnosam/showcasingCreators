@@ -1,5 +1,5 @@
 const adminCheck = (req, res, next) => {
-    res.redirect("/auth/admin/login")
+    res.render("admin-login.ejs")
 
 
 

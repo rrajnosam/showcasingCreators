@@ -145,7 +145,7 @@ cron.schedule(" */15 * * * *", async () => {
   try {
     const totalDocs = await Channel.countDocuments()
 
-    console.log(cotd, rcotd, udcotd)
+    // console.log(cotd, rcotd, udcotd)
 
     let cotdNew = Math.floor(Math.random() * (totalDocs))
     while ((cotdNew == cotd) || (cotdNew == udcotd) || (cotdNew == rcotd)) {
@@ -185,16 +185,7 @@ cron.schedule(" */15 * * * *", async () => {
       {
         $set:
         {
-          votes: cotds[0].votes,
-          votesLastWeek: cotds[0].votesLastWeek,
-          votesSinceLastWeek: cotds[0].votesSinceLastWeek,
-          tags: cotds[0].tags,
-          name: cotds[0].name,
-          description: cotds[0].description,
-          image: cotds[0].image,
-          link: cotds[0].link,
-          createdAt: cotds[0].createdAt,
-          updatedAt: cotds[0].updatedAt,
+          channel: cotds[0]._id,
           indexNumber: cotd
         }
       }).catch((err) => console.log(err))
@@ -203,16 +194,7 @@ cron.schedule(" */15 * * * *", async () => {
       {
         $set:
         {
-          votes: cotds[1].votes,
-          votesLastWeek: cotds[1].votesLastWeek,
-          votesSinceLastWeek: cotds[1].votesSinceLastWeek,
-          tags: cotds[1].tags,
-          name: cotds[1].name,
-          description: cotds[1].description,
-          image: cotds[1].image,
-          link: cotds[1].link,
-          createdAt: cotds[1].createdAt,
-          updatedAt: cotds[1].updatedAt,
+          channel: cotds[1]._id,
           indexNumber: rcotd
         }
       }).catch((err) => console.log(err))
@@ -221,16 +203,7 @@ cron.schedule(" */15 * * * *", async () => {
       {
         $set:
         {
-          votes: cotds[2].votes,
-          votesLastWeek: cotds[2].votesLastWeek,
-          votesSinceLastWeek: cotds[2].votesSinceLastWeek,
-          tags: cotds[2].tags,
-          name: cotds[2].name,
-          description: cotds[2].description,
-          image: cotds[2].image,
-          link: cotds[2].link,
-          createdAt: cotds[2].createdAt,
-          updatedAt: cotds[2].updatedAt,
+          channel: cotds[2]._id,
           indexNumber: udcotd
         }
       }).catch((err) => console.log(err))

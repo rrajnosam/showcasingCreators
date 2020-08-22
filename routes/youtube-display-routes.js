@@ -18,11 +18,13 @@ router.get("/", paginate, async (req, res) => {
         const totalDocs = await Channel.countDocuments()
             .catch((err) => console.log(err))
         let random = Math.floor(Math.random() * (totalDocs - 3))
+        const preCotds = await Cotds.find({}).catch((err) => console.log(err))
 
-        const cotds = await Cotds.find({})
-            .catch((err) => console.log(err))
+        const listCotdsIDs = preCotds.map((each) => each.channel)
 
-        const listCotdsIndex = cotds.map((each) => each.indexNumber)
+        const cotds = await Channel.find({ _id: { $in: listCotdsIDs } }).catch((err) => console.log(err))
+
+        const listCotdsIndex = preCotds.map((each) => each.indexNumber)
 
         while ((listCotdsIndex.indexOf(random) != -1) || (listCotdsIndex.indexOf(random + 1) != -1) || (listCotdsIndex.indexOf(random + 2) != -1)) {
             random = Math.floor(Math.random() * (totalDocs - 3))

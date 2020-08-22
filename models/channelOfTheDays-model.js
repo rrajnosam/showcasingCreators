@@ -6,37 +6,9 @@ const cotdsSchema = new mongoose.Schema({
     //     // unique: true,
     //     // required: true
     // },
-    name: {
-        type: String,
-        required: true,
-    },
-    description: {
-        type: String,
-        required: true
-    },
-    image: {
-        type: String,
-        required: true
-    },
-    link: {
-        type: String,
-        required: true,
-    },
-    votes: {
-        type: Number,
-        default: 0
-    },
-    votesLastWeek: {
-        type: Number,
-        default: 0
-    },
-    votesSinceLastWeek: {
-        type: Number,
-        default: 0
-    },
-    tags: {
-        type: [String],
-
+    channel: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Channel',
     },
     indexNumber: Number
 

@@ -12,7 +12,6 @@ router.get("/", authCheck, paginate, async (req, res) => {
 
     // res.paginate.nextPage = 0
     // res.paginate.previousPage = 0
-
     if (req.user.votedChannels.length != 0) {
       votedChannelsArray = req.user.votedChannels.map((index) => String(index.channel))
 
