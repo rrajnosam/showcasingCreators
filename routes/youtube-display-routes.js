@@ -11,9 +11,7 @@ const Cotds = require("../models/channelOfTheDays-model.js")
 //------------------------------------ GET YOUTUBE HOMEPAGE -------------------------------------
 
 router.get("/", paginate, async (req, res) => {
-    // console.log(res)
     try {
-
         let results
         const totalDocs = await Channel.countDocuments()
             .catch((err) => console.log(err))
@@ -28,6 +26,7 @@ router.get("/", paginate, async (req, res) => {
 
         while ((listCotdsIndex.indexOf(random) != -1) || (listCotdsIndex.indexOf(random + 1) != -1) || (listCotdsIndex.indexOf(random + 2) != -1)) {
             random = Math.floor(Math.random() * (totalDocs - 3))
+            console.log(random)
         }
 
         // console.log(random)

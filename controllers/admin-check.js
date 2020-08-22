@@ -1,13 +1,21 @@
+const bcrypt = require("bcryptjs")
+
 const adminCheck = (req, res, next) => {
-    res.render("admin-login.ejs")
+    // console.log(req.query)
 
+    bcrypt.compare(req.query.admin, process.env.HASH, (err, isMatch) => {
+        if (err) {
+            console.log(err)
+            res.status(401).send("401 unauthorized")
+        } else if (!isMatch) {
+            // console.log("doesn't match")
+            res.status(401).send("401 unauthorized")
+        } else {
+            // console.log("password matches")
+            next()
+        }
+    })
 
-
-    // if (!req.user) {
-    //     res.redirect("/auth/login");
-    // } else if (req.user) {
-    //     next();
-    // }
-};
+}
 
 module.exports = adminCheck;

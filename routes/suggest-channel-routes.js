@@ -50,8 +50,7 @@ router.post("/", authCheck, paginate, async (req, res) => {
 })
 
 
-router.get("/admin", (req, res) => {
-    // const password = "JLpRewlmEm7t!&suSp4p7AdR$WrABiwR3n2M@T3eQ7z7T650*SWARASwo4ruj+Wo"
+router.get("/admin", adminCheck, (req, res) => {
     // const saltRounds = 10
 
     // bcrypt.genSalt(saltRounds, (err, salt) => {
@@ -67,84 +66,85 @@ router.get("/admin", (req, res) => {
     //         })
     //     }
     // })
-    console.log("entered")
+    // console.log("entered")
 
-    // const adminPassword = "JLpRewlmEm7t!&suSp4p7AdR$WrABiwR3n2M@T3eQ7z7T650*SWARASwo4ruj+Wo"
-    // const hash = "$2a$10$psuI0aziLqdeVN6iyyQyA.CspX8QlHq3DHQ87l093fiV1MByfkWLe"
+    res.render("admin/suggest-channel-admin.ejs")
 
-    // bcrypt.compare(adminPassword, hash, (err, isMatch) => {
-    //     if (err) {
-    //         throw err
-    //     } else if (!isMatch) {
-    //         console.log("doesn't match")
-    //     } else {
-    //         console.log("password matches")
-    //     }
-    // })
-    // // if ((req.user._id == process.env.ADMIN_ID) || (req.user._id == process.env.ADMIN_ID1)) {
-    // res.render("admin/suggest-channel-admin.ejs")
-    // } else {
-    //     res.status(401).send("unauthorized")
-    // }
 })
 
-router.post("/admin", authCheck, (req, res) => {
+router.post("/admin", (req, res) => {
     // console.log(req.body.channelUrl)
     // console.log(req.body.channelName)
     // console.log(req.body.channelImg)
     // console.log(req.body.channelDescription)
     // console.log(req.body.tags)
+    // console.log(req.body.admin)
 
-    if ((req.user._id == process.env.ADMIN_ID) || (req.user._id == process.env.ADMIN_ID1)) {
-        const tags = req.body.tags.trim()
-        tagsArray = tags.split(", ")
-        // console.log(tagsArray)
 
-        Channel.findOne({ name: req.body.channelName }).then((foundChannel) => {
-            if (foundChannel) {
-                // console.log("this channel already exists " + foundChannel);
-                done(null, foundChannel).catch((err) => console.log(err))
-                res.send("this channel already exists")
-            } else {
-                new Channel({
-                    name: req.body.channelName.trim(),
-                    description: req.body.channelDescription.trim(),
-                    image: req.body.channelImg.trim(),
-                    link: req.body.channelUrl.trim(),
-                    tags: tagsArray
-                }).save()
-                    .catch((err) => console.log(err))
-                res.status(200).send("successfully saved to database")
+    bcrypt.compare(req.body.admin, process.env.HASH, (err, isMatch) => {
+        if (err) {
+            console.log(err)
+            res.status(401).send("401 unauthorized")
+        } else if (!isMatch) {
+            // console.log("doesn't match")
+            res.status(401).send("401 unauthorized")
+        } else {
+            // console.log("password matches")
+            const tags = req.body.tags.trim()
+            tagsArray = tags.split(", ")
+            // console.log(tagsArray)
 
-            }
-        })
+            Channel.findOne({ name: req.body.channelName }).then((foundChannel) => {
+                if (foundChannel) {
+                    // console.log("this channel already exists " + foundChannel);
+                    done(null, foundChannel).catch((err) => console.log(err))
+                    res.send("this channel already exists")
+                } else {
+                    new Channel({
+                        name: req.body.channelName.trim(),
+                        description: req.body.channelDescription.trim(),
+                        image: req.body.channelImg.trim(),
+                        link: req.body.channelUrl.trim(),
+                        tags: tagsArray
+                    }).save()
+                        .catch((err) => console.log(err))
+                    res.status(200).send("successfully saved to database")
 
-    } else {
-        res.status(401).send("unauthorized")
-    }
+                }
+            })
+        }
+    })
+
+
+
 
 })
 
-router.get("/admin/show", authCheck, paginate, async (req, res) => {
+router.get("/admin/show", adminCheck, paginate, async (req, res) => {
     try {
-        if ((req.user._id == process.env.ADMIN_ID) || (req.user._id == process.env.ADMIN_ID1)) {
-            const suggestions = await Suggestion.find({})
-                .catch((err) => console.log(err))
-            res.render("admin/show-suggestions-admin.ejs", { user: req.user, paginate: res.paginate, suggestions: suggestions })
-        } else {
-            res.status(401).send("unauthorized")
-        }
+
+        const suggestions = await Suggestion.find({})
+            .catch((err) => console.log(err))
+        res.render("admin/show-suggestions-admin.ejs", { user: req.user, paginate: res.paginate, suggestions: suggestions })
+
     } catch (err) {
         console.log(err)
     }
 })
 
-router.post("/admin/show/delete", authCheck, paginate, async (req, res) => {
-    try {
-        if ((req.user._id == process.env.ADMIN_ID) || (req.user._id == process.env.ADMIN_ID1)) {
-            // console.log(req.body)
+router.post("/admin/show/delete", paginate, async (req, res) => {
+    const request = JSON.parse(Object.keys(req.body))
+
+    bcrypt.compare(request.admin, process.env.HASH, async (err, isMatch) => {
+        if (err) {
+            console.log(err)
+            res.status(401).send("401 unauthorized")
+        } else if (!isMatch) {
+            // console.log("doesn't match")
+            res.status(401).send("401 unauthorized")
+        } else {
+            // console.log("password matches")
             try {
-                const request = JSON.parse(Object.keys(req.body))
                 const deleted = await Suggestion.deleteOne({ _id: request.id })
                     .catch((err) => console.log(err))
                 // console.log(deleted)
@@ -153,29 +153,36 @@ router.post("/admin/show/delete", authCheck, paginate, async (req, res) => {
                 console.log(err)
                 res.status(500).send()
             }
-        } else {
-            res.status(401).send("unauthorized")
         }
-    } catch (err) {
-        console.log(err)
-    }
+    })
 })
 
-router.post("/admin/show/deleteall", authCheck, paginate, async (req, res) => {
+router.post("/admin/show/deleteall", paginate, async (req, res) => {
     try {
-        if ((req.user._id == process.env.ADMIN_ID) || (req.user._id == process.env.ADMIN_ID1)) {
-            try {
-                const deletedAll = await Suggestion.deleteMany({})
-                    .catch((err) => console.log(err))
-                // console.log(deletedAll)
-                res.status(200).send()
-            } catch (err) {
-                res.status(500).send()
-            }
+        const request = JSON.parse(Object.keys(req.body))
 
-        } else {
-            res.status(401).send("unauthorized")
-        }
+        bcrypt.compare(request.admin, process.env.HASH, async (err, isMatch) => {
+            if (err) {
+                console.log(err)
+                res.status(401).send("401 unauthorized")
+            } else if (!isMatch) {
+                // console.log("doesn't match")
+                res.status(401).send("401 unauthorized")
+            } else {
+                // console.log("password matches")
+
+                try {
+                    const deletedAll = await Suggestion.deleteMany({})
+                        .catch((err) => console.log(err))
+                    // console.log(deletedAll)
+                    res.status(200).send()
+                } catch (err) {
+                    res.status(500).send()
+                }
+
+            }
+        })
+
     } catch (err) {
         console.log(err)
     }

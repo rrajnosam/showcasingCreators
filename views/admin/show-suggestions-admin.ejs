@@ -6,6 +6,7 @@
 
 <div class="container">
     <h1 class="text-center mb-4">admin show suggestions page</h1>
+    <input id="admin-password" type="text" placeholder="admin password">
     <div class="text-center">
         <button onclick="deleteAll()" class="btn btn-danger">delete all</button>
     </div>
@@ -68,16 +69,17 @@
             }
         }
         xhr.send(JSON.stringify({
-            id: id
+            id: id,
+            admin: document.getElementById("admin-password").value
         }))
 
     }
 
 
     function deleteAll() {
-        console.log(event.target)
+        // console.log(event.target)
         let xhr = new XMLHttpRequest()
-
+        console.log(document.getElementById("admin-password").value)
         xhr.open('POST', '/suggest-channel/admin/show/deleteall', true)
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
         //xhr.setRequestHeader('Content-Type', 'application/json')
@@ -90,7 +92,8 @@
             }
         }
         xhr.send(JSON.stringify({
-            delete: "all"
+            delete: "all",
+            admin: document.getElementById("admin-password").value
         }))
 
     }

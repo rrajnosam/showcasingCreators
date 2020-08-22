@@ -33,22 +33,7 @@ router.get("/google/redirect", passport.authenticate("google"), (req, res) => {
   res.redirect("/profile");
 })
 
-//admin login
 
-// router.get("/admin/login", (req, res) => {
-//   res.render("admin/admin-login.ejs");
 
-// })
-
-// router.post("/admin/login", (req, res, next) => {
-//   console.log(req.body.password)
-
-//   passport.authenticate('local', {
-//     successRedirect: '/suggest-channel/admin',
-//     failureRedirect: '/auth/admin/login',
-//     failureFlash: true
-//   })
-
-// })
 
 module.exports = router;
