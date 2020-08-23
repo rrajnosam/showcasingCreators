@@ -20,7 +20,7 @@ text-decoration: none;
 
 
 .category-dropdown.dropdown-menu{
-  height:25rem;
+  height:23.9rem;
   overflow-y:auto;
 }
 
@@ -29,11 +29,21 @@ text-decoration: none;
   width: 13rem;
 }
 
+.carousel-indicators .active{
+  background-color: black;
+}
+
+
+.carousel-indicators li{
+  background-color: lightslategrey;
+}
+
+
 
 
 @media (max-width: 992px) {
   .category-dropdown.dropdown-menu{
-        height:11rem;
+        height:9.9rem;
         overflow-y:auto;
 
      }

@@ -2,10 +2,14 @@
 
 <div class="jumbotron bg-dark text-light">
   <div class="container text-center">
-    <h1 class="slogan display-4">The best YouTube channels. Found here.</h1>
-    <p class="sub-slogan lead">
+    <% if (paginate.baseUrl === "/youtube/top-rated"){ %>
+    <h1 class="slogan display-4 mb-4">Top Rated Channels</h1>
+    <% } else if(paginate.baseUrl === "/youtube/recent-suggestions"){ %>
+    <h1 class="slogan display-4 mb-4">Recently Suggested Channels</h1>
+    <%} else if(paginate.baseUrl === "/youtube/trending"){ %>
+    <h1 class="slogan display-4 mb-4">Trending Channels</h1>
+    <% } %>
 
-    </p>
     <form method="post" action="/search" class="mx-auto">
       <input name="query" class="col form-control mr-sm-2" type="search" placeholder="Search channels..."
         aria-label="Search" />

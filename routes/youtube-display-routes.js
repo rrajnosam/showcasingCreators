@@ -26,7 +26,7 @@ router.get("/", paginate, async (req, res) => {
 
         while ((listCotdsIndex.indexOf(random) != -1) || (listCotdsIndex.indexOf(random + 1) != -1) || (listCotdsIndex.indexOf(random + 2) != -1)) {
             random = Math.floor(Math.random() * (totalDocs - 3))
-            console.log(random)
+            // console.log(random)
         }
 
         // console.log(random)

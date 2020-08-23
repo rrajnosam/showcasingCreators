@@ -1,7 +1,7 @@
 <%- include('partials/header') %>
 <div class="jumbotron bg-dark text-light sm">
     <div class="container text-center">
-        <h1 class="slogan display-4">YouTube channels ranked. By you.</h1>
+        <h1 class="slogan display-4">The best YouTube channels. Found here.</h1>
         <p class="sub-slogan lead">
             Your ultimate guide to the best YouTube channels.
         </p>
@@ -231,7 +231,11 @@
 <div class="container">
     <div class="card-header text-center text-dark bg-light"> Featured </div>
     <div id="carousel-featured" class="carousel slide" data-ride="carousel">
-
+        <ol class="carousel-indicators">
+            <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselIndicators" data-slide-to="1" class=""></li>
+            <li data-target="#carouselIndicators" data-slide-to="2" class=""></li>
+        </ol>
         <div class="carousel-inner">
 
             <% results.forEach((channel) => { %>
