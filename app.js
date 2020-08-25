@@ -119,8 +119,8 @@ app.get("/", (req, res) => {
 //SAVE VOTE COUNT TO DATABASE EVERY WEEK
 let i = 0
 
-// cron.schedule("* * * * 0", async () => {
-cron.schedule("*/15 * * * *", async () => {
+cron.schedule("0 0 * * 1", async () => {
+  // cron.schedule("*/15 * * * *", async () => {
 
   console.log("run this every 15 seconds", i)
   i++
@@ -140,7 +140,7 @@ let cotd = 0
 let udcotd = 1
 let rcotd = 2
 
-cron.schedule(" */15 * * * *", async () => {
+cron.schedule(" 0 0 * * *", async () => {
   console.log("run this every  MINUTE")
   try {
     const totalDocs = await Channel.countDocuments()
