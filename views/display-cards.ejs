@@ -3,11 +3,11 @@
 <div class="jumbotron bg-dark text-light">
   <div class="container text-center">
     <% if (paginate.baseUrl === "/youtube/top-rated"){ %>
-    <h1 class="slogan display-4 mb-4">Top Rated Channels</h1>
+    <h1 class="slogan display-4 mb-4">Top Rated YouTube Channels</h1>
     <% } else if(paginate.baseUrl === "/youtube/recent-suggestions"){ %>
-    <h1 class="slogan display-4 mb-4">Recently Suggested Channels</h1>
+    <h1 class="slogan display-4 mb-4">Recently Suggested YouTube Channels</h1>
     <%} else if(paginate.baseUrl === "/youtube/trending"){ %>
-    <h1 class="slogan display-4 mb-4">Trending Channels</h1>
+    <h1 class="slogan display-4 mb-4">Trending YouTube Channels</h1>
     <% } %>
 
     <form method="post" action="/search" class="mx-auto">

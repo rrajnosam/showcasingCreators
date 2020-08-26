@@ -3,9 +3,9 @@
 <div class="jumbotron bg-dark text-light">
     <div class="container text-center">
         <% if (paginate.baseUrl != "/search/tags"){ %>
-        <h1 class="slogan display-4 mb-4">search results for "<%= searchQuery%>"</h1>
+        <h1 class="slogan display-4 mb-4">best YouTube channels matching "<%= searchQuery%>"</h1>
         <% } else {%>
-        <h1 class="slogan display-4 mb-4">#<%= tag %></h1>
+        <h1 class="slogan display-4 mb-4">Best <%= tag %> YouTube Channels</h1>
 
         <%}%>
         <form method="post" action="/search" class="mx-auto">
