@@ -50,7 +50,7 @@ router.post("/", authCheck, paginate, async (req, res) => {
 })
 
 
-router.get("/admin", adminCheck, (req, res) => {
+router.get("/admin", adminCheck, paginate, (req, res) => {
     // const saltRounds = 10
 
     // bcrypt.genSalt(saltRounds, (err, salt) => {
@@ -68,7 +68,7 @@ router.get("/admin", adminCheck, (req, res) => {
     // })
     // console.log("entered")
 
-    res.render("admin/suggest-channel-admin.ejs", { user: req.user, paginate: res.paginate, suggestions: suggestions })
+    res.render("admin/suggest-channel-admin.ejs", { user: req.user, paginate: res.paginate })
 
 })
 
