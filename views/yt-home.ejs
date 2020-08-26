@@ -22,7 +22,7 @@
             Channel of the Day
         </div>
         <div class="card-body">
-            <% let channel = cotds[0] %>
+            <% const channel = cotds[0] %>
             <p class="m-3 text-right"><a href="/search/tags?page=1&tag=<%= channel.tags[0] %>"><em>
                         #<%= channel.tags[0] %></em></a>
             </p>
@@ -163,16 +163,16 @@
                     Underdog Channel of the Day
                 </div>
                 <div class="card-body">
-                    <% channel = cotds[2] %>
+                    <% const channel2 = cotds[2] %>
                     <p class="m-3 text-right">
-                        <a href="/search/tags?page=1&tag=<%= channel.tags[0] %>"><em>
-                                #<%= channel.tags[0] %></em></a>
+                        <a href="/search/tags?page=1&tag=<%= channel2.tags[0] %>"><em>
+                                #<%= channel2.tags[0] %></em></a>
                     </p>
 
-                    <h3 class="card-title"> <a href=<%= channel.link %> target="_blank"
-                            class="text-dark"><%= channel.name %></a>
+                    <h3 class="card-title"> <a href=<%= channel2.link %> target="_blank"
+                            class="text-dark"><%= channel2.name %></a>
                     </h3>
-                    <img src="<%= channel.image %>" class="thumb mx-auto img-fluid img-thumbnail align-self-center"
+                    <img src="<%= channel2.image %>" class="thumb mx-auto img-fluid img-thumbnail align-self-center"
                         alt="channel thumbnail">
                     <div class="p-3 p-md-4 mx-auto ml-md-4 text-center align-self-center">
                         <% let thisChannel2 %>
@@ -181,43 +181,43 @@
                         <% if (!votedChannelsArray.length){  %>
                         <%  thisChannel2 = -1 %>
                         <%  pastDirection2 = "none" %>
-                        <% } else if (votedChannelsArray.indexOf(String(channel._id)) != -1){ %>
-                        <%  thisChannel2 = votedChannelsArray.indexOf(String(channel._id)) %>
+                        <% } else if (votedChannelsArray.indexOf(String(channel2._id)) != -1){ %>
+                        <%  thisChannel2 = votedChannelsArray.indexOf(String(channel2._id)) %>
                         <%  pastDirection2 = user.votedChannels[thisChannel2].direction %>
                         <%}%>
           
-                  <button id="up<%= channel._id %>" name="upvote" class="btn row"
+                  <button id="up<%= channel2._id %>" name="upvote" class="btn row"
                         <%= thisChannel2 != -1 && pastDirection2 === "up" ? "disabled" : null %>>
                         <i class="fas fa-chevron-up fa-3x"></i>
                         </button>
 
-                        <h1 id=<%= channel._id %> class="row p-0 m-0 justify-content-center">
-                            <%= channel.votes %>
+                        <h1 id=<%= channel2._id %> class="row p-0 m-0 justify-content-center">
+                            <%= channel2.votes %>
                         </h1>
 
-                        <button id="down<%= channel._id %>" name="downvote" class="btn row"
+                        <button id="down<%= channel2._id %>" name="downvote" class="btn row"
                             <%= thisChannel2 != -1 && pastDirection2==="down" ? "disabled" : null %>>
                             <i class="fas fa-chevron-down fa-3x"></i>
                         </button>
                         <% } else { %>
-                        <button id=" up<%= channel._id %>" name="upvote" class="btn row">
+                        <button id=" up<%= channel2._id %>" name="upvote" class="btn row">
                             <i class="fas fa-chevron-up fa-3x"></i>
                         </button>
 
-                        <h1 id=<%= channel._id %> class="row p-0 m-0 justify-content-center">
-                            <%= channel.votes %>
+                        <h1 id=<%= channel2._id %> class="row p-0 m-0 justify-content-center">
+                            <%= channel2.votes %>
                         </h1>
 
-                        <button id="down<%= channel._id %>" name="downvote" class="btn row">
+                        <button id="down<%= channel2._id %>" name="downvote" class="btn row">
                             <i class="fas fa-chevron-down fa-3x"></i>
                         </button>
                         <% } %>
                     </div>
                 </div>
                 <div class="card-body">
-                    <p class="description card-text"><%= channel.description %></p>
+                    <p class="description card-text"><%= channel2.description %></p>
 
-                    <a href=<%= channel.link %> target="_blank" class="btn btn-primary">Visit channel</a>
+                    <a href=<%= channel2.link %> target="_blank" class="btn btn-primary">Visit channel</a>
                 </div>
 
             </div>

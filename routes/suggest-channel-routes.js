@@ -68,7 +68,7 @@ router.get("/admin", adminCheck, (req, res) => {
     // })
     // console.log("entered")
 
-    res.render("admin/suggest-channel-admin.ejs")
+    res.render("admin/suggest-channel-admin.ejs", { user: req.user, paginate: res.paginate, suggestions: suggestions })
 
 })
 

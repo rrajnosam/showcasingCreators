@@ -20,6 +20,8 @@ router.get("/", paginate, async (req, res) => {
 
         const listCotdsIDs = preCotds.map((each) => each.channel)
 
+        console.log(listCotdsIDs)
+
         const cotds = await Channel.find({ _id: { $in: listCotdsIDs } }).catch((err) => console.log(err))
 
         const listCotdsIndex = preCotds.map((each) => each.indexNumber)
@@ -60,7 +62,7 @@ router.get("/", paginate, async (req, res) => {
             res.paginate.previousPage = 0
         }
 
-        // console.log(votedChannelsArray)
+        // console.log(cotds)
         res.render("yt-home.ejs", {
             user: req.user,
             votedChannelsArray: votedChannelsArray,
@@ -116,7 +118,6 @@ router.get("/top-rated", paginate, async (req, res) => {
         if (res.paginate.startIndex <= 0) {
             res.paginate.previousPage = 0
         }
-
 
         res.render("display-cards.ejs", {
             user: req.user,
