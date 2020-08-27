@@ -148,7 +148,7 @@ router.get("/tags", paginate, async (req, res) => {
         }
 
 
-        const totalDocs = await Channel.countDocuments({ tags: req.query.tag.toLowerCase().replace(/ /g, '') })
+        const totalDocs = await Channel.countDocuments({ tags: capTag.replace(/ /g, '') })
             .catch((err) => console.log(err))
         const numberOfPages = Math.ceil(totalDocs / res.paginate.limit)
         res.paginate.numberOfPages = numberOfPages

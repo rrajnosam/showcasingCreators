@@ -20,7 +20,7 @@ router.get("/", paginate, async (req, res) => {
 
         const listCotdsIDs = preCotds.map((each) => each.channel)
 
-        console.log(listCotdsIDs)
+        // console.log(listCotdsIDs)
 
         const cotds = await Channel.find({ _id: { $in: listCotdsIDs } }).catch((err) => console.log(err))
 

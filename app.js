@@ -20,7 +20,7 @@ const passportSetup = require("./config/passport-setup.js")
 const authCheck = require("./controllers/auth-check.js")
 const Channel = require("./models/channel-model.js")
 const Cotds = require("./models/channelOfTheDays-model.js")
-
+const paginate = require("./controllers/paginate.js")
 
 
 
@@ -116,13 +116,26 @@ app.get("/", (req, res) => {
   res.redirect("/youtube")
 })
 
+app.get("/cookie-policy", paginate, (req, res) => {
+  res.render("legal/cookie-policy.ejs", { user: req.user, paginate: res.paginate })
+})
+
+app.get("/privacy-policy", paginate, (req, res) => {
+  res.render("legal/privacy-policy.ejs", { user: req.user, paginate: res.paginate })
+})
+
+app.get("/terms-of-service", paginate, (req, res) => {
+  res.render("legal/terms-of-service.ejs", { user: req.user, paginate: res.paginate })
+})
+
+
 //SAVE VOTE COUNT TO DATABASE EVERY WEEK
 let i = 0
 
 cron.schedule("0 0 * * 1", async () => {
   // cron.schedule("*/15 * * * *", async () => {
 
-  console.log("run this every 15 seconds", i)
+  console.log("updated weekly vote count", i)
   i++
   try {
 
@@ -141,7 +154,7 @@ let udcotd = 1
 let rcotd = 2
 
 cron.schedule(" 0 0 * * *", async () => {
-  console.log("run this every  MINUTE")
+  console.log("updated channel of the days")
   try {
     const totalDocs = await Channel.countDocuments()
 
