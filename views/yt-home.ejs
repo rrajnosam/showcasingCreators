@@ -55,18 +55,21 @@
                         <%= channel.votes %>
                     </h1>
 
+
                     <button id="down<%= channel._id %>" name="downvote" class="btn row"
                         <%= thisChannel != -1 && pastDirection==="down" ? "disabled" : null %>>
                         <i class="fas fa-chevron-down fa-3x"></i>
                     </button>
                     <% } else { %>
-                    <button id=" up<%= channel._id %>" name="upvote" class="btn row">
+                    <button id="up<%= channel._id %>" name="upvote" class="btn row">
                         <i class="fas fa-chevron-up fa-3x"></i>
                     </button>
 
                     <h1 id=<%= channel._id %> class="row p-0 m-0 justify-content-center">
                         <%= channel.votes %>
                     </h1>
+
+
 
                     <button id="down<%= channel._id %>" name="downvote" class="btn row">
                         <i class="fas fa-chevron-down fa-3x"></i>
