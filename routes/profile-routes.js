@@ -58,15 +58,26 @@ router.get("/", authCheck, paginate, async (req, res) => {
       if (res.paginate.startIndex <= 0) {
         res.paginate.previousPage = 0
       }
-    }
 
-    res.render("profile.ejs", {
-      user: req.user,
-      votedChannelsArray: votedChannelsArray,
-      results: results,
-      paginate: res.paginate,
-      sortOption: req.query.sort
-    })
+
+      res.render("profile.ejs", {
+        user: req.user,
+        votedChannelsArray: votedChannelsArray,
+        results: results,
+        paginate: res.paginate,
+        sortOption: req.query.sort
+      })
+    } else {
+      res.paginate.nextPage = 0
+      res.paginate.previousPage = 0
+      res.render("profile.ejs", {
+        user: req.user,
+        votedChannelsArray: votedChannelsArray,
+        results: results,
+        paginate: res.paginate,
+        sortOption: req.query.sort
+      })
+    }
   } catch (err) {
     console.log(err)
   }

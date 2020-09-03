@@ -13,14 +13,14 @@
     <form method="post" action="/search" class="mx-auto">
       <input name="query" class="col form-control mr-sm-2" type="search" placeholder="Search channels..."
         aria-label="Search" />
-      <button class="btn btn-outline-primary mt-2" type="submit">
+      <button class="btn btn-primary mt-2" type="submit">
         Search
       </button>
     </form>
   </div>
 </div>
 
-<div class="container">
+<div id="card-container" class="container w-50">
   <div class="card-header mb-3 mx-auto bg-white text-black">
     <div class="row">
       <div class="col-sm text-black text-left">
@@ -122,66 +122,60 @@
 </div>
 
 <nav aria-label="results pages" class="d-flex justify-content-center">
-  <ul class="pagination">
+  <ul id="paginate" class="pagination">
+    <li class="page-item <%= paginate.previousPage === 0 ? "disabled" : null %>">
+      <a class="page-link" href="<%=paginate.baseUrl%>?page=<%= 1%><%= sortOption ? "&sort="+sortOption : null%>"
+        tabindex="-1">First</a>
+    </li>
+
     <li class="page-item <%= paginate.previousPage === 0 ? "disabled" : null %>">
       <a class="page-link"
         href="<%=paginate.baseUrl%>?page=<%= paginate.page -1%><%= sortOption ? "&sort="+sortOption : null%>"
         tabindex="-1">Previous</a>
     </li>
-    <% if(paginate.numberOfPages <= 6){ %>
-    <% for(let i = 1; i <= paginate.numberOfPages; i++) {%>
-    <li class="page-item <%= paginate.page === i ? "active" : null %>">
-      <a class=" page-link"
-        href="<%=paginate.baseUrl%>?page=<%= i %><%= sortOption ? "&sort="+sortOption : null%>"><%= i %></a>
-    </li>
-    <% } %>
-    <% } else if(!paginate.page || (paginate.page <= 3)) { %>
-    <% for(let i = 1; i <= 3; i++) {%>
-    <li class="page-item <%= paginate.page === i ? "active" : null %>">
-      <a class=" page-link"
-        href="<%=paginate.baseUrl%>?page=<%= i %><%= sortOption ? "&sort="+sortOption : null%>"><%= i %></a>
-    </li>
-    <% } %>
+    <% if ((paginate.page + 1 > paginate.numberOfPages) && (paginate.numberOfPages != 1) && (paginate.page - 2 > 0)){ %>
     <li class="page-item">
-      <a class="page-link"
-        href="<%=paginate.baseUrl%>?page=<%= (paginate.page +3) %><%= sortOption ? "&sort="+sortOption : null%>">...</a>
-    </li>
-    <% for(let j =  (paginate.numberOfPages -2) ; j <= paginate.numberOfPages; j++) {%>
-    <li class="page-item <%= paginate.page === j ? "active" : null %>">
       <a class=" page-link"
-        href="<%=paginate.baseUrl%>?page=<%= j %><%= sortOption ? "&sort="+sortOption : null%>"><%= j %></a>
+        href="<%=paginate.baseUrl%>?page=<%= paginate.page - 2%><%= sortOption ? "&sort="+sortOption : null%>"><%= paginate.page -2 %></a>
     </li>
     <% } %>
-    <% }else { %>
-    <% if((paginate.page-3) > 1){ %>
+    <% if (paginate.page -1 >= 1) { %>
     <li class="page-item">
-      <a class="page-link"
-        href="<%=paginate.baseUrl%>?page=<%= (paginate.page -3) %><%= sortOption ? "&sort="+sortOption : null%>">...</a>
+      <a class=" page-link"
+        href="<%=paginate.baseUrl%>?page=<%= paginate.page - 1%><%= sortOption ? "&sort="+sortOption : null%>"><%= paginate.page -1%></a>
     </li>
-    <% } %>
+    <%}%>
 
-    <% for(let k = (paginate.page -3); k <= paginate.page +3; k++) {%>
-    <% if (k <= paginate.numberOfPages){%>
-    <li class="page-item <%= paginate.page === k ? "active" : null %>">
-      <a class=" page-link"
-        href="<%=paginate.baseUrl%>?page=<%= k %><%= sortOption ? "&sort="+sortOption : null%>"><%= k %></a>
+    <li class="page-item active">
+        <a class=" page-link"
+          href="<%=paginate.baseUrl%>?page=<%= paginate.page%><%= sortOption ? "&sort="+sortOption : null%>"><%= paginate.page %></a>
     </li>
-    <% } %>
-    <% } %>
-    <% if((paginate.page+3) < paginate.numberOfPages){ %>
+    <% if (paginate.page + 1 <= paginate.numberOfPages){ %>
     <li class="page-item">
-      <a class="page-link"
-        href="<%=paginate.baseUrl%>?page=<%= (paginate.page +3) %><%= sortOption ? "&sort="+sortOption : null%>">...</a>
+      <a class=" page-link"
+        href="<%=paginate.baseUrl%>?page=<%= paginate.page + 1%><%= sortOption ? "&sort="+sortOption : null%>"><%= paginate.page + 1 %></a>
     </li>
     <% } %>
-    <% } %>
+    <% if ((paginate.page -1 < 1) && (paginate.numberOfPages !=1)&& (paginate.page + 2 <= paginate.numberOfPages)) { %>
+    <li class="page-item">
+      <a class=" page-link"
+        href="<%=paginate.baseUrl%>?page=<%= paginate.page + 2%><%= sortOption ? "&sort="+sortOption : null%>"><%= paginate.page +2%></a>
+    </li>
+    <%}%>
 
     <li class="page-item <%= paginate.nextPage === 0 ? "disabled" : null %>">
-      <a class="page-link"
-        href="<%=paginate.baseUrl%>?page=<%= paginate.page +1 %><%= sortOption ? "&sort="+sortOption : null%>">Next</a>
+    <a class="page-link"
+      href="<%=paginate.baseUrl%>?page=<%= paginate.page +1 %><%= sortOption ? "&sort="+sortOption : null%>">Next</a>
     </li>
+    <li class="page-item <%= paginate.nextPage === 0 ? "disabled" : null %>">
+      <a class="page-link"
+        href="<%=paginate.baseUrl%>?page=<%= paginate.numberOfPages %><%= sortOption ? "&sort="+sortOption : null%>">Last</a>
+    </li>
+
   </ul>
 </nav>
+
+
 
 
 <%- include('partials/footer') %>

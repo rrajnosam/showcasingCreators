@@ -5,9 +5,17 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
   integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
-<!-- <script src="https://rocky-hamlet-89686.herokuapp.com/scripts/main.js" crossorigin="anonymous"></script> -->
-<!-- <script src="/scripts/main.js" crossorigin="anonymous"></script> -->
 <script>
+  let $page = $('#paginate')
+  let $container = $('#card-container')
+
+  $(function () {
+    if (window.matchMedia("(max-width: 992px)").matches) {
+      $page.addClass('pagination-sm')
+      $container.removeClass('w-50')
+    }
+  })
+
   $(function () {
     $(".description").each(function (i) {
       len = $(this).text().length;
@@ -16,6 +24,10 @@
       }
     })
   })
+
+
+
+
 
   function dropdownRight(x) {
     if (x.matches) { // If media query matches

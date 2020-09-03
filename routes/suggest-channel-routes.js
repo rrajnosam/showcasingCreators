@@ -51,22 +51,6 @@ router.post("/", authCheck, paginate, async (req, res) => {
 
 
 router.get("/admin", adminCheck, paginate, (req, res) => {
-    // const saltRounds = 10
-
-    // bcrypt.genSalt(saltRounds, (err, salt) => {
-    //     if (err) {
-    //         throw err
-    //     } else {
-    //         bcrypt.hash(password, salt, (err, hash) => {
-    //             if (err) {
-    //                 throw err
-    //             } else {
-    //                 console.log(hash)
-    //             }
-    //         })
-    //     }
-    // })
-    // console.log("entered")
 
     res.render("admin/suggest-channel-admin.ejs", { user: req.user, paginate: res.paginate })
 
@@ -81,7 +65,7 @@ router.post("/admin", (req, res) => {
     // console.log(req.body.admin)
 
 
-    bcrypt.compare(req.body.admin, process.env.HASH, (err, isMatch) => {
+    bcrypt.compare(req.body.admin, process.env.HASH2, (err, isMatch) => {
         if (err) {
             console.log(err)
             res.status(401).send("401 unauthorized")
@@ -135,7 +119,7 @@ router.get("/admin/show", adminCheck, paginate, async (req, res) => {
 router.post("/admin/show/delete", paginate, async (req, res) => {
     const request = JSON.parse(Object.keys(req.body))
 
-    bcrypt.compare(request.admin, process.env.HASH, async (err, isMatch) => {
+    bcrypt.compare(request.admin, process.env.HASH2, async (err, isMatch) => {
         if (err) {
             console.log(err)
             res.status(401).send("401 unauthorized")
@@ -161,7 +145,7 @@ router.post("/admin/show/deleteall", paginate, async (req, res) => {
     try {
         const request = JSON.parse(Object.keys(req.body))
 
-        bcrypt.compare(request.admin, process.env.HASH, async (err, isMatch) => {
+        bcrypt.compare(request.admin, process.env.HASH2, async (err, isMatch) => {
             if (err) {
                 console.log(err)
                 res.status(401).send("401 unauthorized")

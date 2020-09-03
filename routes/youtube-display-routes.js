@@ -193,19 +193,19 @@ router.get("/recent-suggestions", paginate, async (req, res) => {
 router.get("/trending", paginate, async (req, res) => {
     try {
         if (req.query.sort === "recent") {
-            results = await Channel.find({}, null, { sort: { votesSinceLastWeek: -1 } }).limit(11)
+            results = await Channel.find({}, null, { sort: { votesSinceLastWeek: -1 } }).limit(13)
                 .catch((err) => console.log(err))
             results.sort((a, b) => a.createdAt - b.createdAt)
             results = results.slice(res.paginate.startIndex, res.paginate.endIndex)
 
         } else if (req.query.sort === "upvotes") {
-            results = await Channel.find({}, null, { sort: { votesSinceLastWeek: -1 } }).limit(11)
+            results = await Channel.find({}, null, { sort: { votesSinceLastWeek: -1 } }).limit(13)
                 .catch((err) => console.log(err))
             results.sort((a, b) => b.votes - a.votes)
             results = results.slice(res.paginate.startIndex, res.paginate.endIndex)
 
         } else {
-            results = await Channel.find({}, null, { sort: { votesSinceLastWeek: -1 } }).limit(11)
+            results = await Channel.find({}, null, { sort: { votesSinceLastWeek: -1 } }).limit(13)
                 .catch((err) => console.log(err))
             results = results.slice(res.paginate.startIndex, res.paginate.endIndex)
         }
@@ -219,7 +219,7 @@ router.get("/trending", paginate, async (req, res) => {
 
         // console.log(votedChannelsArray)
 
-        const totalDocs = 11
+        const totalDocs = 13
         const numberOfPages = Math.ceil(totalDocs / res.paginate.limit)
         res.paginate.numberOfPages = numberOfPages
         if (res.paginate.endIndex >= totalDocs) {
