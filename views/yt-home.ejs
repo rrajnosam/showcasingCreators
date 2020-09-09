@@ -111,7 +111,7 @@
                     <div class="row pt-3 mx-auto">
                         <img src="<%= rcotd.image %>" class="thumb mx-auto img-fluid img-thumbnail align-self-center"
                             alt="channel thumbnail">
-                        <div class="p-3 p-md-4 mx-auto ml-md-4 text-center align-self-center">
+                        <div class="p-3 p-md-4 mx-auto text-center align-self-center">
                             <% let thisChannel1 %>
                             <% let pastDirection1 %>
                             <% if(user){ %>
@@ -183,7 +183,7 @@
 
                         <img src="<%= channel2.image %>" class="thumb mx-auto img-fluid img-thumbnail align-self-center"
                             alt="channel thumbnail">
-                        <div class="p-3 p-md-4 mx-auto ml-md-4 text-center align-self-center">
+                        <div class="p-3 p-md-4 mx-auto text-center align-self-center">
                             <% let thisChannel2 %>
                             <% let pastDirection2 %>
                             <% if(user){ %>
@@ -238,103 +238,101 @@
 
     <!-- --------------------------------------- CAROUSEL ---------------------------------------- -->
 
-    <div class="container">
-        <div class="card-header text-center text-dark bg-light"> Featured </div>
-        <div id="carousel-featured" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselIndicators" data-slide-to="1" class=""></li>
-                <li data-target="#carouselIndicators" data-slide-to="2" class=""></li>
-            </ol>
-            <div class="carousel-inner">
+    <div class="card-header text-center text-dark bg-light"> Featured </div>
+    <div id="carousel-featured" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselIndicators" data-slide-to="1" class=""></li>
+            <li data-target="#carouselIndicators" data-slide-to="2" class=""></li>
+        </ol>
+        <div class="carousel-inner">
 
-                <% results.forEach((channel) => { %>
+            <% results.forEach((channel) => { %>
 
 
-                <div class="carousel-item <%= channel.name == results[0].name ? "active":null %>">
-                    <div class="card text-dark bg-white">
-                        <div class="card-body">
-                            <p class="m-3 text-center">
-                                <a href="/search/tags?page=1&tag=<%= channel.tags[0] %>"><em>
-                                        #<%= channel.tags[0] %></em></a></p>
-                            <div class="carousel-height-div">
-                                <div class="row pt-3">
-                                    <h3 class="card-title align-self-center mx-auto col-md"> <a href=<%= channel.link %>
-                                            target="_blank" class="text-dark"><%= channel.name %></a>
-                                    </h3>
+            <div class="carousel-item <%= channel.name == results[0].name ? "active":null %>">
+                <div class="card text-dark bg-white">
+                    <div class="card-body">
+                        <p class="m-3 text-center">
+                            <a href="/search/tags?page=1&tag=<%= channel.tags[0] %>"><em>
+                                    #<%= channel.tags[0] %></em></a></p>
+                        <div class="carousel-height-div">
+                            <div class="row pt-3">
+                                <h3 class="card-title align-self-center mx-auto col-md"> <a href=<%= channel.link %>
+                                        target="_blank" class="text-dark"><%= channel.name %></a>
+                                </h3>
 
-                                    <div class="p-3 p-md-4 mx-auto ml-md-4 text-center align-self-center col-md">
-                                        <% let thisChannel3 %>
-                                        <% let pastDirection3 %>
-                                        <% if(user){ %>
-                                        <% if (!votedChannelsArray.length){  %>
-                                        <%  thisChannel3 = -1 %>
-                                        <%  pastDirection3 = "none" %>
-                                        <% } else if (votedChannelsArray.indexOf(String(channel._id)) != -1){ %>
-                                        <%  thisChannel3 = votedChannelsArray.indexOf(String(channel._id)) %>
-                                        <%  pastDirection3 = user.votedChannels[thisChannel3].direction %>
-                                        <%}%>
+                                <div class="p-3 p-md-4 mx-auto ml-md-4 text-center align-self-center col-md">
+                                    <% let thisChannel3 %>
+                                    <% let pastDirection3 %>
+                                    <% if(user){ %>
+                                    <% if (!votedChannelsArray.length){  %>
+                                    <%  thisChannel3 = -1 %>
+                                    <%  pastDirection3 = "none" %>
+                                    <% } else if (votedChannelsArray.indexOf(String(channel._id)) != -1){ %>
+                                    <%  thisChannel3 = votedChannelsArray.indexOf(String(channel._id)) %>
+                                    <%  pastDirection3 = user.votedChannels[thisChannel3].direction %>
+                                    <%}%>
       
                                 <button id="up<%= channel._id %>" name="upvote" class="btn row"
-                                        <%= thisChannel3 != -1 && pastDirection3 === "up" ? "disabled" : null %>>
+                                    <%= thisChannel3 != -1 && pastDirection3 === "up" ? "disabled" : null %>>
+                                    <i class="fas fa-chevron-up fa-3x"></i>
+                                    </button>
+
+                                    <h1 id=<%= channel._id %> class="row p-0 m-0 justify-content-center">
+                                        <%= channel.votes %>
+                                    </h1>
+
+                                    <button id="down<%= channel._id %>" name="downvote" class="btn row"
+                                        <%= thisChannel3 != -1 && pastDirection3==="down" ? "disabled" : null %>>
+                                        <i class="fas fa-chevron-down fa-3x"></i>
+                                    </button>
+                                    <% } else { %>
+                                    <button id=" up<%= channel._id %>" name="upvote" class="btn row">
                                         <i class="fas fa-chevron-up fa-3x"></i>
-                                        </button>
+                                    </button>
 
-                                        <h1 id=<%= channel._id %> class="row p-0 m-0 justify-content-center">
-                                            <%= channel.votes %>
-                                        </h1>
+                                    <h1 id=<%= channel._id %> class="row p-0 m-0 justify-content-center">
+                                        <%= channel.votes %>
+                                    </h1>
 
-                                        <button id="down<%= channel._id %>" name="downvote" class="btn row"
-                                            <%= thisChannel3 != -1 && pastDirection3==="down" ? "disabled" : null %>>
-                                            <i class="fas fa-chevron-down fa-3x"></i>
-                                        </button>
-                                        <% } else { %>
-                                        <button id=" up<%= channel._id %>" name="upvote" class="btn row">
-                                            <i class="fas fa-chevron-up fa-3x"></i>
-                                        </button>
-
-                                        <h1 id=<%= channel._id %> class="row p-0 m-0 justify-content-center">
-                                            <%= channel.votes %>
-                                        </h1>
-
-                                        <button id="down<%= channel._id %>" name="downvote" class="btn row">
-                                            <i class="fas fa-chevron-down fa-3x"></i>
-                                        </button>
-                                        <% } %>
-                                    </div>
-                                    <div class="align-self-center col-md text-center">
-                                        <img src="<%= channel.image %>" class="thumb img-fluid img-thumbnail "
-                                            alt="channel thumbnail">
-                                    </div>
-
+                                    <button id="down<%= channel._id %>" name="downvote" class="btn row">
+                                        <i class="fas fa-chevron-down fa-3x"></i>
+                                    </button>
+                                    <% } %>
                                 </div>
-                                <div class="card-body text-center">
-                                    <p class="description card-text"><%= channel.description %></p>
-
-                                    <a href=<%= channel.link %> target="_blank" class="btn btn-primary">Visit
-                                        channel</a>
+                                <div class="align-self-center col-md text-center">
+                                    <img src="<%= channel.image %>" class="thumb img-fluid img-thumbnail "
+                                        alt="channel thumbnail">
                                 </div>
 
                             </div>
+                            <div class="card-body text-center">
+                                <p class="description card-text"><%= channel.description %></p>
+
+                                <a href=<%= channel.link %> target="_blank" class="btn btn-primary">Visit
+                                    channel</a>
+                            </div>
+
                         </div>
                     </div>
                 </div>
-
-                <%  }) %>
-
-                <a class="carousel-control-prev" href="#carousel-featured" role="button" data-slide="prev">
-                    <!-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> -->
-                    <span class="sr-only">Previous</span>
-
-                </a>
-                <a class="carousel-control-next" href="#carousel-featured" role="button" data-slide="next">
-                    <!-- <span class="carousel-control-next-icon" aria-hidden="true"></span> -->
-                    <span class="sr-only">Next</span>
-                </a>
             </div>
-        </div>
 
+            <%  }) %>
+
+            <a class="carousel-control-prev" href="#carousel-featured" role="button" data-slide="prev">
+                <!-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> -->
+                <span class="sr-only">Previous</span>
+
+            </a>
+            <a class="carousel-control-next" href="#carousel-featured" role="button" data-slide="next">
+                <!-- <span class="carousel-control-next-icon" aria-hidden="true"></span> -->
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
     </div>
+
 
 </div>
 
