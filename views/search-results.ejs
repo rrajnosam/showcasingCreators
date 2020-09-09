@@ -26,7 +26,9 @@
                 <% if (paginate.baseUrl != "/search/tags"){ %>
         <p class="mb-0">search results for "<%= searchQuery%>"</p>
         <% } else {%>
-        <h5 class="mb-0">Category: <%= tag %></h5>
+        <h5 class="mb-0"><a class="text-dark"
+                href="<%=paginate.baseUrl%>?page=<%= paginate.page %><%= tag ? "&tag="+tag : null%>">Category:
+                <%= tag %></a></h5>
         <%}%>
             </div>
         <div class="col-sm text-black text-right">

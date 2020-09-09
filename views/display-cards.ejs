@@ -3,7 +3,7 @@
 <div class="jumbotron bg-dark text-light">
   <div class="container text-center">
     <% if (paginate.baseUrl === "/youtube/top-rated"){ %>
-    <h1 class="slogan display-4 mb-4">Top Rated YouTube Channels</h1>
+    <h1 class="slogan display-4 mb-4"> Top Rated YouTube Channels </h1>
     <% } else if(paginate.baseUrl === "/youtube/recent-suggestions"){ %>
     <h1 class="slogan display-4 mb-4">Recently Suggested YouTube Channels</h1>
     <%} else if(paginate.baseUrl === "/youtube/trending"){ %>
@@ -25,15 +25,15 @@
     <div class="row">
       <div class="col-sm text-black text-left">
         <% if (paginate.baseUrl === "/youtube/top-rated"){ %>
-        <h5 class="mb-0">Top Rated Channels</h5>
+        <h5 class="mb-0"><a class="text-dark" href="/youtube/top-rated">Top Rated Channels</a></h5>
 
         <% } else if(paginate.baseUrl === "/youtube/recent-suggestions"){ %>
-        <h5 class="mb-0">Recently Suggested Channels</h5>
+        <h5 class="mb-0"><a class="text-dark" href="/youtube/recent-suggestions">Recently Suggested Channels</a></h5>
 
         <% } else if(paginate.baseUrl === "/youtube/"){ %>
         <h5 class="mb-0">Home</h5>
         <%} else if(paginate.baseUrl === "/youtube/trending"){ %>
-        <h5 class="mb-0">Trending</h5>
+        <h5 class="mb-0"><a class="text-dark" href="/youtube/trending">Trending</a></h5>
         <% } %>
       </div>
 
@@ -57,7 +57,7 @@
   <% results.forEach((channel) => { %>
   <div class="card mb-3 mx-auto">
 
-    <h3 class="card-header "> <a href=<%= channel.link %> target="_blank" class="text-dark"><%= channel.name %></a>
+    <h3 class="card-header"> <a href=<%= channel.link %> target="_blank" class="text-dark"><%= channel.name %></a>
     </h3>
 
     <p class="m-3 text-right">
