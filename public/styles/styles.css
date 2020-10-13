@@ -24,6 +24,18 @@ body{
   border-radius: 0;
 }
 
+.bg {
+  /* The image used */
+  background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.vox-cdn.com%2Fthumbor%2F533OKnB2AYH1xUhVTTjzm9goryM%3D%2F0x0%3A2040x1360%2F1200x800%2Ffilters%3Afocal(857x517%3A1183x843)%2Fcdn.vox-cdn.com%2Fuploads%2Fchorus_image%2Fimage%2F61456133%2Fwjoel_1777_180403_youtube_003.0.jpg&f=1&nofb=1");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
 .pagination > li > a
 {

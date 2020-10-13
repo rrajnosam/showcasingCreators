@@ -22,7 +22,8 @@ router.get("/logout", (req, res) => {
 router.get(
   "/google",
   passport.authenticate("google", {
-    scope: ["profile"],
+    scope: ['https://www.googleapis.com/auth/userinfo.profile',
+      'https://www.googleapis.com/auth/userinfo.email'],
   })
 )
 

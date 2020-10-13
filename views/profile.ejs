@@ -51,7 +51,8 @@
         <h3 class="card-header"> <a href=<%= channel.link %> target="_blank" class="text-dark"><%= channel.name %></a>
         </h3>
         <p class="m-3 text-right">
-            <a href="/search/tags?page=1&tag=<%= channel.tags[0] %>"><em>#<%= channel.tags[0] %></em></a>
+            <a class="text-black"
+                href="/search/tags?page=1&tag=<%= channel.tags[0] %>"><em>#<%= channel.tags[0] %></em></a>
         </p>
         <div class="row pt-3 mx-auto">
             <img src=<%= channel.image %> class="thumb mx-auto img-fluid img-thumbnail align-self-center" alt="...">
@@ -91,7 +92,7 @@
         <div class="card-body">
             <p class="description card-text"><%= channel.description %></p>
 
-            <a href=<%= channel.link %> target="_blank" class="btn btn-primary">Visit channel</a>
+            <a href=<%= channel.link %> target="_blank" class="btn red-button">Visit channel</a>
         </div>
 
     </div>

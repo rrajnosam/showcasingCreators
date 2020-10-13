@@ -17,6 +17,10 @@ const userSchema = new mongoose.Schema({
     type: String
 
   },
+  email: {
+    type: String,
+    required: true
+  },
   votedChannels: [{
     channel: {
       type: mongoose.Schema.Types.ObjectId,
