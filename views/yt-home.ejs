@@ -2,17 +2,17 @@
 <div class="h-100">
     <div class="jumbotron bg-dark text-light sm">
         <div class="container text-center">
-            <h1 class="slogan display-4">The best YouTube channels. Found here.</h1>
+            <h1 class="slogan display-4">Vote for your favorite YouTubers</h1>
             <p class="sub-slogan lead">
-                Your ultimate guide to the best YouTube channels.
+                Upvote. Downvote. Suggest YouTubers that aren't already here.
             </p>
-            <form method="post" action="/search" class="mx-auto">
-                <input name="query" class="form-control mr-sm-2" type="search" placeholder="Search channels..."
-                    aria-label="Search" />
-                <button class="btn btn-info mt-2" type="submit">
-                    Search
-                </button>
-            </form>
+            <a href="/auth/login" target="_blank" class="btn red-button">Sign up</a>
+
+            <div class="mt-4 text-center">
+                <a class="badge text-light" href="/youtube/trending">| TRENDING CHANNELS |</a>
+                <a class="badge text-light" href="/youtube/top-rated">| TOP RATED CHANNELS |</a>
+                <a class="badge text-light" href="/youtube/recent-suggestions">| RECENTLY SUGGESTED CHANNELS |</a>
+            </div>
         </div>
     </div>
 </div>
