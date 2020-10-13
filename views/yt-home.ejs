@@ -1,26 +1,305 @@
 <%- include('partials/header') %>
-<div class="h-100">
-    <div class="jumbotron bg-dark text-light sm">
-        <div class="container text-center">
-            <h1 class="slogan display-4">Vote for your favorite YouTubers</h1>
-            <p class="sub-slogan lead">
-                Upvote. Downvote. Suggest YouTubers that aren't already here.
-            </p>
-            <a href="/auth/login" class="btn red-button">Sign up</a>
+<div class="bg-dark container-fluid">
+    <div class=" text-right text-light container ">
 
-            <div class="mt-4 text-center">
-                <a class="badge text-light" href="/youtube/trending">| TRENDING CHANNELS |</a>
-                <a class="badge text-light" href="/youtube/top-rated">| TOP RATED CHANNELS |</a>
-                <a class="badge text-light" href="/youtube/recent-suggestions">| RECENTLY SUGGESTED CHANNELS |</a>
+        <div class="row">
+            <div class="col-8 mx-auto">
+                <img class="img-fluid rounded"
+                    src="https://images.pexels.com/photos/34407/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                    alt="">
+
             </div>
+            <div class="col my-auto">
+                <h1 class="slogan display-4 font-weight-bold"> <span class="">Vote for your favorite YouTubers</span>
+                </h1>
+                <p class="sub-slogan lead">
+                    <span class="">Upvote. Downvote. Suggest YouTubers that aren't already here.</span>
+                </p>
+                <a href="/auth/login" class="btn btn-lg red-button">Sign up</a>
+            </div>
+
+
         </div>
     </div>
+    <br>
+</div>
+
+<div class="">
+    <br>
+    <div class="container">
+        <h1 class="text-center mb-5">DISCOVER</h1>
+        <div class="row">
+            <div class="col">
+                <div class="card bg-light">
+                    <i class="fas fa-poll fa-9x text-primary my-5"></i>
+                    <!-- <img class="card-img-top"
+                        src="https://images.pexels.com/photos/270669/pexels-photo-270669.jpeg?cs=srgb&dl=pexels-pixabay-270669.jpg&fm=jpg"
+                        alt="Card image cap"> -->
+                    <div class="card-body">
+                        <h5 class="card-title">TRENDING CHANNELS</h5>
+                        <p class="card-text">Check out what has been voted on the most in the past week.</p>
+                        <a href="/youtube/trending" class="btn btn-block btn-light">Go</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card bg-light">
+                    <i class="fas fa-star-half-alt fa-9x text-warning my-5"></i>
+                    <!-- <img class="card-img-top"
+                        src="https://images.pexels.com/photos/220759/pexels-photo-220759.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                        alt="Card image cap"> -->
+                    <div class="card-body">
+                        <h5 class="card-title">TOP RATED CHANNELS</h5>
+                        <p class="card-text">Check out the channels with most upvotes.</p>
+                        <a href="/youtube/top-rated" class="btn btn-block btn-light">Go</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card bg-light">
+                    <i class="fas fa-signal fa-9x text-info my-5"></i>
+                    <!-- <img class="card-img-top"
+                        src="https://images.unsplash.com/photo-1467664631004-58beab1ece0d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80"
+                        alt="Card image cap"> -->
+                    <div class="card-body">
+                        <h5 class="card-title">MOST RECENT CHANNELS</h5>
+                        <p class="card-text">Check out recently suggested YouTubers</p>
+                        <a href="/youtube/recent-suggestions" class="btn btn-block btn-light">Go</a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+    <br>
+</div>
+
+</div>
+
+
+<div class="bg-dark">
+    <br>
+    <div class="container text-center">
+        <h1 class="mb-5 text-light">CATEGORIES</h1>
+
+        <div class="row my-5">
+            <div class="col">
+                <a class="text-light" href="/search/tags?page=1&tag=Animals/Nature"><i
+                        class="fas fa-paw fa-3x text-light"></i>
+                </a>
+                <button class="btn btn-lg btn-block mx-auto"><a class="text-light"
+                        href="/search/tags?page=1&tag=Animals/Nature">
+                        Animals/Nature</a></button>
+            </div>
+
+            <div class="col">
+                <a class="text-light" href="/search/tags?page=1&tag=Beauty"><i
+                        class="fas fa-tshirt fa-3x text-light"></i></a>
+                <button class="btn btn-lg btn-block mx-auto"><a class="text-light"
+                        href="/search/tags?page=1&tag=Beauty">
+                        Beauty</a></button>
+            </div>
+            <div class="col">
+                <a class="text-light" href="/search/tags?page=1&tag=Business"><i
+                        class="fas fa-building fa-3x text-light"></i></a>
+                <button class="btn btn-lg btn-block mx-auto"><a class="text-light"
+                        href="/search/tags?page=1&tag=Business">
+                        Business</a></button>
+            </div>
+        </div>
+
+
+        <div class="row my-5">
+
+            <div class="col">
+                <a class="text-light" href="/search/tags?page=1&tag=Cars"><i
+                        class="fas fa-car fa-3x text-light"></i></a>
+                <button class="btn btn-lg btn-block mx-auto"><a class="text-light" href="/search/tags?page=1&tag=Cars">
+                        Cars</a></button>
+            </div>
+
+            <div class="col">
+                <a class="text-light" href="/search/tags?page=1&tag=Comedy"><i
+                        class="fas fa-theater-masks fa-3x text-light"></i></a>
+                <button class="btn btn-lg btn-block mx-auto"><a class="text-light"
+                        href="/search/tags?page=1&tag=Comedy">
+                        Comedy</a></button>
+            </div>
+
+            <div class="col">
+                <a class="text-light" href="/search/tags?page=1&tag=DIY/Crafts"><i
+                        class="fas fa-tools fa-3x text-light"></i></a>
+                <button class="btn btn-lg btn-block mx-auto"><a class="text-light"
+                        href="/search/tags?page=1&tag=DIY/Crafts">
+                        DIY/Crafts</a></button>
+            </div>
+        </div>
+
+
+        <div class="row my-5">
+            <div class="col">
+                <a class="text-light" href="/search/tags?page=1&tag=Education"><i
+                        class="fas fa-university fa-3x text-light"></i></a>
+                <button class="btn btn-lg btn-block mx-auto"><a class="text-light"
+                        href="/search/tags?page=1&tag=Education">
+                        Education</a></button>
+            </div>
+
+            <div class="col">
+                <a class="text-light" href="/search/tags?page=1&tag=Entertainment"><i
+                        class="fas fa-ticket-alt fa-3x text-light"></i></a>
+                <button class="btn btn-lg btn-block mx-auto"><a class="text-light"
+                        href="/search/tags?page=1&tag=Entertainment">
+                        Entertainment</a></button>
+            </div>
+            <div class="col">
+                <a class="text-light" href="/search/tags?page=1&tag=Family"><i
+                        class="fas fa-user-friends fa-3x text-light"></i></a>
+                <button class="btn btn-lg btn-block mx-auto"><a class="text-light"
+                        href="/search/tags?page=1&tag=Family">
+                        Family</a></button>
+            </div>
+        </div>
+
+        <div class="row my-5">
+            <div class="col">
+                <a class="text-light" href="/search/tags?page=1&tag=Fashion"><i
+                        class="fas fa-user-tie fa-3x text-light"></i></a>
+                <button class="btn btn-lg btn-block mx-auto"><a class="text-light"
+                        href="/search/tags?page=1&tag=Fashion">
+                        Fashion</a></button>
+            </div>
+            <div class="col">
+                <a class="text-light" href="/search/tags?page=1&tag=Finance"><i
+                        class="fas fa-piggy-bank fa-3x text-light"></i></a>
+                <button class="btn btn-lg btn-block mx-auto"><a class="text-light"
+                        href="/search/tags?page=1&tag=Finance">
+                        Finance</a></button>
+            </div>
+
+            <div class="col">
+                <a class="text-light" href="/search/tags?page=1&tag=Fitness"><i
+                        class="fas fa-running fa-3x text-light"></i></a>
+                <button class="btn btn-lg btn-block mx-auto"><a class="text-light"
+                        href="/search/tags?page=1&tag=Fitness">
+                        Fitness</a></button>
+            </div>
+        </div>
+
+
+        <div class="row my-5">
+            <div class="col">
+                <a class="text-light" href="/search/tags?page=1&tag=Food/Cooking"><i
+                        class="fas fa-utensils fa-3x text-light"></i></a>
+                <button class="btn btn-lg btn-block mx-auto"><a class="text-light"
+                        href="/search/tags?page=1&tag=Food/Cooking">
+                        Food/Cooking</a></button>
+            </div>
+
+            <div class="col">
+                <a class="text-light" href="/search/tags?page=1&tag=Gaming"><i
+                        class="fas fa-gamepad fa-3x text-light"></i></a>
+                <button class="btn btn-lg btn-block mx-auto"><a class="text-light"
+                        href="/search/tags?page=1&tag=Gaming">
+                        Gaming</a></button>
+            </div>
+            <div class="col">
+                <a class="text-light" href="/search/tags?page=1&tag=Health/Wellness"><i
+                        class="fas fa-heartbeat fa-3x text-light"></i></a>
+                <button class="btn btn-lg btn-block mx-auto"><a class="text-light"
+                        href="/search/tags?page=1&tag=Health/Wellness">
+                        Health/Wellness</a></button>
+            </div>
+        </div>
+
+        <div class="row my-5">
+
+            <div class="col">
+                <a class="text-light" href="/search/tags?page=1&tag=Lifestyle"><i
+                        class="fas fa-plane fa-3x text-light"></i></a>
+                <button class="btn btn-lg btn-block mx-auto"><a class="text-light"
+                        href="/search/tags?page=1&tag=Lifestyle">
+                        Lifestyle</a></button>
+            </div>
+            <div class="col">
+                <a class="text-light" href="/search/tags?page=1&tag=Music"><i
+                        class="fas fa-music fa-3x text-light"></i></a>
+                <button class="btn btn-lg btn-block mx-auto"><a class="text-light" href="/search/tags?page=1&tag=Music">
+                        Music</a></button>
+            </div>
+
+            <div class="col">
+                <a class="text-light" href="/search/tags?page=1&tag=News/Politics"><i
+                        class="fas fa-newspaper fa-3x text-light"></i></a>
+                <button class="btn btn-lg btn-block mx-auto"><a class="text-light"
+                        href="/search/tags?page=1&tag=News/Politics">
+                        News/Politics</a></button>
+            </div>
+        </div>
+
+        <div class="row my-5">
+            <div class="col">
+                <a class="text-light" href="/search/tags?page=1&tag=Religion"><i
+                        class="fas fa-church fa-3x text-light"></i></a>
+                <button class="btn btn-lg btn-block mx-auto"><a class="text-light"
+                        href="/search/tags?page=1&tag=Religion">
+                        Religion</a></button>
+            </div>
+
+            <div class="col">
+                <a class="text-light" href="/search/tags?page=1&tag=Science"><i
+                        class="fas fa-microscope fa-3x text-light"></i></a>
+                <button class="btn btn-lg btn-block mx-auto"><a class="text-light"
+                        href="/search/tags?page=1&tag=Science">
+                        Science</a></button>
+            </div>
+
+            <div class="col">
+                <a class="text-light" href="/search/tags?page=1&tag=Sports"><i
+                        class="fas fa-football-ball fa-3x text-light"></i></a>
+                <button class="btn btn-lg btn-block mx-auto"><a class="text-light"
+                        href="/search/tags?page=1&tag=Sports">
+                        Sports</a></button>
+            </div>
+        </div>
+
+        <div class="row my-5">
+
+            <div class="col">
+                <a class="text-light" href="/search/tags?page=1&tag=Technology"><i
+                        class="fas fa-mobile-alt fa-3x text-light"></i></a>
+                <button class="btn btn-lg btn-block mx-auto"><a class="text-light"
+                        href="/search/tags?page=1&tag=Technology">
+                        Technology</a></button>
+            </div>
+            <div class="col">
+                <a class="text-light" href="/search/tags?page=1&tag=Travel"><i
+                        class="fas fa-suitcase fa-3x text-light"></i></a>
+                <button class="btn btn-lg btn-block mx-auto"><a class="text-light"
+                        href="/search/tags?page=1&tag=Travel">
+                        Travel</a></button>
+            </div>
+
+            <div class="col">
+                <a class="text-light" href="/search/tags?page=1&tag=Miscellaneous"><i
+                        class="fas fa-random fa-3x text-light"></i></a>
+                <button class="btn btn-lg btn-block mx-auto"><a class="text-light"
+                        href="/search/tags?page=1&tag=Miscellaneous">
+                        Miscellaneous</a></button>
+            </div>
+        </div>
+
+    </div>
+    <br>
 </div>
 <!-- ---------------------------FEATURED CHANNEL OF THE DAY --------------------------- -->
 
 <div id="card-container" class="container w-50">
+    <br>
     <div class="card bg-white text-center">
-        <div class="card-header text-dark bg-light">
+        <div class="card-header text-light bg-secondary">
             CHANNEL OF THE DAY
         </div>
         <div class="card-body">
@@ -99,7 +378,7 @@
     <div class="row">
         <div class="col-sm-6 mb-3">
             <div class="card bg-white text-center">
-                <div class="card-header text-dark bg-light">
+                <div class="card-header text-light bg-secondary">
                     FEATURED CHANNEL OF THE DAY
                 </div>
                 <div class="card-body">
@@ -168,7 +447,7 @@
 
         <div class="col-sm-6 mb-3">
             <div class="card text-center bg-white">
-                <div class="card-header text-dark bg-light">
+                <div class="card-header text-light bg-secondary">
                     UNDERDOG CHANNEL OF THE DAY
                 </div>
                 <div class="card-body">
@@ -241,7 +520,7 @@
 
     <!-- --------------------------------------- CAROUSEL ---------------------------------------- -->
 
-    <div class="card-header text-center text-dark bg-light"> Featured </div>
+    <div class="card-header text-center text-light bg-secondary"> FEATURED</div>
     <div id="carousel-featured" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>

@@ -31,7 +31,7 @@ router.get(
 
 router.get("/google/redirect", passport.authenticate("google"), (req, res) => {
   //console.log(req.user);
-  res.redirect("/profile");
+  res.redirect("/profile")
 })
 
 
