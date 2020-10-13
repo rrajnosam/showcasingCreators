@@ -13,7 +13,7 @@
     <form method="post" action="/search" class="mx-auto">
       <input name="query" class="col form-control mr-sm-2" type="search" placeholder="Search channels..."
         aria-label="Search" />
-      <button class="btn btn-primary mt-2" type="submit">
+      <button class="btn btn-info mt-2" type="submit">
         Search
       </button>
     </form>
@@ -23,7 +23,7 @@
 <div id="card-container" class="container w-50">
   <div class="card-header mb-3 mx-auto bg-white text-black">
     <div class="row">
-      <div class="col-sm text-black text-left">
+      <div class="col-sm text-red text-left">
         <% if (paginate.baseUrl === "/youtube/top-rated"){ %>
         <h5 class="mb-0"><a class="text-dark" href="/youtube/top-rated">Top Rated Channels</a></h5>
 
@@ -41,11 +41,11 @@
         <h5 class=" mb-0">
           sort by:
           <span>
-            <a href="<%=paginate.baseUrl%>?page=<%= paginate.page %>&sort=upvotes">
+            <a class="text-black" href="<%=paginate.baseUrl%>?page=<%= paginate.page %>&sort=upvotes">
               upvotes
             </a>
             /
-            <a href="<%=paginate.baseUrl%>?page=<%= paginate.page %>&sort=recent">
+            <a class="text-black" href="<%=paginate.baseUrl%>?page=<%= paginate.page %>&sort=recent">
               recent
             </a>
           </span>
@@ -61,7 +61,7 @@
     </h3>
 
     <p class="m-3 text-right">
-      <a href="/search/tags?page=1&tag=<%= channel.tags[0] %>"> <em>#<%= channel.tags[0] %></em></a>
+      <a class="text-black" href="/search/tags?page=1&tag=<%= channel.tags[0] %>"> <em>#<%= channel.tags[0] %></em></a>
     </p>
 
 
@@ -114,7 +114,7 @@
     <div class="card-body">
       <p class="description card-text"><%= channel.description %></p>
 
-      <a href=<%= channel.link %> target="_blank" class="btn btn-primary">Visit channel</a>
+      <a href=<%= channel.link %> target="_blank" class="btn red-button">Visit channel</a>
     </div>
   </div>
 

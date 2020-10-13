@@ -11,7 +11,7 @@
         <form method="post" action="/search" class="mx-auto">
             <input name="query" class="form-control mr-sm-2" type="search" placeholder="Search channels..."
                 aria-label="Search" />
-            <button class="btn btn-primary mt-2" type="submit">
+            <button class="btn btn-info mt-2" type="submit">
                 Search
             </button>
         </form>
@@ -36,11 +36,11 @@
         <h5 class="mb-0">sort by:
             <span>
                 <a
-                    href="<%=paginate.baseUrl%>?page=<%= paginate.page %><%= tag ? "&tag="+tag : null %><%= searchQuery ? "&search="+searchQuery : null %>&sort=upvotes">
+                    class="text-black"href="<%=paginate.baseUrl%>?page=<%= paginate.page %><%= tag ? "&tag="+tag : null %><%= searchQuery ? "&search="+searchQuery : null %>&sort=upvotes">
         upvotes
         </a>
         /
-        <a
+        <a class="text-black"
             href="<%=paginate.baseUrl%>?page=<%= paginate.page %><%= tag ? "&tag="+tag : null %><%= searchQuery ? "&search="+searchQuery : null %>&sort=recent">
             recent
         </a>
@@ -55,7 +55,8 @@
     <h3 class="card-header"> <a href=<%= channel.link %> target="_blank" class="text-dark"><%= channel.name %></a>
     </h3>
     <p class="m-3 text-right">
-        <a href="/search/tags?page=1&tag=<%= channel.tags[0] %>"> <em>#<%= channel.tags[0] %></em></a>
+        <a class="text-black" href="/search/tags?page=1&tag=<%= channel.tags[0] %>">
+            <em>#<%= channel.tags[0] %></em></a>
     </p>
 
     <div class="row pt-3 mx-auto">
@@ -102,7 +103,7 @@
     <div class="card-body">
         <p class="description card-text"><%= channel.description %></p>
 
-        <a href=<%= channel.link %> target="_blank" class="btn btn-primary">Visit channel</a>
+        <a href=<%= channel.link %> target="_blank" class="btn red-button">Visit channel</a>
     </div>
 </div>
 

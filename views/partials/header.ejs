@@ -16,6 +16,7 @@
 
   <link rel="shortcut icon" href="/images/favicon.ico">
   <link rel="canonical" href="https://www.showcasingcreators.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
   <script data-ad-client="ca-pub-7704472248823270" async
     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -30,7 +31,7 @@
 </head>
 
 <body>
-  <nav class="sticky-top navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="sticky-top navbar navbar-expand-lg navbar-dark bg-dark">
 
     <!-- <div class="navbar-header"> -->
     <a class="navbar-brand" href="/youtube">
@@ -82,12 +83,12 @@
       <% if(!user){ %>
       <span class="navbar-text">
         <div>
-          <a href="/suggest-channel" class="btn btn-danger text-light my-3 my-sm-0">
-            Suggest a YouTuber</a>
+          <a href="/suggest-channel" class="btn red-button text-light my-3 my-sm-0">
+            Upvote a Channel</a>
         </div>
 
         <div>
-          <a href="/auth/login" class="signup-btn btn btn-link text-dark font-weight-bold my-3 my-sm-0">
+          <a href="/auth/login" class="signup-btn btn btn-link text-light font-weight-bold my-3 my-sm-0">
             Sign up | Sign in</a>
         </div>
       </span>
@@ -97,16 +98,16 @@
       <% if(user){ %>
       <span class="navbar-text">
         <div class="dropdown nav-item">
-          <a class="signup-btn text-dark font-weight-bold dropdown-header p-2" href="#" role="button"
+          <a class="signup-btn text-light font-weight-bold dropdown-header p-2" href="#" role="button"
             id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true">
             <%= user.username%>
           </a>
 
           <div class="profile-dropdown dropdown-menu" aria-expanded="false" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" href="/profile">Profile</a>
-            <a href="/suggest-channel" class="dropdown-item">Suggest a channel</a>
+            <a class="dropdown-item text-dark" href="/profile">Profile</a>
+            <a href="/suggest-channel" class="dropdown-item text-dark">Suggest a channel</a>
             <div class="dropdown-divider"></div>
-            <a href="/auth/logout" class="dropdown-item">Logout</a>
+            <a href="/auth/logout" class="dropdown-item text-dark">Logout</a>
           </div>
         </div>
       </span>

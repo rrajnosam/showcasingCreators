@@ -1,17 +1,19 @@
 <%- include('partials/header') %>
-<div class="jumbotron bg-dark text-light sm">
-    <div class="container text-center">
-        <h1 class="slogan display-4">The best YouTube channels. Found here.</h1>
-        <p class="sub-slogan lead">
-            Your ultimate guide to the best YouTube channels.
-        </p>
-        <form method="post" action="/search" class="mx-auto">
-            <input name="query" class="form-control mr-sm-2" type="search" placeholder="Search channels..."
-                aria-label="Search" />
-            <button class="btn btn-primary mt-2" type="submit">
-                Search
-            </button>
-        </form>
+<div class="h-100">
+    <div class="jumbotron bg-dark text-light sm">
+        <div class="container text-center">
+            <h1 class="slogan display-4">The best YouTube channels. Found here.</h1>
+            <p class="sub-slogan lead">
+                Your ultimate guide to the best YouTube channels.
+            </p>
+            <form method="post" action="/search" class="mx-auto">
+                <input name="query" class="form-control mr-sm-2" type="search" placeholder="Search channels..."
+                    aria-label="Search" />
+                <button class="btn btn-info mt-2" type="submit">
+                    Search
+                </button>
+            </form>
+        </div>
     </div>
 </div>
 <!-- ---------------------------FEATURED CHANNEL OF THE DAY --------------------------- -->
@@ -19,11 +21,11 @@
 <div id="card-container" class="container w-50">
     <div class="card bg-white text-center">
         <div class="card-header text-dark bg-light">
-            Channel of the Day
+            CHANNEL OF THE DAY
         </div>
         <div class="card-body">
             <% const channel = cotds[0] %>
-            <p class="m-3 text-right"><a href="/search/tags?page=1&tag=<%= channel.tags[0] %>"><em>
+            <p class="m-3 text-right"><a class="text-black" href="/search/tags?page=1&tag=<%= channel.tags[0] %>"><em>
                         #<%= channel.tags[0] %></em></a>
             </p>
 
@@ -80,7 +82,7 @@
             <div class="card-body">
                 <p class="description card-text"><%= channel.description %></p>
 
-                <a href=<%= channel.link %> target="_blank" class="btn btn-primary">Visit channel</a>
+                <a href=<%= channel.link %> target="_blank" class="btn red-button">Visit channel</a>
             </div>
 
         </div>
@@ -98,11 +100,12 @@
         <div class="col-sm-6 mb-3">
             <div class="card bg-white text-center">
                 <div class="card-header text-dark bg-light">
-                    Featured Channel of the Day
+                    FEATURED CHANNEL OF THE DAY
                 </div>
                 <div class="card-body">
                     <% const rcotd = cotds[1] %>
-                    <p class="m-3 text-right"><a href="/search/tags?page=1&tag=<%= rcotd.tags[0] %>"><em>
+                    <p class="m-3 text-right"><a class="text-black"
+                            href="/search/tags?page=1&tag=<%= rcotd.tags[0] %>"><em>
                                 #<%= rcotd.tags[0] %></em></a></p>
 
                     <h3 class="card-title"> <a href=<%= rcotd.link %> target="_blank"
@@ -155,7 +158,7 @@
                 <div class="card-body">
                     <p class="description card-text"><%= rcotd.description %></p>
 
-                    <a href=<%= rcotd.link %> target="_blank" class="btn btn-primary">Visit channel</a>
+                    <a href=<%= rcotd.link %> target="_blank" class="btn red-button">Visit channel</a>
                 </div>
 
             </div>
@@ -166,12 +169,12 @@
         <div class="col-sm-6 mb-3">
             <div class="card text-center bg-white">
                 <div class="card-header text-dark bg-light">
-                    Underdog Channel of the Day
+                    UNDERDOG CHANNEL OF THE DAY
                 </div>
                 <div class="card-body">
                     <% const channel2 = cotds[2] %>
                     <p class="m-3 text-right">
-                        <a href="/search/tags?page=1&tag=<%= channel2.tags[0] %>"><em>
+                        <a class="text-black" href="/search/tags?page=1&tag=<%= channel2.tags[0] %>"><em>
                                 #<%= channel2.tags[0] %></em></a>
                     </p>
 
@@ -227,7 +230,7 @@
                 <div class="card-body">
                     <p class="description card-text"><%= channel2.description %></p>
 
-                    <a href=<%= channel2.link %> target="_blank" class="btn btn-primary">Visit channel</a>
+                    <a href=<%= channel2.link %> target="_blank" class="btn red-button">Visit channel</a>
                 </div>
 
             </div>
@@ -254,7 +257,7 @@
                 <div class="card text-dark bg-white">
                     <div class="card-body">
                         <p class="m-3 text-center">
-                            <a href="/search/tags?page=1&tag=<%= channel.tags[0] %>"><em>
+                            <a class="text-black " href="/search/tags?page=1&tag=<%= channel.tags[0] %>"><em>
                                     #<%= channel.tags[0] %></em></a></p>
                         <div class="carousel-height-div">
                             <div class="row pt-3">
@@ -310,7 +313,7 @@
                             <div class="card-body text-center">
                                 <p class="description card-text"><%= channel.description %></p>
 
-                                <a href=<%= channel.link %> target="_blank" class="btn btn-primary">Visit
+                                <a href=<%= channel.link %> target="_blank" class="btn red-button">Visit
                                     channel</a>
                             </div>
 

@@ -13,7 +13,7 @@
 
         <% } %>
         <% if(user){ %>
-        <a href="/suggest-channel" class="btn btn-danger mb-2 mr-2">Suggest a channel</a>
+        <a href="/suggest-channel" class="btn red-button mb-2 mr-2">Suggest a channel</a>
         <a href="/auth/logout" class="btn btn-primary mb-2">Logout</a>
 
         <% } %>
@@ -32,11 +32,11 @@
                 <h5 class=" mb-0">
                     sort by:
                     <span>
-                        <a href="<%=paginate.baseUrl%>?page=<%= paginate.page %>&sort=upvotes">
+                        <a class="text-black" href="<%=paginate.baseUrl%>?page=<%= paginate.page %>&sort=upvotes">
                             upvotes
                         </a>
                         /
-                        <a href="<%=paginate.baseUrl%>?page=<%= paginate.page %>&sort=recent">
+                        <a class="text-black" href="<%=paginate.baseUrl%>?page=<%= paginate.page %>&sort=recent">
                             recent
                         </a>
                     </span>
