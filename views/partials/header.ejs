@@ -69,7 +69,7 @@
             <% categories.sort() %>
             <% categories.forEach((each) => { %>
 
-            <a class="dropdown-item " href="/search/tags?page=1&tag=<%= each %>"> <%= each %></a>
+            <a class="dropdown-item " href="/search/tags?page=1&tag=<%= each %>&sort=upvotes"> <%= each %></a>
 
             <% })%>
 
