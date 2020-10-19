@@ -243,4 +243,14 @@ router.get("/trending", paginate, async (req, res) => {
 
 })
 
+//---------------------------------GET CATEGORIES PAGE --------------------------------
+
+router.get("/categories", paginate, async (req, res) => {
+    res.render("categories.ejs", {
+        user: req.user,
+        paginate: res.paginate
+
+    })
+})
+
 module.exports = router

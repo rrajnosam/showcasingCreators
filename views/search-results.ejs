@@ -15,6 +15,14 @@
                 Search
             </button>
         </form>
+        <div class="btn-group btn-group-lg mt-5" role="group">
+            <a class="text-light btn btn-primary" href="/youtube/top-rated ">Top
+                Rated</a>
+
+            <a class="text-dark btn btn-light" href="/youtube/recent-suggestions ">Recently Suggested</a>
+            <a class="text-light btn btn-danger" href="/youtube/categories ">All
+                Categories</a>
+        </div>
     </div>
 </div>
 
@@ -43,11 +51,11 @@
                 <h5 class="mb-0">sort by:
                     <span>
                     <a
-                        class="text-black"href="<%=paginate.baseUrl%>?page=<%= paginate.page %><%= tag ? "&tag="+tag : null %><%= searchQuery ? "&search="+searchQuery : null %>&sort=upvotes">
+                        class=""href="<%=paginate.baseUrl%>?page=<%= paginate.page %><%= tag ? "&tag="+tag : null %><%= searchQuery ? "&search="+searchQuery : null %>&sort=upvotes">
         upvotes
         </a>
         /
-        <a class="text-black"
+        <a class=""
             href="<%=paginate.baseUrl%>?page=<%= paginate.page %><%= tag ? "&tag="+tag : null %><%= searchQuery ? "&search="+searchQuery : null %>&sort=recent">
             recent
         </a>
