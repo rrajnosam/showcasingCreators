@@ -1,14 +1,14 @@
-<%- include('partials/header') %>
+<%- include('../partials/header') %>
 
 <div class="jumbotron bg-dark text-light">
     <div class="container text-center">
-        <% if (paginate.baseUrl != "/search/tags"){ %>
+        <% if (paginate.baseUrl != "/youtube/search/tags"){ %>
         <h1 class="slogan display-4 mb-4">best YouTube channels matching "<%= searchQuery%>"</h1>
         <% } else {%>
         <h1 class="slogan display-4 mb-4">Best <%= tag %> YouTube Channels</h1>
 
         <%}%>
-        <form method="post" action="/search" class="mx-auto">
+        <form method="post" action="/youtube/search" class="mx-auto">
             <input name="query" class="form-control mr-sm-2" type="search" placeholder="Search channels..."
                 aria-label="Search" />
             <button class="btn btn-outline-danger mt-2" type="submit">
@@ -38,7 +38,7 @@
             <div class="card-header mb-3 mx-auto bg-white text-black">
                 <div class="row">
                     <div class="col-sm text-black text-left">
-                        <% if (paginate.baseUrl != "/search/tags"){ %>
+                        <% if (paginate.baseUrl != "/youtube/search/tags"){ %>
         <p class="mb-0">search results for "<%= searchQuery%>"</p>
         <% } else {%>
         <h5 class="mb-0"><a class="text-dark"
@@ -65,7 +65,8 @@
 </div>
 </div>
 
-<% if ((paginate.baseUrl == "/search/tags" && tag == "Music") || paginate.baseUrl == "/search/tags" && tag == "Education" ){ %>
+
+<% if ((paginate.baseUrl == "/youtube/search/tags" && tag == "Music") || paginate.baseUrl == "/youtube/search/tags" && tag == "Education" ){ %>
 
 <div class="card mb-3 mx-auto">
     <h3 class="card-header">
@@ -96,7 +97,7 @@
     <h3 class="card-header"> <a href=<%= channel.link %> target="_blank" class="text-dark"><%= channel.name %></a>
     </h3>
     <p class="m-3 text-right">
-        <a class="text-black" href="/search/tags?page=1&tag=<%= channel.tags[0] %>&sort=upvotes">
+        <a class="text-black" href="/youtube/search/tags?page=1&tag=<%= channel.tags[0] %>&sort=upvotes">
             <em>#<%= channel.tags[0] %></em></a>
     </p>
 
@@ -213,4 +214,4 @@
 </nav>
 
 
-<%- include('partials/footer') %>
+<%- include('../partials/footer') %>

@@ -1,4 +1,4 @@
-<%- include('partials/header') %>
+<%- include('../partials/header') %>
 
 
 <div class="jumbotron bg-dark text-light">
@@ -14,7 +14,7 @@
         <% } %>
         <% if(user){ %>
         <div class="mt-5">
-            <a href="/suggest-channel" class="btn red-button btn-lg mb-2">Suggest a channel</a>
+            <a href="/youtube/suggest-channel" class="btn red-button btn-lg mb-2">Suggest a channel</a>
             <a class="text-dark btn btn-lg btn-light mb-2" href="/youtube/top-rated ">Top
                 Rated</a>
 
@@ -32,7 +32,7 @@
     <div class="card-header mb-3 mx-auto bg-white text-black">
         <div class="row">
             <div class="col-sm text-black text-left">
-                <h5 class="mb-0"><a class="text-dark" href="/profile">Your voted channels</a></h5>
+                <h5 class="mb-0"><a class="text-dark" href="/profile">My channels</a></h5>
             </div>
 
             <div class="col-sm text-black text-right">
@@ -161,4 +161,4 @@
 </nav>
 
 
-<%- include('partials/footer') %>
+<%- include('../partials/footer') %>

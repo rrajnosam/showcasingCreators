@@ -7,15 +7,8 @@ const mongoose = require("mongoose")
 const cookieSession = require("cookie-session")
 const passport = require("passport")
 const cron = require("node-cron")
-const path = require('path');
+const path = require('path')
 const flash = require("connect-flash")
-const authRoutes = require("./routes/auth-routes.js")
-const profileRoutes = require("./routes/profile-routes.js")
-const searchRoutes = require("./routes/search-routes.js")
-const youtubeDisplayRoutes = require("./routes/youtube-display-routes.js")
-const suggestChannelRoutes = require("./routes/suggest-channel-routes.js")
-const tagRoutes = require("./routes/tag-routes.js")
-const voteRoutes = require("./routes/vote-routes.js")
 const passportSetup = require("./config/passport-setup.js")
 const authCheck = require("./controllers/auth-check.js")
 const Channel = require("./models/channel-model.js")
@@ -99,18 +92,15 @@ mongoose
 
 //SET UP routes
 
-app.use("/auth", authRoutes)
+app.use("/auth", require("./routes/auth-routes.js"))
 
-app.use("/profile", profileRoutes)
+// app.use("/profile", require("./routes/profile-routes.js"))
 
-app.use("/search", searchRoutes)
+app.use("/tag-submit", require("./routes/tag-routes.js"))
 
-app.use("/suggest-channel", suggestChannelRoutes)
-app.use("/tag-submit", tagRoutes)
+// app.use("/vote", require("./routes/youtube/vote-routes.js"))
 
-app.use("/vote", voteRoutes)
-
-app.use("/youtube", youtubeDisplayRoutes)
+app.use("/youtube", require("./routes/youtube-display-routes.js"))
 
 app.get("/", (req, res) => {
   res.redirect("/youtube")

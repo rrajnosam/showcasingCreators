@@ -1,4 +1,4 @@
-<%- include('partials/header') %>
+<%- include('../partials/header') %>
 
 <div class="jumbotron bg-dark text-light">
   <div class="container text-center">
@@ -10,7 +10,7 @@
     <h1 class="slogan display-4 mb-4">Trending YouTube Channels</h1>
     <% } %>
 
-    <form method="post" action="/search" class="mx-auto">
+    <form method="post" action="/youtube/search" class="mx-auto">
       <input name="query" class="col form-control mr-sm-2" type="search" placeholder="Search channels..."
         aria-label="Search" />
       <button class="btn btn-outline-danger mt-2" type="submit">
@@ -70,7 +70,7 @@
     </h3>
 
     <p class="m-3 text-right">
-      <a class="text-black" href="/search/tags?page=1&tag=<%= channel.tags[0] %>&sort=upvotes">
+      <a class="text-black" href="/youtube/search/tags?page=1&tag=<%= channel.tags[0] %>&sort=upvotes">
         <em>#<%= channel.tags[0] %></em></a>
     </p>
 
@@ -188,4 +188,4 @@
 
 
 
-<%- include('partials/footer') %>
+<%- include('../partials/footer') %>
