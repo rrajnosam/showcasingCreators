@@ -94,13 +94,14 @@ mongoose
 
 app.use("/auth", require("./routes/auth-routes.js"))
 
-// app.use("/profile", require("./routes/profile-routes.js"))
+app.use("/profile", require("./routes/profile-routes.js"))
 
 app.use("/tag-submit", require("./routes/tag-routes.js"))
 
 // app.use("/vote", require("./routes/youtube/vote-routes.js"))
 
 app.use("/youtube", require("./routes/youtube-display-routes.js"))
+app.use("/twitch", require("./routes/twitch-routes.js"))
 
 app.get("/", (req, res) => {
   res.redirect("/youtube")

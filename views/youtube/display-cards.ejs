@@ -2,12 +2,15 @@
 
 <div class="jumbotron bg-dark text-light">
   <div class="container text-center">
+    <img
+      src="https://www.youtube.com/about/static/svgs/icons/brand-resources/YouTube-logo-full_color_dark.svg?cache=bb9b9c6"
+      widtch="50" height="50" alt="">
     <% if (paginate.baseUrl === "/youtube/top-rated"){ %>
-    <h1 class="slogan display-4 mb-4"> Top Rated YouTube Channels </h1>
+    <h1 class="slogan display-4 my-4">Top Rated Channels </h1>
     <% } else if(paginate.baseUrl === "/youtube/recent-suggestions"){ %>
-    <h1 class="slogan display-4 mb-4">Recently Suggested YouTube Channels</h1>
+    <h1 class="slogan display-4 my-4">Recently Suggested Channels</h1>
     <%} else if(paginate.baseUrl === "/youtube/trending"){ %>
-    <h1 class="slogan display-4 mb-4">Trending YouTube Channels</h1>
+    <h1 class="slogan display-4 my-4">Trending Channels</h1>
     <% } %>
 
     <form method="post" action="/youtube/search" class="mx-auto">

@@ -1,21 +1,20 @@
 <%- include('../partials/header') %>
 
 
-<form id="no" action="/youtube/suggest-channel" method="post">
+<form id="no" action="/twitch/suggest-channel" method="post">
 
     <div class="mt-5 mx-auto col-md-4">
         <div class="card">
-
-            <h5 class="card-header text-center"><img width="50" height="50"
-                    src="https://www.youtube.com/about/static/svgs/icons/brand-resources/YouTube_icon_full-color.svg?cache=f2ec7a5"
-                    alt="youtube logo"> Suggest a channel</h5>
+            <h5 class="card-header text-center"><img class="my-3 mr-2" width="50" height="50"
+                    src="https://www.freepnglogos.com/uploads/twitch-tv-logo-vector-png-24.png" alt="">
+                Suggest a Twitch Stream</h5>
             <div class="card-body">
                 <h5 class="card-title"></h5>
 
-                <p class="card-text mb-5">Please enter the URL for the YouTube channel you would like to suggest.
-                    (i.e. https://www.youtube.com/c/channelname)</p>
+                <p class="card-text mb-5">Please enter the URL for the Twitch channel you would like to suggest.
+                    (i.e. https://www.twitch.tv/channelname)</p>
                 <div class="form-group col-auto">
-                    <label class="" for="inlineFormInput">YouTube channel URL</label>
+                    <label class="" for="inlineFormInput">Twitch channel URL</label>
                     <input name="channelUrl" type="url" class="form-control mb-2" id="url"
                         placeholder="insert channel page URL here" required>
 
