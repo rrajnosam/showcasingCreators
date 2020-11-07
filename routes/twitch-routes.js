@@ -39,8 +39,8 @@ router.get("/", paginate, async (req, res) => {
         }
         // console.log(results)
         let votedChannelsArray = []
-        if (req.user && req.user.votedChannels.length != 0) {
-            votedChannelsArray = req.user.votedChannels.map((index) => String(index.channel))
+        if (req.user && req.user.votedTwitch.length != 0) {
+            votedChannelsArray = req.user.votedTwitch.map((index) => String(index.channel))
         }
 
         const numberOfPages = Math.ceil(totalDocs / res.paginate.limit)
@@ -93,8 +93,8 @@ router.get("/top-rated", paginate, async (req, res) => {
 
 
         let votedChannelsArray = []
-        if (req.user && req.user.votedChannels.length != 0) {
-            votedChannelsArray = req.user.votedChannels.map((index) => String(index.channel))
+        if (req.user && req.user.votedTwitch.length != 0) {
+            votedChannelsArray = req.user.votedTwitch.map((index) => String(index.channel))
         }
         // console.log(votedChannelsArray)
         const totalDocs = await Twitch.countDocuments()
@@ -146,8 +146,8 @@ router.get("/recent-suggestions", paginate, async (req, res) => {
 
         // console.log(results)
         let votedChannelsArray = []
-        if (req.user && req.user.votedChannels.length != 0) {
-            votedChannelsArray = req.user.votedChannels.map((index) => String(index.channel))
+        if (req.user && req.user.votedTwitch.length != 0) {
+            votedChannelsArray = req.user.votedTwitch.map((index) => String(index.channel))
         }
 
         // console.log(votedChannelsArray)
@@ -202,8 +202,8 @@ router.get("/trending", paginate, async (req, res) => {
 
         // console.log(results)
         let votedChannelsArray = []
-        if (req.user && req.user.votedChannels.length != 0) {
-            votedChannelsArray = req.user.votedChannels.map((index) => String(index.channel))
+        if (req.user && req.user.votedTwitch.length != 0) {
+            votedChannelsArray = req.user.votedTwitch.map((index) => String(index.channel))
         }
 
         // console.log(votedChannelsArray)
@@ -217,7 +217,6 @@ router.get("/trending", paginate, async (req, res) => {
         if (res.paginate.startIndex <= 0) {
             res.paginate.previousPage = 0
         }
-
         res.render("twitch/display-cards-twitch.ejs", {
             user: req.user,
             votedChannelsArray: votedChannelsArray,
@@ -256,8 +255,8 @@ router.post("/search", paginate, async (req, res) => {
                 .catch((err) => console.log(err))
         }
         let votedChannelsArray = []
-        if (req.user && req.user.votedChannels.length != 0) {
-            votedChannelsArray = req.user.votedChannels.map((index) => String(index.channel))
+        if (req.user && req.user.votedTwitch.length != 0) {
+            votedChannelsArray = req.user.votedTwitch.map((index) => String(index.channel))
         }
         if (req.body.query != "") {
             totalDocs = await Twitch.countDocuments({ $text: { $search: req.body.query } })
@@ -314,8 +313,8 @@ router.get("/search", paginate, async (req, res) => {
         }
 
         let votedChannelsArray = []
-        if (req.user && req.user.votedChannels.length != 0) {
-            votedChannelsArray = req.user.votedChannels.map((index) => String(index.channel))
+        if (req.user && req.user.votedTwitch.length != 0) {
+            votedChannelsArray = req.user.votedTwitch.map((index) => String(index.channel))
         }
 
         if (typeof req.query.search != "undefined") {
@@ -381,8 +380,8 @@ router.get("/search/tags", paginate, async (req, res) => {
         }
 
         let votedChannelsArray = []
-        if (req.user && req.user.votedChannels.length != 0) {
-            votedChannelsArray = req.user.votedChannels.map((index) => String(index.channel))
+        if (req.user && req.user.votedTwitch.length != 0) {
+            votedChannelsArray = req.user.votedTwitch.map((index) => String(index.channel))
         }
 
 
@@ -595,7 +594,7 @@ router.post("/vote", authCheck, (req, res) => {
 
     if (req.user.id == "5f498004d8128d0004ebf15a" || req.user.id == "5f497d12d8128d0004ebf12d" || req.user.id == "5f4994c5c2d39b00049073eb" || req.user.id == "5f48326ad8128d0004ebf098" || req.user.id == "5f483265d8128d0004ebf097") {
         if (response.direction === "up") {
-            Channel.findOneAndUpdate({ _id: response.id }, { $inc: { votes: 1 } }, { new: true })
+            Twitch.findOneAndUpdate({ _id: response.id }, { $inc: { votes: 1 } }, { new: true })
                 .then((foundChannel) => {
                     // console.log(foundChannel)
                     votes = String(foundChannel.votes)
@@ -607,7 +606,7 @@ router.post("/vote", authCheck, (req, res) => {
                 }).catch((err) => { console.error(err) })
 
         } else if (response.direction === "down") {
-            Channel.findOneAndUpdate({ _id: response.id }, { $inc: { votes: -1 } }, { new: true })
+            Twitch.findOneAndUpdate({ _id: response.id }, { $inc: { votes: -1 } }, { new: true })
                 .then((foundChannel) => {
                     // console.log(foundChannel)
                     votes = String(foundChannel.votes)
@@ -621,20 +620,20 @@ router.post("/vote", authCheck, (req, res) => {
     } else {
 
 
-        User.findOne({ _id: req.user._id, "votedChannels.channel": response.id })
+        User.findOne({ _id: req.user._id, "votedTwitch.channel": response.id })
             .then((foundUser) => {
                 if (foundUser) {
-                    // console.log(foundUser)
-                    const votedChannelsArray = foundUser.votedChannels.map((index) => String(index.channel))
+                    console.log(foundUser)
+                    const votedChannelsArray = foundUser.votedTwitch.map((index) => String(index.channel))
                     const vidIndex = votedChannelsArray.indexOf(response.id)
-                    const video = foundUser.votedChannels[vidIndex].channel
-                    const pastDirection = foundUser.votedChannels[vidIndex].direction
+                    const video = foundUser.votedTwitch[vidIndex].channel
+                    const pastDirection = foundUser.votedTwitch[vidIndex].direction
 
-                    // console.log("cancel the vote")
+                    console.log("cancel the vote")
                     if ((response.direction === "up" || response.direction === "down") && pastDirection === "up") {
-                        Channel.findOneAndUpdate({ _id: response.id }, { $inc: { votes: -1 } }, { new: true })
+                        Twitch.findOneAndUpdate({ _id: response.id }, { $inc: { votes: -1 } }, { new: true })
                             .then((returned) => {
-                                User.updateOne({ _id: foundUser._id }, { $pull: { votedChannels: { channel: video } } })
+                                User.updateOne({ _id: foundUser._id }, { $pull: { votedTwitch: { channel: video } } })
                                     .then((updated) => {
                                         votes = String(returned.votes)
                                         disabled = { up: false, down: false }
@@ -650,9 +649,9 @@ router.post("/vote", authCheck, (req, res) => {
                                 console.log(err)
                             })
                     } else if ((response.direction === "down" || response.direction === "up") && pastDirection === "down") {
-                        Channel.findOneAndUpdate({ _id: response.id }, { $inc: { votes: 1 } }, { new: true })
+                        Twitch.findOneAndUpdate({ _id: response.id }, { $inc: { votes: 1 } }, { new: true })
                             .then((returned) => {
-                                User.findOneAndUpdate({ _id: foundUser._id }, { $pull: { votedChannels: { channel: video } } })
+                                User.findOneAndUpdate({ _id: foundUser._id }, { $pull: { votedTwitch: { channel: video } } })
                                     .then((updated) => {
                                         votes = String(returned.votes)
                                         disabled = { up: false, down: false }
@@ -670,11 +669,11 @@ router.post("/vote", authCheck, (req, res) => {
                     }
 
                 } else {
-                    // console.log("this dude hasn't voted yet")
-                    User.updateOne({ _id: req.user._id }, { $addToSet: { votedChannels: { channel: response.id, direction: response.direction } } })
+                    console.log("this dude hasn't voted yet")
+                    User.updateOne({ _id: req.user._id }, { $addToSet: { votedTwitch: { channel: response.id, direction: response.direction } } })
                         .then((update) => {
                             if (response.direction === "up") {
-                                Channel.findOneAndUpdate({ _id: response.id }, { $inc: { votes: 1 } }, { new: true })
+                                Twitch.findOneAndUpdate({ _id: response.id }, { $inc: { votes: 1 } }, { new: true })
                                     .then((foundChannel) => {
                                         // console.log(foundChannel)
                                         votes = String(foundChannel.votes)
@@ -686,7 +685,7 @@ router.post("/vote", authCheck, (req, res) => {
                                     }).catch((err) => { console.error(err) })
 
                             } else if (response.direction === "down") {
-                                Channel.findOneAndUpdate({ _id: response.id }, { $inc: { votes: -1 } }, { new: true })
+                                Twitch.findOneAndUpdate({ _id: response.id }, { $inc: { votes: -1 } }, { new: true })
                                     .then((foundChannel) => {
                                         // console.log(foundChannel)
                                         votes = String(foundChannel.votes)
@@ -725,17 +724,17 @@ router.get("/profile", authCheck, paginate, async (req, res) => {
 
         // res.paginate.nextPage = 0
         // res.paginate.previousPage = 0
-        if (req.user.votedChannels.length != 0) {
-            votedChannelsArray = req.user.votedChannels.map((index) => String(index.channel))
+        if (req.user.votedTwitch.length != 0) {
+            votedChannelsArray = req.user.votedTwitch.map((index) => String(index.channel))
 
             if (req.query.sort === "recent") {
-                results = await Channel.find({ _id: { $in: votedChannelsArray } }, null, { sort: { createdAt: -1 } }).limit(res.paginate.limit).skip(res.paginate.startIndex)
+                results = await Twitch.find({ _id: { $in: votedChannelsArray } }, null, { sort: { createdAt: -1 } }).limit(res.paginate.limit).skip(res.paginate.startIndex)
                     .catch((err) => console.log(err))
             } else if (req.query.sort === "upvotes") {
-                results = await Channel.find({ _id: { $in: votedChannelsArray } }, null, { sort: { votes: -1 } }).limit(res.paginate.limit).skip(res.paginate.startIndex)
+                results = await Twitch.find({ _id: { $in: votedChannelsArray } }, null, { sort: { votes: -1 } }).limit(res.paginate.limit).skip(res.paginate.startIndex)
                     .catch((err) => console.log(err))
             } else {
-                const preResults = await Channel.find({ _id: { $in: votedChannelsArray } })
+                const preResults = await Twitch.find({ _id: { $in: votedChannelsArray } })
                     .catch((err) => console.log(err))
                 // .limit(res.paginate.limit)
                 // .skip(res.paginate.startIndex)
@@ -743,12 +742,12 @@ router.get("/profile", authCheck, paginate, async (req, res) => {
                 // console.log(req.user.votedChannels.length)
                 // console.log(preResults)
                 if (preResults.length != 0) {
-                    for (let i = 0; i < req.user.votedChannels.length; i++) {
-                        if (String(req.user.votedChannels[i].channel) == String(preResults[i]._id)) {
+                    for (let i = 0; i < req.user.votedTwitch.length; i++) {
+                        if (String(req.user.votedTwitch[i].channel) == String(preResults[i]._id)) {
                             results[i] = preResults[i]
                         } else {
                             for (let j = 0; j < preResults.length; j++) {
-                                if (String(preResults[j]._id) == String(req.user.votedChannels[i].channel)) {
+                                if (String(preResults[j]._id) == String(req.user.votedTwitch[i].channel)) {
                                     results[i] = preResults[j]
                                     break
                                 }
@@ -761,7 +760,7 @@ router.get("/profile", authCheck, paginate, async (req, res) => {
 
             }
 
-            const totalDocs = await Channel.countDocuments({ _id: { $in: votedChannelsArray } })
+            const totalDocs = await Twitch.countDocuments({ _id: { $in: votedChannelsArray } })
                 .catch((err) => console.log(err))
             const numberOfPages = Math.ceil(totalDocs / res.paginate.limit)
             res.paginate.numberOfPages = numberOfPages
@@ -773,7 +772,7 @@ router.get("/profile", authCheck, paginate, async (req, res) => {
             }
 
 
-            res.render("youtube/profile.ejs", {
+            res.render("twitch/profile-twitch.ejs", {
                 user: req.user,
                 votedChannelsArray: votedChannelsArray,
                 results: results,
@@ -783,7 +782,7 @@ router.get("/profile", authCheck, paginate, async (req, res) => {
         } else {
             res.paginate.nextPage = 0
             res.paginate.previousPage = 0
-            res.render("youtube/profile.ejs", {
+            res.render("twitch/profile-twitch.ejs", {
                 user: req.user,
                 votedChannelsArray: votedChannelsArray,
                 results: results,

@@ -28,6 +28,15 @@ const userSchema = new mongoose.Schema({
       unique: true
     },
     direction: String
+  }],
+
+  votedTwitch: [{
+    channel: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Twitch',
+      unique: true
+    },
+    direction: String
   }]
 
 });
