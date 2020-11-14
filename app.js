@@ -103,8 +103,8 @@ app.use("/tag-submit", require("./routes/tag-routes.js"))
 app.use("/youtube", require("./routes/youtube-display-routes.js"))
 app.use("/twitch", require("./routes/twitch-routes.js"))
 
-app.get("/", (req, res) => {
-  res.redirect("/youtube")
+app.get("/", paginate, (req, res) => {
+  res.render("home.ejs", { user: req.user, paginate: res.paginate })
 })
 
 app.get("/cookie-policy", paginate, (req, res) => {

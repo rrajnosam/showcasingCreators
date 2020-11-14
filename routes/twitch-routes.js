@@ -12,7 +12,7 @@ const TwitchSuggestion = require("../models/twitch-suggestion-model.js")
 const bcrypt = require("bcryptjs")
 
 
-//------------------------------------ GET YOUTUBE HOMEPAGE -------------------------------------
+//------------------------------------ GET TWITCH HOMEPAGE -------------------------------------
 
 router.get("/", paginate, async (req, res) => {
     try {
@@ -53,7 +53,7 @@ router.get("/", paginate, async (req, res) => {
         }
 
         // console.log(cotds)
-        res.render("twitch/display-cards-twitch.ejs", {
+        res.render("twitch/twitch-home.ejs", {
             user: req.user,
             votedChannelsArray: votedChannelsArray,
             results: results,
@@ -347,20 +347,26 @@ router.get("/search", paginate, async (req, res) => {
 })
 
 router.get("/search/tags", paginate, async (req, res) => {
-    // console.log(req.query.search)
+    // console.log(req.query.tag)
     // console.log(req.query.sort)
-    let capTagArray = req.query.tag.split("/")
     let capTag
-    if (capTagArray.length > 1) {
-        capTagArray[0] = _.capitalize(capTagArray[0].trim())
-        capTagArray[1] = _.capitalize(capTagArray[1].trim())
 
-        capTag = capTagArray.join("/")
-
+    if (req.query.tag == "JustChatting") {
+        capTag = "Just Chatting"
     } else {
-        capTag = _.capitalize(req.query.tag)
+        let capTagArray = req.query.tag.split("/")
+        if (capTagArray.length > 1) {
+            capTagArray[0] = _.capitalize(capTagArray[0].trim())
+            capTagArray[1] = _.capitalize(capTagArray[1].trim())
+
+            capTag = capTagArray.join("/")
+
+        } else {
+            capTag = _.capitalize(req.query.tag)
+        }
+        // console.log(capTag)
     }
-    // console.log(capTag)
+
 
     try {
         let results
@@ -623,13 +629,13 @@ router.post("/vote", authCheck, (req, res) => {
         User.findOne({ _id: req.user._id, "votedTwitch.channel": response.id })
             .then((foundUser) => {
                 if (foundUser) {
-                    console.log(foundUser)
+                    // console.log(foundUser)
                     const votedChannelsArray = foundUser.votedTwitch.map((index) => String(index.channel))
                     const vidIndex = votedChannelsArray.indexOf(response.id)
                     const video = foundUser.votedTwitch[vidIndex].channel
                     const pastDirection = foundUser.votedTwitch[vidIndex].direction
 
-                    console.log("cancel the vote")
+                    // console.log("cancel the vote")
                     if ((response.direction === "up" || response.direction === "down") && pastDirection === "up") {
                         Twitch.findOneAndUpdate({ _id: response.id }, { $inc: { votes: -1 } }, { new: true })
                             .then((returned) => {
@@ -669,7 +675,7 @@ router.post("/vote", authCheck, (req, res) => {
                     }
 
                 } else {
-                    console.log("this dude hasn't voted yet")
+                    // console.log("this dude hasn't voted yet")
                     User.updateOne({ _id: req.user._id }, { $addToSet: { votedTwitch: { channel: response.id, direction: response.direction } } })
                         .then((update) => {
                             if (response.direction === "up") {

@@ -34,7 +34,7 @@
   <nav class="sticky-top navbar navbar-expand-lg navbar-dark bg-dark">
 
     <!-- <div class="navbar-header"> -->
-    <a class="navbar-brand" href="/youtube">
+    <a class="navbar-brand" href="/">
       <img class="img-logo" src="/images/logo-nb.png" height="75rem" width="300rem" alt="logo">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -49,11 +49,10 @@
 
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link <%= (paginate.baseUrl) === "/youtube/trending" ? "active" : null  %>"
-            href="/youtube/trending">Trending</a>
+          <a class="nav-link <%= (paginate.baseUrl) === "/youtube" ? "active" : null  %>" href="/youtube">YouTube</a>
         </li>
-        <li class="nav-item <%= (paginate.baseUrl) === "/youtube/top-rated" ? "active" : null  %>">
-          <a class="nav-link" href="/youtube/top-rated">Top Rated</a>
+        <li class="nav-item <%= (paginate.baseUrl) === "/twitch" ? "active" : null  %>">
+          <a class="nav-link" href="/twitch">Twitch</a>
         </li>
         <li class="nav-item <%= (paginate.baseUrl) === "/youtube/recent-suggestions" ? "active" : null  %>">
           <a class="nav-link" href="/youtube/recent-suggestions">Recent Suggestions</a>
@@ -85,7 +84,7 @@
       <span class="navbar-text">
         <div>
           <a href="/youtube/suggest-channel" class="btn red-button text-light my-3 my-sm-0">
-            Suggest a YouTuber</a>
+            Promote Your Content</a>
         </div>
 
         <div>
@@ -104,7 +103,8 @@
             <%= user.username%>
           </a>
 
-          <div class="profile-dropdown dropdown-menu" aria-expanded="false" aria-labelledby="dropdownMenuLink">
+          <div class="profile-dropdown dropdown-menu dropdown-menu-right" aria-expanded="false"
+            aria-labelledby="dropdownMenuLink">
             <a class="dropdown-item text-dark" href="/profile">Profile</a>
             <a href="/youtube/suggest-channel" class="dropdown-item text-dark">Suggest a channel</a>
             <div class="dropdown-divider"></div>
