@@ -1,4 +1,6 @@
 <%- include('../partials/header') %>
+<%- include('../partials/subheader-twitch') %>
+
 
 
 <div class="jumbotron bg-dark text-light">
@@ -14,7 +16,7 @@
         <% } %>
         <% if(user){ %>
         <div class="mt-5">
-            <a href="/twitch/suggest-channel" class="btn red-button btn-lg mb-2">Suggest a channel</a>
+            <a href="/twitch/suggest-channel" class="btn twitch-button btn-lg mb-2">Suggest a channel</a>
             <a class="text-dark btn btn-lg btn-light mb-2" href="/twitch/top-rated ">Top
                 Rated</a>
 
@@ -107,7 +109,7 @@
 </div>
 
 <nav aria-label="results pages" class="d-flex justify-content-center">
-    <ul id="paginate" class="pagination">
+    <ul id="paginate" class="pagination pagination-twitch">
         <li class="page-item <%= paginate.previousPage === 0 ? "disabled" : null %>">
             <a class="page-link" href="<%=paginate.baseUrl%>?page=<%= 1%><%= sortOption ? "&sort="+sortOption : null%>"
                 tabindex="-1">First</a>

@@ -54,36 +54,12 @@
         <li class="nav-item <%= (paginate.baseUrl) === "/twitch" ? "active" : null  %>">
           <a class="nav-link" href="/twitch">Twitch</a>
         </li>
-        <li class="nav-item <%= (paginate.baseUrl) === "/youtube/recent-suggestions" ? "active" : null  %>">
-          <a class="nav-link" href="/youtube/recent-suggestions">Recent Suggestions</a>
-        </li>
-        <li class="nav-item dropdown <%= (paginate.baseUrl) === "/youtube/search/tags" ? "active" : null  %> ">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            Categories
-          </a>
-          <div class="category-dropdown dropdown-menu" aria-labelledby="navbarDropdown">
-
-            <% const categories = ["Education","Health / Wellness","Family","Travel","Cars" ,"Religion","Science", "Technology","Animals / Nature","Business","DIY / Crafts","News / Politics" ,"Finance", "Music", "Gaming", "Fashion", "Beauty", "Fitness", "Food / Cooking", "Comedy", "Lifestyle", "Sports", "Entertainment"]%>
-            <% categories.sort() %>
-            <% categories.forEach((each) => { %>
-
-            <a class="dropdown-item " href="/youtube/search/tags?page=1&tag=<%= each %>&sort=upvotes"> <%= each %></a>
-
-            <% })%>
-
-            <a class="dropdown-item" href="/youtube/search/tags?page=1&tag=Miscellaneous"> Miscellaneous</a>
-
-            <!-- <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Random</a> -->
-          </div>
-        </li>
       </ul>
 
       <% if(!user){ %>
       <span class="navbar-text">
         <div>
-          <a href="/youtube/suggest-channel" class="btn red-button text-light my-3 my-sm-0">
+          <a href="/youtube/suggest-channel" class="btn btn-light text-dark my-3 my-sm-0">
             Promote Your Content</a>
         </div>
 

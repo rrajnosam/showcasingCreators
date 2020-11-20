@@ -1,28 +1,25 @@
 <%- include('../partials/header') %>
+<%- include('../partials/subheader-twitch') %>
+
 
 <div class="jumbotron bg-dark text-light">
     <div class="container text-center">
+        <img class="mt-0" width="175" height="100" src="https://www.freepnglogos.com/uploads/twitch-tv-logo-png-1.png"
+            alt="">
         <% if (paginate.baseUrl != "/twitch/search/tags"){ %>
-        <h1 class="slogan display-4 mb-4">best Twitch streams matching "<%= searchQuery%>"</h1>
+        <h1 class="slogan display-4 my-4">best Twitch streams matching "<%= searchQuery%>"</h1>
         <% } else {%>
-        <h1 class="slogan display-4 mb-4">Best <%= tag %> Twitch Streamers</h1>
+        <h1 class="slogan display-4 my-4">Best <%= tag %> Twitch Streamers</h1>
 
         <%}%>
         <form method="post" action="/twitch/search" class="mx-auto">
             <input name="query" class="form-control mr-sm-2" type="search" placeholder="Search streamers..."
                 aria-label="Search" />
-            <button class="btn btn-outline-danger mt-2" type="submit">
+            <button class="btn twitch-button mt-2" type="submit">
                 Search
             </button>
         </form>
-        <div class="btn-group btn-group-lg mt-5" role="group">
-            <a class="text-light btn btn-primary" href="/twitch/top-rated ">Top
-                Rated</a>
-
-            <a class="text-dark btn btn-light" href="/twitch/recent-suggestions ">Recently Suggested</a>
-            <a class="text-light btn btn-danger" href="/twitch/categories ">All
-                Categories</a>
-        </div>
+      
     </div>
 </div>
 
@@ -85,7 +82,7 @@
         <p class="card-text">Do you regret that you never learned piano? Do you want to sound great from the
             start?
             Learn Piano And Keyboards From Pianoforall - One Of The Top Piano Methods.</p>
-        <a href="https://2257090kz4kde26cn2xfk3t85e.hop.clickbank.net/" class="btn red-button">Learn More</a>
+        <a href="https://2257090kz4kde26cn2xfk3t85e.hop.clickbank.net/" class="btn twitch-button">Learn More</a>
     </div>
 </div>
 <% } %>
@@ -145,7 +142,7 @@
     <div class="card-body">
         <p class="description card-text"><%= channel.description %></p>
 
-        <a href=<%= channel.link %> target="_blank" class="btn red-button">Visit channel</a>
+        <a href=<%= channel.link %> target="_blank" class="btn twitch-button">Visit channel</a>
     </div>
 </div>
 <% }) %>
@@ -158,7 +155,7 @@
 
 <nav aria-label="results pages" class="d-flex justify-content-center">
 
-    <ul id="paginate" class="pagination">
+    <ul id="paginate" class="pagination pagination-twitch">
         <li class="page-item <%= paginate.previousPage === 0 ? "disabled" : null %>">
             <a class="page-link"
                 href="<%=paginate.baseUrl%>?page=<%= 1%><%= tag ? "&tag="+tag : null %><%= searchQuery ? "&search="+searchQuery : null %><%= sortOption ? "&sort="+sortOption : null%>"

@@ -1,4 +1,6 @@
 <%- include('../partials/header') %>
+<%- include('../partials/subheader-twitch') %>
+
 
 
 <form id="no" action="/twitch/suggest-channel" method="post">
@@ -29,7 +31,7 @@
 
                     <input name="channelTags" type="text" class="form-control mb-2" id="tags"
                         placeholder="restaurants, asian food, food review, soup, noodles, dumplings " required>
-                    <button id="submitbtn" class="btn red-button my-3" type="submit">Submit</button>
+                    <button id="submitbtn" class="btn twitch-button my-3" type="submit">Submit</button>
 
 
                 </div>

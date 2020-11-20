@@ -9,7 +9,12 @@ body{
 
 .red-button{
   color:white;
-  background-color: red;
+  background-color: #ff0000;
+}
+
+.twitch-button{
+  color:white;
+  background-color: #9146ff;
 }
 
 .text-red{
@@ -62,20 +67,31 @@ body{
     border-color: #ddd;
 }
 
-.pagination > .active > a
+.pagination-youtube > .active > a
 {
     color: white;
-    background-color: red !Important;
-    border: solid 1px red !Important;
+    background-color: #ff0000 !Important;
+    border: solid 1px #ff0000 !Important;
 }
 
-.pagination > .active > a:hover
+.pagination-youtube > .active > a:hover
 {
-    background-color: red !Important;
-    border: solid 1px red;
+    background-color: #ff0000 !Important;
+    border: solid 1px #ff0000;
 }
 
+.pagination-twitch > .active > a
+{
+    color: white;
+    background-color: #9146ff !Important;
+    border: solid 1px #9146ff !Important;
+}
 
+.pagination-twitch > .active > a:hover
+{
+    background-color: #9146ff !Important;
+    border: solid 1px #9146ff;
+}
 
 
 

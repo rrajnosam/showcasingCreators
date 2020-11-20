@@ -1,4 +1,6 @@
 <%- include('../partials/header') %>
+<%- include('../partials/subheader-twitch') %>
+
 
 <div class="jumbotron bg-dark text-light">
     <div class="container text-center">
@@ -15,18 +17,11 @@
         <form method="post" action="/twitch/search" class="mx-auto">
             <input name="query" class="col form-control mr-sm-2" type="search" placeholder="Search streamers..."
                 aria-label="Search" />
-            <button class="btn btn-outline-danger mt-2" type="submit">
+            <button class="btn twitch-button mt-2" type="submit">
                 Search
             </button>
         </form>
-        <div class="btn-group btn-group-lg mt-5" role="group">
-            <a class="text-light btn btn-primary" href="/twitch/top-rated ">Top
-                Rated</a>
 
-            <a class="text-dark btn btn-light" href="/twitch/recent-suggestions ">Recently Suggested</a>
-            <a class="text-light btn btn-danger" href="/twitch/categories ">All
-                Categories</a>
-        </div>
     </div>
 
 </div>
@@ -127,7 +122,7 @@
         <div class="card-body">
             <p class="description card-text"><%= channel.description %></p>
 
-            <a href=<%= channel.link %> target="_blank" class="btn red-button">Visit channel</a>
+            <a href=<%= channel.link %> target="_blank" class="btn twitch-button">Visit channel</a>
         </div>
     </div>
 
@@ -135,7 +130,7 @@
 </div>
 
 <nav aria-label="results pages" class="d-flex justify-content-center">
-    <ul id="paginate" class="pagination">
+    <ul id="paginate" class="pagination pagination-twitch">
         <li class="page-item <%= paginate.previousPage === 0 ? "disabled" : null %>">
             <a class="page-link" href="<%=paginate.baseUrl%>?page=<%= 1%><%= sortOption ? "&sort="+sortOption : null%>"
                 tabindex="-1">First</a>
