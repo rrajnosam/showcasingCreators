@@ -20,6 +20,11 @@ router.get("/", paginate, async (req, res) => {
         const totalDocs = await Twitch.countDocuments()
             .catch((err) => console.log(err))
         let random = Math.floor(Math.random() * (totalDocs - 3))
+        const preCotds = await Cotds.find({}).catch((err) => console.log(err))
+
+        const listCotdsIDs = preCotds.map((each) => each.channel)
+        const cotds = await Twitch.find({ _id: { $in: listCotdsIDs } }).catch((err) => console.log(err))
+
 
         // console.log(random)
         if (req.query.sort === "recent") {
@@ -59,6 +64,7 @@ router.get("/", paginate, async (req, res) => {
             results: results,
             paginate: res.paginate,
             sortOption: req.query.sort,
+            cotds: cotds
         })
     } catch (err) {
         console.log(err)

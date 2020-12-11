@@ -1,7 +1,8 @@
 <%- include('../partials/header') %>
 <%- include('../partials/subheader-twitch') %>
 
-<!-- ---------------------------FEATURED CHANNEL OF THE DAY --------------------------- -->
+<!-----------------------------FEATURED CHANNEL OF THE DAY --------------------------- -->
+
 
 <div id="card-container" class="container w-50">
     <br>
@@ -9,135 +10,242 @@
         <div class="card-header text-light bg-secondary">
             CHANNEL OF THE DAY
         </div>
+        <div class="card-body">
+            <% const channel = cotds[0] %>
+            <p class="m-3 text-right"><a class="text-black"
+                    href="/twitch/search/tags?page=1&tag=<%= channel.tags[0] %>"><em>
+                        #<%= channel.tags[0] %></em></a>
+            </p>
+
+            <div class="row pt-3 mx-auto">
+
+                <h3 class="card-title"> <a href=<%= channel.link %> target="_blank"
+                        class="text-dark"><%= channel.name %></a>
+                </h3>
+                <img src="<%= channel.image %>" class="thumb mx-auto img-fluid img-thumbnail align-self-center"
+                    alt="channel thumbnail">
+                <div class="p-3 p-md-4 mx-auto ml-md-4 text-center align-self-center">
+                    <% let thisChannel %>
+                    <% let pastDirection %>
+                    <% if(user){ %>
+                    <% if (!votedChannelsArray.length){  %>
+                    <%  thisChannel = -1 %>
+                    <%  pastDirection = "none" %>
+                    <% } else if (votedChannelsArray.indexOf(String(channel._id)) != -1){ %>
+                    <%  thisChannel = votedChannelsArray.indexOf(String(channel._id)) %>
+                    <%  pastDirection = user.votedChannels[thisChannel].direction %>
+                    <%}%>
+          
+                  <button id="up<%= channel._id %>" name="upvote" class="btn row"
+                    <%= thisChannel != -1 && pastDirection === "up" ? "disabled" : null %>>
+                    <i class="fas fa-chevron-up fa-3x"></i>
+                    </button>
+
+                    <h1 id=<%= channel._id %> class="row p-0 m-0 justify-content-center">
+                        <%= channel.votes %>
+                    </h1>
+
+
+                    <button id="down<%= channel._id %>" name="downvote" class="btn row"
+                        <%= thisChannel != -1 && pastDirection==="down" ? "disabled" : null %>>
+                        <i class="fas fa-chevron-down fa-3x"></i>
+                    </button>
+                    <% } else { %>
+                    <button id="up<%= channel._id %>" name="upvote" class="btn row">
+                        <i class="fas fa-chevron-up fa-3x"></i>
+                    </button>
+
+                    <h1 id=<%= channel._id %> class="row p-0 m-0 justify-content-center">
+                        <%= channel.votes %>
+                    </h1>
 
 
 
+                    <button id="down<%= channel._id %>" name="downvote" class="btn row">
+                        <i class="fas fa-chevron-down fa-3x"></i>
+                    </button>
+                    <% } %>
+                </div>
+            </div>
+            <div class="card-body">
+                <p class="description card-text"><%= channel.description %></p>
 
-    </div>
-
-</div>
-
-
-
-
-<br>
-
-<!-- --------------------------------CHANNEL ON THE RISE OF THE DAY --------------------------------- -->
-
-<div class="row">
-    <div class="col-sm-6 mb-3">
-        <div class="card bg-white text-center">
-            <div class="card-header text-light bg-secondary">
-                FEATURED CHANNEL OF THE DAY
+                <a href=<%= channel.link %> target="_blank" class="btn twitch-button">Visit stream</a>
             </div>
 
         </div>
+
     </div>
 
-    <!-- ------------------------------------ UNDERDOG CHANNEL OF THE DAY ------------------------------- -->
 
-    <div class="col-sm-6 mb-3">
-        <div class="card text-center bg-white">
-            <div class="card-header text-light bg-secondary">
-                UNDERDOG CHANNEL OF THE DAY
-            </div>
 
-        </div>
-    </div>
 
-</div>
-
-<div class="bg-light">
     <br>
-    <div class="container text-center">
-        <h1 class="mb-5 text-dark">TWITCH STREAMS</h1>
 
-        <div class="row my-5">
-            <div class="col">
-                <a class="text-dark" href="/twitch/search/tags?page=1&tag=Gaming&sort=upvotes"><i
-                        class="fas fa-paw fa-3x text-dark"></i>
-                </a>
-                <a class="" href="/twitch/search/tags?page=1&tag=Gaming&sort=upvotes"><button
-                        class="btn btn-lg btn-block mx-auto text-dark">Gaming</button>
-                </a>
-            </div>
+    <!-- --------------------------------CHANNEL ON THE RISE OF THE DAY --------------------------------- -->
 
-            <div class="col">
-                <a class="text-dark" href="/twitch/search/tags?page=1&tag=JustChatting&sort=upvotes"><i
-                        class="fas fa-tshirt fa-3x text-dark"></i></a>
-                <a class="" href="/twitch/search/tags?page=1&tag=JustChatting&sort=upvotes">
-                    <button class="btn btn-lg btn-block mx-auto text-dark">Just Chatting</button></a>
-            </div>
-            <div class="col">
-                <a class="text-dark" href="/twitch/search/tags?page=1&tag=Business&sort=upvotes"><i
-                        class="fas fa-building fa-3x text-dark"></i></a>
-                <a class="text-dark" href="/twitch/search/tags?page=1&tag=Business&sort=upvotes"><button
-                        class="btn btn-lg btn-block mx-auto text-dark">Business</button>
-                </a>
-            </div>
-        </div>
-
-
-    </div>
-    <br>
-
-    <div class="bg-dark">
-        <br>
-
-        <div class="container text-center">
-            <h1 class="text-center my-3 text-light"> SEARCH FOR STREAMS </h1>
-            <form method="post" action="/twitch/search" class="">
-                <input name="query" class="form-control mr-sm-2" type="search" placeholder="Search TWITCH..."
-                    aria-label="Search" />
-                <button class="btn twitch-button mt-2 mb-4" type="submit">
-                    Search
-                </button>
-            </form>
-        </div>
-        <br>
-    </div>
-
-    <!-- <h1 class="text-center mb-5">DISCOVER</h1>
     <div class="row">
-        <div class="col">
-            <div class="card bg-light">
-                <i class="fas fa-poll fa-9x text-dark my-5"></i>
-                <img class="card-img-top"
-                        src="https://images.pexels.com/photos/270669/pexels-photo-270669.jpeg?cs=srgb&dl=pexels-pixabay-270669.jpg&fm=jpg"
-                        alt="Card image cap">
+        <div class="col-sm-6 mb-3">
+            <div class="card bg-white text-center">
+                <div class="card-header text-light bg-secondary">
+                    FEATURED CHANNEL OF THE DAY
+                </div>
                 <div class="card-body">
-                    <h4 class="card-title">TRENDING CHANNELS</h4>
-                    <a href="/youtube/trending" class="btn btn-block red-button">Go</a>
+                    <% const rcotd = cotds[1] %>
+                    <p class="m-3 text-right"><a class="text-black"
+                            href="/twitch/search/tags?page=1&tag=<%= rcotd.tags[0] %>"><em>
+                                #<%= rcotd.tags[0] %></em></a></p>
+
+                    <h3 class="card-title"> <a href=<%= rcotd.link %> target="_blank"
+                            class="text-dark"><%= rcotd.name %></a>
+                    </h3>
+                    <div class="row pt-3 mx-auto">
+                        <img src="<%= rcotd.image %>" class="thumb mx-auto img-fluid img-thumbnail align-self-center"
+                            alt="channel thumbnail">
+                        <div class="p-3 p-md-4 mx-auto text-center align-self-center">
+                            <% let thisChannel1 %>
+                            <% let pastDirection1 %>
+                            <% if(user){ %>
+                            <% if (!votedChannelsArray.length){  %>
+                            <%  thisChannel1 = -1 %>
+                            <%  pastDirection1 = "none" %>
+                            <% } else if (votedChannelsArray.indexOf(String(rcotd._id)) != -1){ %>
+                            <%  thisChannel1 = votedChannelsArray.indexOf(String(rcotd._id)) %>
+                            <%  pastDirection1 = user.votedChannels[thisChannel1].direction %>
+                            <%}%>
+              
+                      <button id="up<%= rcotd._id %>" name="upvote" class="btn row"
+                            <%= thisChannel1 != -1 && pastDirection1 === "up" ? "disabled" : null %>>
+                            <i class="fas fa-chevron-up fa-3x"></i>
+                            </button>
+
+                            <h1 id=<%= rcotd._id %> class="row p-0 m-0 justify-content-center">
+                                <%= rcotd.votes %>
+                            </h1>
+
+                            <button id="down<%= rcotd._id %>" name="downvote" class="btn row"
+                                <%= thisChannel1 != -1 && pastDirection1==="down" ? "disabled" : null %>>
+                                <i class="fas fa-chevron-down fa-3x"></i>
+                            </button>
+                            <% } else { %>
+                            <button id=" up<%= rcotd._id %>" name="upvote" class="btn row">
+                                <i class="fas fa-chevron-up fa-3x"></i>
+                            </button>
+
+                            <h1 id=<%= rcotd._id %> class="row p-0 m-0 justify-content-center">
+                                <%= rcotd.votes %>
+                            </h1>
+
+                            <button id="down<%= rcotd._id %>" name="downvote" class="btn row">
+                                <i class="fas fa-chevron-down fa-3x"></i>
+                            </button>
+                            <% } %>
+                        </div>
+                    </div>
                 </div>
+                <div class="card-body">
+                    <p class="description card-text"><%= rcotd.description %></p>
+
+                    <a href=<%= rcotd.link %> target="_blank" class="btn twitch-button">Visit stream</a>
+                </div>
+
             </div>
         </div>
-        <div class="col">
-            <div class="card bg-light">
-                <i class="fas fa-star-half-alt fa-9x text-dark my-5"></i> -->
-    <!-- <img class="card-img-top"
-                        src="https://images.pexels.com/photos/220759/pexels-photo-220759.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-                        alt="Card image cap"> -->
-    <!-- <div class="card-body">
-                    <h4 class="card-title">TOP RATED CHANNELS</h4>
-                    <a href="/youtube/top-rated" class="btn btn-block red-button">Go</a>
+
+        <!-- ------------------------------------ UNDERDOG CHANNEL OF THE DAY ------------------------------- -->
+
+        <div class="col-sm-6 mb-3">
+            <div class="card text-center bg-white">
+                <div class="card-header text-light bg-secondary">
+                    RECOMMENDED CHANNEL OF THE DAY
                 </div>
+                <div class="card-body">
+                    <% const channel2 = cotds[2] %>
+                    <p class="m-3 text-right">
+                        <a class="text-black" href="/twitch/search/tags?page=1&tag=<%= channel2.tags[0] %>"><em>
+                                #<%= channel2.tags[0] %></em></a>
+                    </p>
+
+                    <h3 class="card-title"> <a href=<%= channel2.link %> target="_blank"
+                            class="text-dark"><%= channel2.name %></a>
+                    </h3>
+
+                    <div class="row pt-3 mx-auto">
+
+                        <img src="<%= channel2.image %>" class="thumb mx-auto img-fluid img-thumbnail align-self-center"
+                            alt="channel thumbnail">
+                        <div class="p-3 p-md-4 mx-auto text-center align-self-center">
+                            <% let thisChannel2 %>
+                            <% let pastDirection2 %>
+                            <% if(user){ %>
+                            <% if (!votedChannelsArray.length){  %>
+                            <%  thisChannel2 = -1 %>
+                            <%  pastDirection2 = "none" %>
+                            <% } else if (votedChannelsArray.indexOf(String(channel2._id)) != -1){ %>
+                            <%  thisChannel2 = votedChannelsArray.indexOf(String(channel2._id)) %>
+                            <%  pastDirection2 = user.votedChannels[thisChannel2].direction %>
+                            <%}%>
+          
+                            <button id="up<%= channel2._id %>" name="upvote" class="btn row"
+                            <%= thisChannel2 != -1 && pastDirection2 === "up" ? "disabled" : null %>>
+                            <i class="fas fa-chevron-up fa-3x"></i>
+                            </button>
+
+                            <h1 id=<%= channel2._id %> class="row p-0 m-0 justify-content-center">
+                                <%= channel2.votes %>
+                            </h1>
+
+                            <button id="down<%= channel2._id %>" name="downvote" class="btn row"
+                                <%= thisChannel2 != -1 && pastDirection2==="down" ? "disabled" : null %>>
+                                <i class="fas fa-chevron-down fa-3x"></i>
+                            </button>
+                            <% } else { %>
+                            <button id=" up<%= channel2._id %>" name="upvote" class="btn row">
+                                <i class="fas fa-chevron-up fa-3x"></i>
+                            </button>
+
+                            <h1 id=<%= channel2._id %> class="row p-0 m-0 justify-content-center">
+                                <%= channel2.votes %>
+                            </h1>
+
+                            <button id="down<%= channel2._id %>" name="downvote" class="btn row">
+                                <i class="fas fa-chevron-down fa-3x"></i>
+                            </button>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="description card-text"><%= channel2.description %></p>
+
+                    <a href=<%= channel2.link %> target="_blank" class="btn twitch-button">Visit stream</a>
+                </div>
+
             </div>
         </div>
-        <div class="col">
-            <div class="card bg-light">
-                <i class="fas fa-signal fa-9x text-dark my-5"></i> -->
-    <!-- <img class="card-img-top"
-                        src="https://images.unsplash.com/photo-1467664631004-58beab1ece0d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80"
-                        alt="Card image cap"> -->
-    <!-- <div class="card-body">
-                    <h4 class="card-title">RECENT CHANNELS</h4>
-                    <a href="/youtube/recent-suggestions" class="btn btn-block red-button">Go</a>
-                </div>
-            </div>
-        </div>
-    </div> -->
+    </div>
+
+
 
 </div>
+
+
+<div class="bg-dark">
+    <br>
+
+    <div class="container text-center">
+        <h1 class="text-center my-3 text-light"> SEARCH FOR STREAMERS </h1>
+        <form method="post" action="/youtube/search" class="">
+            <input name="query" class="form-control mr-sm-2" type="search" placeholder="Search streamers..."
+                aria-label="Search" />
+            <button class="btn  btn-primary mt-2 mb-4" type="submit">
+                Search
+            </button>
+        </form>
+    </div>
+    <br>
+</div>
+
 
 
 

@@ -4,8 +4,11 @@ text-decoration: none;
 }
 
 body{
-  font-family: 'Montserrat', sans-serif;
+  /* font-family: 'Montserrat', sans-serif; */
+  font-family: 'Raleway', sans-serif;
+
 }
+
 
 .red-button{
   color:white;

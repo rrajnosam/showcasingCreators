@@ -7,7 +7,7 @@
     content="The ultimate guide to the best YouTube channels found here. Vote for your favorite YouTube channels and showcase your favorite YouTubers!" />
   <meta name="keywords" content="best youtube channels" />
   <meta name="viewport" content="width=device-width initial-scale=1.0" />
-  <title>The Best YouTube Channels | Showcasing Creators</title>
+  <title>Your Guide To Influencers | Showcasing Creators</title>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
     integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
@@ -17,6 +17,9 @@
   <link rel="shortcut icon" href="/images/favicon.ico">
   <link rel="canonical" href="https://www.showcasingcreators.com">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap" rel="stylesheet">
+
   <script data-ad-client="ca-pub-7704472248823270" async
     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -45,7 +48,7 @@
     <!-- </div> -->
 
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse text-right" id="navbarSupportedContent">
 
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
@@ -58,10 +61,10 @@
 
       <% if(!user){ %>
       <span class="navbar-text">
-        <div>
+        <!-- <div>
           <a href="/youtube/suggest-channel" class="btn btn-light text-dark my-3 my-sm-0">
             Promote Your Content</a>
-        </div>
+        </div> -->
 
         <div>
           <a href="/auth/login" class="signup-btn btn btn-link text-light font-weight-bold my-3 my-sm-0">
@@ -79,10 +82,10 @@
             <%= user.username%>
           </a>
 
-          <div class="profile-dropdown dropdown-menu dropdown-menu-right" aria-expanded="false"
+          <div class="profile-dropdown text-right dropdown-menu dropdown-menu-right" aria-expanded="false"
             aria-labelledby="dropdownMenuLink">
             <a class="dropdown-item text-dark" href="/profile">Profile</a>
-            <a href="/youtube/suggest-channel" class="dropdown-item text-dark">Suggest a channel</a>
+            <a href="/suggest-channel" class="dropdown-item text-dark">Promote</a>
             <div class="dropdown-divider"></div>
             <a href="/auth/logout" class="dropdown-item text-dark">Logout</a>
           </div>

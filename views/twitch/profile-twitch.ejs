@@ -1,5 +1,4 @@
 <%- include('../partials/header') %>
-<%- include('../partials/subheader-twitch') %>
 
 
 
@@ -7,7 +6,7 @@
     <div class="container text-center">
         <h1 id="userName" class="slogan display-4">Welcome, <%= user.username %>!</h1>
         <p class="sub-slogan lead">
-            Twitch.
+            Upvote channels you like. Downvote channels you dislike. Showcase your favorite Content Creators.
         </p>
 
         <% if(!user){ %>
@@ -16,13 +15,11 @@
         <% } %>
         <% if(user){ %>
         <div class="mt-5">
-            <a href="/twitch/suggest-channel" class="btn twitch-button btn-lg mb-2">Suggest a channel</a>
-            <a class="text-dark btn btn-lg btn-light mb-2" href="/twitch/top-rated ">Top
-                Rated</a>
+            <a href="/youtube/profile" class="btn red-button btn-lg mb-2">My YouTube channels</a>
+            <a class=" btn btn-lg twitch-button mb-2" href="/twitch/profile ">My Twitch Streams</a>
 
-            <a class="text-light btn btn-lg btn-primary mb-2" href="/twitch/recent-suggestions ">Recently Suggested</a>
-            <a class="text-light btn btn-lg btn-success mb-2" href="/twitch/categories ">All
-                Categories</a>
+            <a class="text-light btn btn-lg btn-primary mb-2" href="/authors/profile">My Authors</a>
+            <a class="text-light btn btn-lg btn-success mb-2" href="/podcasts/profile">My Podcasts</a>
         </div>
 
         <% } %>
@@ -101,7 +98,7 @@
         <div class="card-body">
             <p class="description card-text"><%= channel.description %></p>
 
-            <a href=<%= channel.link %> target="_blank" class="btn red-button">Visit channel</a>
+            <a href=<%= channel.link %> target="_blank" class="btn red-button">Visit stream</a>
         </div>
 
     </div>

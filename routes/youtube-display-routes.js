@@ -437,7 +437,7 @@ router.get("/suggest-channel", authCheck, paginate, async (req, res) => {
     categoryList = categoryList.map((each) => each.name)
     categoryList = categoryList.sort()
     // console.log(categoryList)
-    res.render("youtube/suggest-channel.ejs", { user: req.user, paginate: res.paginate, categoryList: categoryList })
+    res.render("youtube/suggest-channel-yt.ejs", { user: req.user, paginate: res.paginate, categoryList: categoryList })
 })
 
 router.post("/suggest-channel", authCheck, paginate, async (req, res) => {
@@ -788,7 +788,7 @@ router.get("/profile", authCheck, paginate, async (req, res) => {
             }
 
 
-            res.render("youtube/profile.ejs", {
+            res.render("youtube/profile-yt.ejs", {
                 user: req.user,
                 votedChannelsArray: votedChannelsArray,
                 results: results,
@@ -798,7 +798,7 @@ router.get("/profile", authCheck, paginate, async (req, res) => {
         } else {
             res.paginate.nextPage = 0
             res.paginate.previousPage = 0
-            res.render("youtube/profile.ejs", {
+            res.render("youtube/profile-yt.ejs", {
                 user: req.user,
                 votedChannelsArray: votedChannelsArray,
                 results: results,

@@ -1,12 +1,11 @@
 <%- include('../partials/header') %>
-<%- include('../partials/subheader-youtube') %>
 
 
 <div class="jumbotron bg-dark text-light">
     <div class="container text-center">
         <h1 id="userName" class="slogan display-4">Welcome, <%= user.username %>!</h1>
         <p class="sub-slogan lead">
-            Upvote channels you like. Downvote channels you dislike. Showcase your favorite YouTubers.
+            Upvote channels you like. Downvote channels you dislike. Showcase your favorite Content Creators.
         </p>
 
         <% if(!user){ %>
@@ -15,13 +14,11 @@
         <% } %>
         <% if(user){ %>
         <div class="mt-5">
-            <a href="/youtube/suggest-channel" class="btn red-button btn-lg mb-2">Suggest a channel</a>
-            <a class="text-dark btn btn-lg btn-light mb-2" href="/youtube/top-rated ">Top
-                Rated</a>
+            <a href="/youtube/profile" class="btn red-button btn-lg mb-2">My YouTube channels</a>
+            <a class=" btn btn-lg twitch-button mb-2" href="/twitch/profile ">My Twitch Streams</a>
 
-            <a class="text-light btn btn-lg btn-primary mb-2" href="/youtube/recent-suggestions ">Recently Suggested</a>
-            <a class="text-light btn btn-lg btn-success mb-2" href="/youtube/categories ">All
-                Categories</a>
+            <a class="text-light btn btn-lg btn-primary mb-2" href="/authors/profile">My Authors</a>
+            <a class="text-light btn btn-lg btn-success mb-2" href="/podcasts/profile">My Podcasts</a>
         </div>
 
         <% } %>
