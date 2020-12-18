@@ -110,9 +110,9 @@
             <%  pastDirection = "none" %>
             <% } else if (votedChannelsArray.indexOf(String(channel._id)) != -1){ %>
             <%  thisChannel = votedChannelsArray.indexOf(String(channel._id)) %>
-            <%  pastDirection = user.votedChannels[thisChannel].direction %>
+            <%  pastDirection = user.votedTwitch[thisChannel].direction %>
             <%}%>
-                <button id="up<%= channel._id %>" name="upvote" class="btn row"
+                <button id="up<%= channel._id %>" name="upvoteTwitch" class="btn row"
             <%= thisChannel != -1 && pastDirection === "up" ? "disabled" : null %>>
             <i class="fas fa-chevron-up fa-3x"></i>
             </button>
@@ -120,19 +120,19 @@
             <h1 id=<%= channel._id %> class="row p-0 m-0 justify-content-center">
                 <%= channel.votes %></h1>
 
-            <button id="down<%= channel._id %>" name="downvote" class="btn row"
+            <button id="down<%= channel._id %>" name="downvoteTwitch" class="btn row"
                 <%= thisChannel != -1 && pastDirection==="down" ? "disabled" : null %>>
                 <i class="fas fa-chevron-down fa-3x"></i>
             </button>
             <% } else { %>
-            <button id=" up<%= channel._id %>" name="upvote" class="btn row">
+            <button id=" up<%= channel._id %>" name="upvoteTwitch" class="btn row">
                 <i class="fas fa-chevron-up fa-3x"></i>
             </button>
 
             <h1 id=<%= channel._id %> class="row p-0 m-0 justify-content-center">
                 <%= channel.votes %></h1>
 
-            <button id="down<%= channel._id %>" name="downvote" class="btn row">
+            <button id="down<%= channel._id %>" name="downvoteTwitch" class="btn row">
                 <i class="fas fa-chevron-down fa-3x"></i>
             </button>
             <% } %>
@@ -212,80 +212,4 @@
 
 
 
-
-
-
-<script>
-
-    function upvote() {
-        // console.log("upvote")
-        const votes = event.target.parentElement.nextElementSibling.innerText
-        const id = event.target.parentElement.nextElementSibling.attributes.id.value
-
-        let xhr = new XMLHttpRequest()
-
-        xhr.open('POST', '/twitch/vote', true)
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
-        //xhr.setRequestHeader('Content-Type', 'application/json')
-        xhr.onload = function () {
-            //console.log(this)
-            if (this.status == 200 && !this.responseText.includes("<!DOCTYPE html>")) {
-                const data = JSON.parse(this.responseText)
-                document.getElementById(id).innerHTML = `${data.votes}`
-                document.getElementById(`up${id}`).disabled = data.disabled.up
-                document.getElementById(`down${id}`).disabled = data.disabled.down
-            } else {
-                document.getElementById(id).innerHTML = "sign in to vote"
-            }
-        }
-        xhr.send(JSON.stringify({
-            id: id,
-            votes: votes,
-            direction: "up"
-        }))
-
-    }
-
-    function downvote() {
-        // console.log("downvote")
-        const votes = event.target.parentElement.previousElementSibling.innerText
-        const id = event.target.parentElement.previousElementSibling.attributes.id.value
-        let xhr = new XMLHttpRequest()
-
-        console.log(votes, id)
-
-        xhr.open('POST', '/twitch/vote', true)
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
-        //xhr.setRequestHeader('Content-Type', 'application/json')
-        xhr.onload = function () {
-
-            if (this.status == 200 && !this.responseText.includes("<!DOCTYPE html>")) {
-                const data = JSON.parse(this.responseText)
-                document.getElementById(id).innerHTML = `${data.votes}`
-                document.getElementById(`up${id}`).disabled = data.disabled.up
-                document.getElementById(`down${id}`).disabled = data.disabled.down
-            } else {
-                document.getElementById(id).innerHTML = "sign in to vote"
-            }
-        }
-        xhr.send(JSON.stringify({
-            id: id,
-            votes: votes,
-            direction: "down"
-        }))
-
-    }
-
-    const ups = document.getElementsByName("upvote")
-    ups.forEach((element) => { element.addEventListener("click", upvote) })
-
-    const downs = document.getElementsByName("downvote")
-    downs.forEach((element) => { element.addEventListener("click", downvote) })
-
-    let x = window.matchMedia("(min-width: 992px)")
-    dropdownRight(x) // Call listener function at run time
-    x.addListener(dropdownRight) // Attach listener function on state changes 
-
-
-</script>
 <%- include('../partials/footer') %>

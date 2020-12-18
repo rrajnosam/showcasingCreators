@@ -99,19 +99,11 @@
 
   }
 
-  const ups = document.getElementsByName("upvote")
-  ups.forEach((element) => { element.addEventListener("click", upvote) })
 
-  const downs = document.getElementsByName("downvote")
-  downs.forEach((element) => { element.addEventListener("click", downvote) })
-
-  let x = window.matchMedia("(min-width: 992px)")
-  dropdownRight(x) // Call listener function at run time
-  x.addListener(dropdownRight) // Attach listener function on state changes 
 
   //---------------------------------twitch---------------------------------------
 
-  function upvote() {
+  function upvoteTwitch() {
     // console.log("upvote")
     const votes = event.target.parentElement.nextElementSibling.innerText
     const id = event.target.parentElement.nextElementSibling.attributes.id.value
@@ -140,7 +132,7 @@
 
   }
 
-  function downvote() {
+  function downvoteTwitch() {
     // console.log("downvote")
     const votes = event.target.parentElement.previousElementSibling.innerText
     const id = event.target.parentElement.previousElementSibling.attributes.id.value
@@ -170,6 +162,12 @@
 
   }
 
+  const upsTwitch = document.getElementsByName("upvoteTwitch")
+  upsTwitch.forEach((element) => { element.addEventListener("click", upvoteTwitch) })
+
+  const downsTwitch = document.getElementsByName("downvoteTwitch")
+  downsTwitch.forEach((element) => { element.addEventListener("click", downvoteTwitch) })
+
   const ups = document.getElementsByName("upvote")
   ups.forEach((element) => { element.addEventListener("click", upvote) })
 
@@ -179,7 +177,6 @@
   let x = window.matchMedia("(min-width: 992px)")
   dropdownRight(x) // Call listener function at run time
   x.addListener(dropdownRight) // Attach listener function on state changes 
-
 
 </script>
 

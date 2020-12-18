@@ -33,10 +33,10 @@
                     <%  pastDirection = "none" %>
                     <% } else if (votedChannelsArray.indexOf(String(channel._id)) != -1){ %>
                     <%  thisChannel = votedChannelsArray.indexOf(String(channel._id)) %>
-                    <%  pastDirection = user.votedChannels[thisChannel].direction %>
+                    <%  pastDirection = user.votedTwitch[thisChannel].direction %>
                     <%}%>
           
-                  <button id="up<%= channel._id %>" name="upvote" class="btn row"
+                  <button id="up<%= channel._id %>" name="upvoteTwitch" class="btn row"
                     <%= thisChannel != -1 && pastDirection === "up" ? "disabled" : null %>>
                     <i class="fas fa-chevron-up fa-3x"></i>
                     </button>
@@ -46,12 +46,12 @@
                     </h1>
 
 
-                    <button id="down<%= channel._id %>" name="downvote" class="btn row"
+                    <button id="down<%= channel._id %>" name="downvoteTwitch" class="btn row"
                         <%= thisChannel != -1 && pastDirection==="down" ? "disabled" : null %>>
                         <i class="fas fa-chevron-down fa-3x"></i>
                     </button>
                     <% } else { %>
-                    <button id="up<%= channel._id %>" name="upvote" class="btn row">
+                    <button id="up<%= channel._id %>" name="upvoteTwitch" class="btn row">
                         <i class="fas fa-chevron-up fa-3x"></i>
                     </button>
 
@@ -61,7 +61,7 @@
 
 
 
-                    <button id="down<%= channel._id %>" name="downvote" class="btn row">
+                    <button id="down<%= channel._id %>" name="downvoteTwitch" class="btn row">
                         <i class="fas fa-chevron-down fa-3x"></i>
                     </button>
                     <% } %>
@@ -111,10 +111,10 @@
                             <%  pastDirection1 = "none" %>
                             <% } else if (votedChannelsArray.indexOf(String(rcotd._id)) != -1){ %>
                             <%  thisChannel1 = votedChannelsArray.indexOf(String(rcotd._id)) %>
-                            <%  pastDirection1 = user.votedChannels[thisChannel1].direction %>
+                            <%  pastDirection1 = user.votedTwitch[thisChannel1].direction %>
                             <%}%>
               
-                      <button id="up<%= rcotd._id %>" name="upvote" class="btn row"
+                      <button id="up<%= rcotd._id %>" name="upvoteTwitch" class="btn row"
                             <%= thisChannel1 != -1 && pastDirection1 === "up" ? "disabled" : null %>>
                             <i class="fas fa-chevron-up fa-3x"></i>
                             </button>
@@ -123,12 +123,12 @@
                                 <%= rcotd.votes %>
                             </h1>
 
-                            <button id="down<%= rcotd._id %>" name="downvote" class="btn row"
+                            <button id="down<%= rcotd._id %>" name="downvoteTwitch" class="btn row"
                                 <%= thisChannel1 != -1 && pastDirection1==="down" ? "disabled" : null %>>
                                 <i class="fas fa-chevron-down fa-3x"></i>
                             </button>
                             <% } else { %>
-                            <button id=" up<%= rcotd._id %>" name="upvote" class="btn row">
+                            <button id=" up<%= rcotd._id %>" name="upvoteTwitch" class="btn row">
                                 <i class="fas fa-chevron-up fa-3x"></i>
                             </button>
 
@@ -136,7 +136,7 @@
                                 <%= rcotd.votes %>
                             </h1>
 
-                            <button id="down<%= rcotd._id %>" name="downvote" class="btn row">
+                            <button id="down<%= rcotd._id %>" name="downvoteTwitch" class="btn row">
                                 <i class="fas fa-chevron-down fa-3x"></i>
                             </button>
                             <% } %>
@@ -183,10 +183,10 @@
                             <%  pastDirection2 = "none" %>
                             <% } else if (votedChannelsArray.indexOf(String(channel2._id)) != -1){ %>
                             <%  thisChannel2 = votedChannelsArray.indexOf(String(channel2._id)) %>
-                            <%  pastDirection2 = user.votedChannels[thisChannel2].direction %>
+                            <%  pastDirection2 = user.votedTwitch[thisChannel2].direction %>
                             <%}%>
           
-                            <button id="up<%= channel2._id %>" name="upvote" class="btn row"
+                            <button id="up<%= channel2._id %>" name="upvoteTwitch" class="btn row"
                             <%= thisChannel2 != -1 && pastDirection2 === "up" ? "disabled" : null %>>
                             <i class="fas fa-chevron-up fa-3x"></i>
                             </button>
@@ -195,12 +195,12 @@
                                 <%= channel2.votes %>
                             </h1>
 
-                            <button id="down<%= channel2._id %>" name="downvote" class="btn row"
+                            <button id="down<%= channel2._id %>" name="downvoteTwitch" class="btn row"
                                 <%= thisChannel2 != -1 && pastDirection2==="down" ? "disabled" : null %>>
                                 <i class="fas fa-chevron-down fa-3x"></i>
                             </button>
                             <% } else { %>
-                            <button id=" up<%= channel2._id %>" name="upvote" class="btn row">
+                            <button id=" up<%= channel2._id %>" name="upvoteTwitch" class="btn row">
                                 <i class="fas fa-chevron-up fa-3x"></i>
                             </button>
 
@@ -208,7 +208,7 @@
                                 <%= channel2.votes %>
                             </h1>
 
-                            <button id="down<%= channel2._id %>" name="downvote" class="btn row">
+                            <button id="down<%= channel2._id %>" name="downvoteTwitch" class="btn row">
                                 <i class="fas fa-chevron-down fa-3x"></i>
                             </button>
                             <% } %>
@@ -235,7 +235,7 @@
 
     <div class="container text-center">
         <h1 class="text-center my-3 text-light"> SEARCH FOR STREAMERS </h1>
-        <form method="post" action="/youtube/search" class="">
+        <form method="post" action="/twitch/search" class="">
             <input name="query" class="form-control mr-sm-2" type="search" placeholder="Search streamers..."
                 aria-label="Search" />
             <button class="btn  btn-primary mt-2 mb-4" type="submit">
