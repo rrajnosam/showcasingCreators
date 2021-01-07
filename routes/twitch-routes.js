@@ -470,7 +470,7 @@ router.post("/suggest-channel", authCheck, paginate, async (req, res) => {
 
 router.get("/suggest-channel/admin", adminCheck, paginate, (req, res) => {
 
-    res.render("admin/suggest-channel-admin.ejs", { user: req.user, paginate: res.paginate })
+    res.render("admin/twitch-suggest-channel-admin.ejs", { user: req.user, paginate: res.paginate })
 
 })
 
@@ -523,7 +523,7 @@ router.get("/suggest-channel/admin/show", adminCheck, paginate, async (req, res)
 
         const suggestions = await TwitchSuggestion.find({})
             .catch((err) => console.log(err))
-        res.render("admin/show-suggestions-admin.ejs", { user: req.user, paginate: res.paginate, suggestions: suggestions })
+        res.render("admin/twitch-show-suggestions-admin.ejs", { user: req.user, paginate: res.paginate, suggestions: suggestions })
 
     } catch (err) {
         console.log(err)

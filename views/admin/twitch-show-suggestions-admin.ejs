@@ -66,7 +66,7 @@
 
             let xhr = new XMLHttpRequest()
 
-            xhr.open('POST', '/youtube/suggest-channel/admin/show/delete', true)
+            xhr.open('POST', '/twitch/suggest-channel/admin/show/delete', true)
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
             //xhr.setRequestHeader('Content-Type', 'application/json')
             xhr.onload = function () {
@@ -89,7 +89,7 @@
             // console.log(event.target)
             let xhr = new XMLHttpRequest()
             console.log(document.getElementById("admin-password").value)
-            xhr.open('POST', '/youtube/suggest-channel/admin/show/deleteall', true)
+            xhr.open('POST', '/twitch/suggest-channel/admin/show/deleteall', true)
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
             //xhr.setRequestHeader('Content-Type', 'application/json')
             xhr.onload = function () {
