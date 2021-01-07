@@ -1,50 +1,51 @@
 <%- include('../partials/header') %>
-<%- include('../partials/subheader-twitch') %>
+    <%- include('../partials/subheader-twitch') %>
 
 
 
-<form id="no" action="/twitch/suggest-channel" method="post">
+        <form id="no" action="/twitch/suggest-channel" method="post">
 
-    <div class="mt-5 mx-auto col-md-4">
-        <div class="card">
-            <h5 class="card-header text-center"><img class="my-3 mr-2" width="50" height="50"
-                    src="https://www.freepnglogos.com/uploads/twitch-tv-logo-vector-png-24.png" alt="">
-                Suggest a Twitch Stream</h5>
-            <div class="card-body">
-                <h5 class="card-title"></h5>
+            <div class="mt-5 mx-auto col-md-4">
+                <div class="card">
+                    <h5 class="card-header text-center"><img class="my-3 mr-2" width="50" height="50"
+                            src="https://www.freepnglogos.com/uploads/twitch-tv-logo-vector-png-24.png" alt="">
+                        Suggest a Twitch Stream</h5>
+                    <div class="card-body">
+                        <h5 class="card-title"></h5>
 
-                <p class="card-text mb-5">Please enter the URL for the Twitch channel you would like to suggest.
-                    (i.e. https://www.twitch.tv/channelname)</p>
-                <div class="form-group col-auto">
-                    <label class="" for="inlineFormInput">Twitch channel URL</label>
-                    <input name="channelUrl" type="url" class="form-control mb-2" id="url"
-                        placeholder="insert channel page URL here" required>
+                        <p class="card-text mb-5">Please enter the URL for the Twitch channel you would like to suggest.
+                            (i.e. https://www.twitch.tv/channelname)</p>
+                        <div class="form-group col-auto">
+                            <label class="" for="inlineFormInput">Twitch channel URL</label>
+                            <input name="channelUrl" type="url" class="form-control mb-2" id="url"
+                                placeholder="insert channel page URL here" required>
 
-                    <label class="mr-sm-2" for="inlineFormCustomSelect">Category</label>
-                    <select name="category" class="custom-select mb-2 mr-sm-2" id="inlineFormCustomSelect" required>
-                        <option disabled selected>Choose...</option>
-                        <% categoryList.forEach((category) => { %>
-                        <option value="<%= category %>"><%= category %></option>
-                        <% })%>
-                    </select>
-                    <label class="" for="inlineFormCustomSelect">Descriptive Tags (seperate with commas)</label>
+                            <label class="mr-sm-2" for="inlineFormCustomSelect">Category</label>
+                            <select name="category" class="custom-select mb-2 mr-sm-2" id="inlineFormCustomSelect"
+                                required>
+                                <option disabled selected>Choose...</option>
+                                <option value="Gaming">Gaming</option>
+                                <option value="Just Chatting">Just Chatting</option>
+                            </select>
+                            <label class="" for="inlineFormCustomSelect">Descriptive Tags (seperate with commas)</label>
 
-                    <input name="channelTags" type="text" class="form-control mb-2" id="tags"
-                        placeholder="restaurants, asian food, food review, soup, noodles, dumplings " required>
-                    <button id="submitbtn" class="btn twitch-button my-3" type="submit">Submit</button>
+                            <input name="channelTags" type="text" class="form-control mb-2" id="tags"
+                                placeholder="restaurants, asian food, food review, soup, noodles, dumplings " required>
+                            <button id="submitbtn" class="btn twitch-button my-3" type="submit">Submit</button>
 
 
+                        </div>
+                        <p class="card-text mt-5">* Please allow 24 hours for your suggestion to go live on the site.
+                            Feel
+                            free
+                            to
+                            submit again if 24 hours has passed and the channel is still not up on the site.</p>
+
+                    </div>
                 </div>
-                <p class="card-text mt-5">* Please allow 24 hours for your suggestion to go live on the site. Feel
-                    free
-                    to
-                    submit again if 24 hours has passed and the channel is still not up on the site.</p>
-
             </div>
-        </div>
-    </div>
-</form>
+        </form>
 
 
 
-<%- include('../partials/footer') %>
+        <%- include('../partials/footer') %>

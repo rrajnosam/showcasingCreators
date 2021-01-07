@@ -516,10 +516,6 @@ router.post("/suggest-channel/admin", (req, res) => {
             })
         }
     })
-
-
-
-
 })
 
 router.get("/suggest-channel/admin/show", adminCheck, paginate, async (req, res) => {
