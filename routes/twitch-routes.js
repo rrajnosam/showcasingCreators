@@ -499,7 +499,7 @@ router.post("/suggest-channel/admin", (req, res) => {
             Twitch.findOne({ name: req.body.channelName }).then((foundChannel) => {
                 if (foundChannel) {
                     // console.log("this channel already exists " + foundChannel);
-                    done(null, foundChannel).catch((err) => console.log(err))
+                    // done(null, foundChannel).catch((err) => console.log(err))
                     res.send("this channel already exists")
                 } else {
                     new Twitch({
@@ -577,7 +577,6 @@ router.post("/suggest-channel/admin/show/deleteall", paginate, async (req, res) 
                 } catch (err) {
                     res.status(500).send()
                 }
-
             }
         })
 
