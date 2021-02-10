@@ -25,8 +25,9 @@ router.get("/", paginate, async (req, res) => {
         const listCotdsIDs = preCotds.map((each) => each.channel)
         const cotds = await Twitch.find({ _id: { $in: listCotdsIDs } }).catch((err) => console.log(err))
 
-
-        // console.log(random)
+        // console.log(listCotdsIDs)
+        // console.log(cotds)
+        
         if (req.query.sort === "recent") {
             results = await Twitch.find({}, null, { sort: { createdAt: -1 } }).limit(3).skip(random)
                 .catch((err) => console.log(err))
