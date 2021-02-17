@@ -1,6 +1,25 @@
 <%- include('../partials/header') %>
 <%- include('../partials/subheader-twitch') %>
 
+
+<div class="bg-dark">
+    <br>
+
+    <div class="container text-center">
+        <h1 class="text-center my-3 text-light"> SEARCH FOR STREAMERS </h1>
+        <form method="post" action="/twitch/search" class="">
+            <input name="query" class="form-control mr-sm-2" type="search" placeholder="Search streamers..."
+                aria-label="Search" />
+            <button class="btn twitch-button mt-2 mb-4" type="submit">
+                Search
+            </button>
+        </form>
+    </div>
+    <br>
+</div>
+
+
+
 <!-----------------------------FEATURED CHANNEL OF THE DAY --------------------------- -->
 
 
@@ -230,26 +249,11 @@
 </div>
 
 
-<div class="bg-dark">
-    <br>
-
-    <div class="container text-center">
-        <h1 class="text-center my-3 text-light"> SEARCH FOR STREAMERS </h1>
-        <form method="post" action="/twitch/search" class="">
-            <input name="query" class="form-control mr-sm-2" type="search" placeholder="Search streamers..."
-                aria-label="Search" />
-            <button class="btn  btn-primary mt-2 mb-4" type="submit">
-                Search
-            </button>
-        </form>
-    </div>
-    <br>
-</div>
 
 
 <div class="mt-2 container">
      
-    <!-- <div class="card mb-3 mx-auto">
+    <div class="card mb-3 mx-auto">
         <h3 class="card-header">
             <a target="_blank" class="text-black" href="https://www.webull.com/activity?inviteCode=Hc1iWAeiAPLo&source=invite_gw&inviteSource=wb_oversea">Invest with Webull
             </a>
@@ -268,7 +272,7 @@
           <p>Everyone gets smart tools for smart investing.</p>
             <a target="_blank" href="https://www.webull.com/activity?inviteCode=Hc1iWAeiAPLo&source=invite_gw&inviteSource=wb_oversea" class="btn red-button">Learn More</a>
         </div>
-    </div> -->
+    </div>
 
        
 </div>

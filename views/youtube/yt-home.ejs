@@ -2,12 +2,28 @@
 <%- include('../partials/subheader-youtube') %>
 
 
+<div class="bg-dark">
+    <br>
+
+    <div class="container text-center">
+        <h1 class="text-center my-3 text-light"> SEARCH FOR CHANNELS </h1>
+        <form method="post" action="/youtube/search" class="">
+            <input name="query" class="form-control mr-sm-2" type="search" placeholder="Search channels..."
+                aria-label="Search" />
+            <button class="btn  red-button mt-2 mb-4" type="submit">
+                Search
+            </button>
+        </form>
+    </div>
+    <br>
+</div>
 
 
 <!-- ---------------------------FEATURED CHANNEL OF THE DAY --------------------------- -->
 
 <div id="card-container" class="container w-50">
     <br>
+ 
     <div class="card bg-white text-center">
         <div class="card-header text-light bg-secondary">
             CHANNEL OF THE DAY
@@ -538,25 +554,10 @@
     </div>
     <br>
 
-    <div class="bg-dark">
-        <br>
-
-        <div class="container text-center">
-            <h1 class="text-center my-3 text-light"> SEARCH FOR CHANNELS </h1>
-            <form method="post" action="/youtube/search" class="">
-                <input name="query" class="form-control mr-sm-2" type="search" placeholder="Search channels..."
-                    aria-label="Search" />
-                <button class="btn  btn-primary mt-2 mb-4" type="submit">
-                    Search
-                </button>
-            </form>
-        </div>
-        <br>
-    </div>
-
+   
     <div class="container">
      
-    <!-- <div class="card mb-3 mx-auto">
+    <div class="card mb-3 mx-auto">
         <h3 class="card-header">
             <a target="_blank" class="text-black" href="https://www.webull.com/activity?inviteCode=Hc1iWAeiAPLo&source=invite_gw&inviteSource=wb_oversea">Invest with Webull
             </a>
@@ -575,7 +576,7 @@
           <p>Everyone gets smart tools for smart investing.</p>
             <a target="_blank" href="https://www.webull.com/activity?inviteCode=Hc1iWAeiAPLo&source=invite_gw&inviteSource=wb_oversea" class="btn red-button">Learn More</a>
         </div>
-    </div> -->
+    </div>
 
        
 </div>
