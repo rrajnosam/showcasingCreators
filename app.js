@@ -130,31 +130,31 @@ app.get("/terms-of-service", paginate, (req, res) => {
 //SAVE VOTE COUNT TO DATABASE EVERY WEEK
 let i = 0
 
-cron.schedule("0 0 * * 1", async () => {
-  // cron.schedule("*/15 * * * *", async () => {
+// cron.schedule("0 0 * * 1", async () => {
+//   // cron.schedule("*/15 * * * *", async () => {
 
-  console.log("updated weekly vote count", i)
-  i++
+//   console.log("updated weekly vote count", i)
+//   i++
 
-  //----------------------------------YOUTUBE UPDATE WEEKLY VOTE COUNT -------------
-  try {
+//   //----------------------------------YOUTUBE UPDATE WEEKLY VOTE COUNT -------------
+//   try {
 
-    const no = await Channel.updateMany({}, [{ $set: { votesSinceLastWeek: { $subtract: ["$votes", "$votesLastWeek"] } } }])
-    const blah = await Channel.updateMany({}, [{ $set: { votesLastWeek: "$votes" } }])
+//     const no = await Channel.updateMany({}, [{ $set: { votesSinceLastWeek: { $subtract: ["$votes", "$votesLastWeek"] } } }])
+//     const blah = await Channel.updateMany({}, [{ $set: { votesLastWeek: "$votes" } }])
 
-  } catch (err) {
-    console.log(err)
-  }
-  //------------------------TWITCH UPDATE WEEKLY VOTE COUNT ------------------
-  try {
+//   } catch (err) {
+//     console.log(err)
+//   }
+//   //------------------------TWITCH UPDATE WEEKLY VOTE COUNT ------------------
+//   try {
 
-    const eh = await Twitch.updateMany({}, [{ $set: { votesSinceLastWeek: { $subtract: ["$votes", "$votesLastWeek"] } } }])
-    const bleh = await Twitch.updateMany({}, [{ $set: { votesLastWeek: "$votes" } }])
+//     const eh = await Twitch.updateMany({}, [{ $set: { votesSinceLastWeek: { $subtract: ["$votes", "$votesLastWeek"] } } }])
+//     const bleh = await Twitch.updateMany({}, [{ $set: { votesLastWeek: "$votes" } }])
 
-  } catch (err) {
-    console.log(err)
-  }
-})
+//   } catch (err) {
+//     console.log(err)
+//   }
+// })
 
 
 //GENERATE CHANNEL OF THE DAYS
